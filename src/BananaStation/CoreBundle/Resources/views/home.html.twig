@@ -1,0 +1,94 @@
+{% extends "::core.html.twig" %}
+{% block body %}
+    <section id="banner">
+        <h2>Banana Station</h2>
+        <p>Le site qui référence les projets les plus hype d'internet !</p>
+        <ul class="actions">
+            <li>
+                <a href="{{ path('banana_station_core_projects') }}" class="button big">Nos projets</a>
+            </li>
+        </ul>
+    </section>
+
+    <section id="one" class="wrapper style1 special">
+        <div class="container">
+            <header class="major">
+                <h2>Nouveautés</h2>
+                <p>Les derniers ajouts dans la section projet</p>
+            </header>
+            <div class="row 150%">
+                {% if projet %}
+                    <div class="4u 12u$(medium)">
+                        <section class="box">
+                            {% if projet.image|length %}
+                                <img class="icon big rounded" src="{{ asset('public/img/core/projet/' ~ projet.id ~ '.' ~ projet.image) }}" alt="{{ projet.nom|raw }}" />
+                            {% endif %}
+                            <h3><a href="{{ path('banana_station_core_project', { id : projet.id }) }}">{{ projet.nom|raw }}</a></h3>
+                            <h4><span class="icon label fa-user"></span> {{ projet.utilisateur.username }} <span class="icon label fa-calendar"></span> {{ projet.date.date|date('d/m/Y') }}</h4>
+                            <p>Découvrez notre dernier projet ou rendez vous dans la catégorie Projects pour accèder à 'intégralité de nos projets.</p>
+                        </section>
+                    </div>
+                {% endif %}
+                <div class="4u 12u$(medium)">
+                    <section class="box">
+                        <img class="icon big rounded" src="{{ asset('public/img/core/BananaMusic.jpg') }}" alt="Banana Music" />
+                        <h3><a href="{{ path('banana_station_music_racine') }}" target="_blank">Banana Music</a></h3>
+                        <p>
+                            Banana Music est notre site musical mis en ligne courant 2014.
+                            Nous y partageons les musiques que nous apprécions à travers 6 catégories les regroupant par genre.
+                            N'hésitez pas à partager et à nous donner votre avis sur la structure ou le contenu !
+                        </p>
+                    </section>
+                </div>
+                <div class="4u$ 12u$(medium)">
+                    <section class="box">
+                        <img class="icon big rounded" src="{{ asset('public/img/core/GitHub.png') }}" alt="GitHub" />
+                        <h3>GitHub</h3>
+                        <p>
+                            Tous nos projets sont hébérgés sur GitHub.
+                            Notre code est entièrement libre, n'hésitez pas à l'utiliser ou faire des suggestions.<br/><br/>
+                            Dowdow : <a href="https://github.com/Dowdow" target="_blank" class="icon fa-github"><span class="label">Github</span></a>
+                            Vincent : <a href="https://github.com/VincentVoyer" target="_blank" class="icon fa-github"><span class="label">Github</span></a>
+                        </p>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="two" class="wrapper style2 special">
+        <div class="container">
+            <header class="major">
+                <h2>La dream team</h2>
+                <p>L'équipe de developpeurs la plus swag du continent !</p>
+            </header>
+            <section class="profiles">
+                <div class="row">
+                    <section class="3u 6u(medium) 12u$(xsmall) profile"></section>
+                    <section class="3u 6u(medium) 12u$(xsmall) profile">
+                        <img src="{{ asset('public/img/core/dowdow.jpg') }}" alt="Dowdow Profile Picture" />
+                        <h4>Léo Riera</h4>
+                        <p>Web Developper</p>
+                    </section>
+                    <section class="3u 6u$(medium) 12u$(xsmall) profile">
+                        <img src="{{ asset('public/img/core/vonvon.png') }}" alt="Vonvon Profile Picture" />
+                        <h4>Vincent Voyer</h4>
+                        <p>Mobile App Developper</p>
+                    </section>
+                </div>
+            </section>
+            <footer>
+                <p>
+                    Nous sommes deux developpeurs et amis Clermontois issus de la même formation.
+                    Vincent a poursuivi dans le développement d'applications mobiles et Léo dans le développement web.
+                    Pour en savoir plus sur nous où nous contacter, c'est direction section About.
+                </p>
+                <ul class="actions">
+                    <li>
+                        <a href="{{ path('banana_station_core_about') }}" class="button big">About</a>
+                    </li>
+                </ul>
+            </footer>
+        </div>
+    </section>
+{% endblock %}

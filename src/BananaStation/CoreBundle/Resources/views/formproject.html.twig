@@ -1,0 +1,37 @@
+{% extends "::core.html.twig" %}
+{% block body %}
+    <section id="main" class="wrapper">
+        <div class="container">
+            <h2>Formulaire de projet</h2>
+
+            {{ form_start(form) }}
+            <div class="row uniform 50%">
+                <div class="6u 12u$(4)">
+                    {{ form_widget(form.nom, { 'attr': { 'placeholder': 'Nom' } }) }}
+                </div>
+                <div class="6u 12u$(4)">
+                    <div class="select-wrapper">
+                        {{ form_widget(form.etat) }}
+                    </div>
+                </div>
+                <div class="12u$">
+                    {{ form_widget(form.description, { 'attr': { 'placeholder': 'Description', 'rows': 6 } }) }}
+                </div>
+                <div class="6u 12u$(4)">
+                    {{ form_widget(form.progression, { 'attr': { 'placeholder': 'Progression' } }) }}
+                </div>
+                <div class="6u 12u$(4)">
+                    {{ form_widget(form.file) }}
+                </div>
+                <div class="12u$">
+                    <ul class="actions">
+                        <li><input type="submit" value="Publier" class="special" /></li>
+                        <li><input type="reset" value="Reset" /></li>
+                    </ul>
+                </div>
+            </div>
+            {{ form_end(form) }}
+
+        </div>
+    </section>
+{% endblock %}

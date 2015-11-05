@@ -1,0 +1,42 @@
+{% extends "::music.html.twig" %}
+{% block body %}
+    <div class="grid-search" style="background: #39cccc;">
+        <form method="post" action="{{ path('banana_station_music_search') }}">
+            <label for="input-search" onclick="showInputSearch()">Search</label>
+            <input id="input-search" type="text" name="search">
+        </form>
+    </div>
+    <div id="grid" class="grid">
+        {% for music in musics %}
+            <div id="{{ music.youtubeid }}" class="item" onclick="showMusic('{{ music.youtubeid }}')" style="background:{% if music.style == 'G' %} rgba(255,65,54,{{ random([7,8,9,10]) / 10 }}){% elseif music.style == 'H' %} rgba(255,133,27,{{ random([7,8,9,10]) / 10 }}){% elseif music.style == 'M' %} rgba(255,220,0,{{ random([7,8,9,10]) / 10 }}){% elseif music.style == 'E' %} rgba(0,116,217,{{ random([7,8,9,10]) / 10 }}){% elseif music.style == 'D' %} rgba(46,204,64,{{ random([7,8,9,10]) / 10 }}){% elseif music.style == 'R' %} rgba(170,170,170,{{ random([7,8,9,10]) / 10 }}){% endif %};">
+                <img src="http://img.youtube.com/vi/{{ music.youtubeid }}/0.jpg" alt="{{ music.title }}" />
+                <div class="item-info">
+                    <h3>{{ music.title }}</h3>
+                </div>
+                {% if is_granted('ROLE_MUSIC') %}
+                    <div class="item-admin">
+                        <a href="{{ path('banana_station_music_admin_edit', { id : music.id }) }}">Edit</a>
+                        <a href="{{ path('banana_station_music_admin_delete', { id : music.id }) }}">Delete</a>
+                    </div>
+                {% endif %}
+            </div>
+        {% else %}
+            <div class="item-notfound">
+                <h3>No results were found ... :(</h3>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="grid-scroll" style="background: #39cccc">
+        <span onclick="up()">&uarr;</span>
+        <span onclick="down()">&darr;</span>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="{{ asset('public/js/music/player.js') }}"></script>
+    <script>
+        var previous = '{{ asset('public/img/music/previous.svg') }}';
+        var next = '{{ asset('public/img/music/next.svg') }}';
+    </script>
+{% endblock %}

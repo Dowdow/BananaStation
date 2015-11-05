@@ -1,0 +1,13 @@
+{% extends "::core.html.twig" %}
+{% block body %}
+    <section id="main" class="wrapper">
+        <div class="container">
+            <h2>Supprimer la note "{{ note.contenu|slice(0, 30) }} ..."</h2>
+
+            <form method="post">
+                <p>Êtes vous sûr de vouloir supprimer cette note ?</p>
+                <input type="submit" class="bouton" value="Supprimer"/>
+            </form>
+        </div>
+    </section>
+{% endblock %}

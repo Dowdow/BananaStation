@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/music/index.css') }}"/>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:300' rel='stylesheet' type='text/css'>
+    <title>Banana Music</title>
+</head>
+<body>
+<div class="menu-phone">
+    <img  onclick="displayMenu()" src="{{ asset('public/img/music/menu-phone.svg') }}" alt="menu-phone">
+</div>
+<span class="bandeau"></span>
+<div id="menu" class="menu">
+    <div class="menu-item menu-red">
+        <a href="{{ path('banana_station_music_music_games') }}">
+            <img class="menu-item-icon menu-item-icon-red" src="{{ asset('public/img/music/xbox.svg') }}"/>
+            <img class="menu-item-icon menu-item-icon-red" src="{{ asset('public/img/music/playstation.svg') }}"/>
+            <div class="menu-item-content">
+                <h2 class="menu-item-main">Games</h2>
+            </div>
+            <div class="menu-item-hidden">
+                <p>Listen to games music</p>
+            </div>
+        </a>
+    </div>
+    <div class="menu-item menu-orange">
+        <a href="{{ path('banana_station_music_music_hiphop') }}">
+            <img class="menu-item-icon menu-item-icon-orange" src="{{ asset('public/img/music/dollar.svg') }}"/>
+            <div class="menu-item-content">
+                <h2 class="menu-item-main">Hip-Hop</h2>
+            </div>
+            <div class="menu-item-hidden">
+                <p>Listen to hip-hop music</p>
+            </div>
+        </a>
+    </div>
+    <div class="menu-item menu-yellow">
+        <a href="{{ path('banana_station_music_music_movies') }}">
+            <img class="menu-item-icon menu-item-icon-yellow" src="{{ asset('public/img/music/movie.svg') }}"/>
+            <div class="menu-item-content">
+                <h2 class="menu-item-main">Movies</h2>
+            </div>
+            <div class="menu-item-hidden">
+                <p>Listen to movie music</p>
+            </div>
+        </a>
+    </div>
+    <div class="menu-item menu-blue">
+        <a href="{{ path('banana_station_music_music_electro') }}">
+            <img class="menu-item-icon menu-item-icon-blue" src="{{ asset('public/img/music/disk.svg') }}"/>
+            <div class="menu-item-content">
+                <h2 class="menu-item-main">Electro & House</h2>
+            </div>
+            <div class="menu-item-hidden">
+                <p>Listen to E&H music</p>
+            </div>
+        </a>
+    </div>
+    <div class="menu-item menu-green">
+        <a href="{{ path('banana_station_music_music_dubstep') }}">
+            <img class="menu-item-icon menu-item-icon-green" src="{{ asset('public/img/music/syringe.svg') }}"/>
+            <div class="menu-item-content">
+                <h2 class="menu-item-main">Dubstep & Drum and bass</h2>
+            </div>
+            <div class="menu-item-hidden">
+                <p>Listen to D&B music</p>
+            </div>
+        </a>
+    </div>
+    <div class="menu-item menu-grey">
+        <a href="{{ path('banana_station_music_music_rock') }}">
+            <img class="menu-item-icon menu-item-icon-grey" src="{{ asset('public/img/music/guitar.svg') }}"/>
+            <div class="menu-item-content">
+                <h2 class="menu-item-main">Rock</h2>
+            </div>
+            <div class="menu-item-hidden">
+                <p>Listen to rock music</p>
+            </div>
+        </a>
+    </div>
+</div>
+<span style="clear: both"></span>
+<div class="screen">
+    <video id="video" autoplay="autoplay" loop="loop" poster="{{ asset('public/img/music/c-skate.png') }}">
+        <source src="{{ asset('public/video/music/video.mp4') }}" type="video/mp4">
+        <source src="{{ asset('public/video/music/video.ogv') }}" type="video/ogg">
+        <source src="{{ asset('public/video/music/video.webm') }}" type="video/webm">
+    </video>
+</div>
+<ul class="image">
+    <li><img src="{{ asset('public/img/music/c-skate.png') }}" alt="background-image"></li>
+    <li><img src="{{ asset('public/img/music/c-ski.png') }}" alt="background-image"></li>
+    <li><img src="{{ asset('public/img/music/c-transformers.png') }}" alt="background-image"></li>
+    <li><img src="{{ asset('public/img/music/c-lego.png') }}" alt="background-image"></li>
+    <li><img src="{{ asset('public/img/music/c-minions.png') }}" alt="background-image"></li>
+</ul>
+<ul class="image">
+    <li><img src="{{ asset('public/img/music/c-lego.png') }}" alt="background-image"></li>
+    <li><img src="{{ asset('public/img/music/c-minions.png') }}" alt="background-image"></li>
+    <li><img src="{{ asset('public/img/music/c-skate.png') }}" alt="background-image"></li>
+    <li><img src="{{ asset('public/img/music/c-ski.png') }}" alt="background-image"></li>
+    <li><img src="{{ asset('public/img/music/c-transformers.png') }}" alt="background-image"></li>
+</ul>
+<ul class="image">
+    <li><img src="{{ asset('public/img/music/c-transformers.png') }}" alt="background-image"></li>
+    <li><img src="{{ asset('public/img/music/c-lego.png') }}" alt="background-image"></li>
+    <li><img src="{{ asset('public/img/music/c-minions.png') }}" alt="background-image"></li>
+    <li><img src="{{ asset('public/img/music/c-skate.png') }}" alt="background-image"></li>
+    <li><img src="{{ asset('public/img/music/c-ski.png') }}" alt="background-image"></li>
+</ul>
+<h1 class="video-title">#BananaMusic</h1>
+<script src="{{ asset('public/js/jquery-2.1.0.min.js') }}"></script>
+<script src="{{ asset('public/js/music/menu.js') }}"></script>
+<script>
+    var x, y, resolution;
+    if (document.body) {
+        x = document.body.clientWidth;
+        y = document.body.clientHeight;
+    } else {
+        x = window.innerWidth;
+        y = window.innerHeight;
+    }
+    resolution = x/y;
+    if(resolution >= 16/9) {
+        document.getElementById('video').width = x;
+    } else {
+        document.getElementById('video').height = y;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width">
+    {% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/music/header.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/music/grid.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/music/footer.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/music/admin.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/nprogress.css') }}"/>
+    {% endblock %}
+    <link href='http://fonts.googleapis.com/css?family=Raleway:300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Sniglet:800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link rel="icon" href="{{ asset('public/favicon.ico') }}"/>
+    <title>{% block title %}Banana Music{% endblock %}</title>
+</head>
+<body>
+<div class="menu-phone">
+    <img  onclick="displayMenu()" src="{{ asset('public/img/music/menu-phone.svg') }}" alt="menu-phone">
+</div>
+<div id="menu" class="menu">
+    <a href="{{ path('banana_station_music_music_games') }}">
+        <div class="menu-item" style="background: #ff4136;">
+            <div class="menu-image">
+                <img class="ca-icon" src="{{ asset('public/img/music/xbox.svg') }}"/>
+                <img class="ca-icon" src="{{ asset('public/img/music/playstation.svg') }}"/>
+            </div>
+            <h2 class="menu-title">Games</h2>
+        </div>
+    </a>
+    <a href="{{ path('banana_station_music_music_hiphop') }}">
+        <div class="menu-item" style="background: #ff851b;">
+            <div class="menu-image">
+                <img class="ca-icon" src="{{ asset('public/img/music/dollar.svg') }}"/>
+            </div>
+            <h2 class="menu-title">Hip-Hop</h2>
+        </div>
+    </a>
+    <a href="{{ path('banana_station_music_music_movies') }}">
+        <div class="menu-item" style="background: #ffdc00;">
+            <div class="menu-image">
+                <img class="ca-icon" src="{{ asset('public/img/music/movie.svg') }}"/>
+            </div>
+            <h2 class="menu-title">Movies</h2>
+        </div>
+    </a>
+    <a href="{{ path('banana_station_music_music_electro') }}">
+        <div class="menu-item" style="background: #0074d9;">
+            <div class="menu-image">
+                <img class="ca-icon" src="{{ asset('public/img/music/disk.svg') }}"/>
+            </div>
+            <h2 class="menu-title">Electro & House</h2>
+        </div>
+    </a>
+    <a href="{{ path('banana_station_music_music_dubstep') }}">
+        <div class="menu-item" style="background: #2ecc40;">
+            <div class="menu-image">
+                <img class="ca-icon" src="{{ asset('public/img/music/syringe.svg') }}"/>
+            </div>
+            <h2 class="menu-title">Dubstep & D&B</h2>
+        </div>
+    </a>
+    <a href="{{ path('banana_station_music_music_rock') }}">
+        <div class="menu-item" style="background: #aaaaaa;">
+            <div class="menu-image">
+                <img class="ca-icon" src="{{ asset('public/img/music/guitar.svg') }}"/>
+            </div>
+            <h2 class="menu-title">Rock</h2>
+        </div>
+    </a>
+</div>
+{% block body %}
+{% endblock %}
+<div class="footer-stat-total">
+    <h4>Musics total : {{ getTotalMusic() }}</h4>
+</div>
+<div class="footer-stat-genre">
+    <div style="background: #ff4136;">
+        <h4>Games total : {{ getTotalGames() }}</h4>
+    </div>
+    <div style="background: #ff851b;">
+        <h4>Hip-Hop total : {{ getTotalHipHop() }}</h4>
+    </div>
+    <div style="background: #ffdc00;">
+        <h4>Movies total : {{ getTotalMovies() }}</h4>
+    </div>
+    <div style="background: #0074d9;">
+        <h4>E & H total : {{ getTotalElectro() }}</h4>
+    </div>
+    <div style="background: #2ecc40;">
+        <h4>D & D&B total : {{ getTotalDubstep() }}</h4>
+    </div>
+    <div style="background: #aaaaaa;">
+        <h4>Rock total : {{ getTotalRock() }}</h4>
+    </div>
+</div>
+
+<div id="footer" class="footer-music">
+    <ul class="footer-rubric">
+        <li><a href="{{ path('banana_station_music_music_games') }}">Games</a></li>
+        <li><a href="{{ path('banana_station_music_music_hiphop') }}">Hip-Hop</a></li>
+        <li><a href="{{ path('banana_station_music_music_movies') }}">Movies</a></li>
+    </ul>
+    <ul class="footer-rubric">
+        <li><a href="{{ path('banana_station_music_music_electro') }}">Electro & House</a></li>
+        <li><a href="{{ path('banana_station_music_music_dubstep') }}">Dubstep & Drum and bass</a></li>
+        <li><a href="{{ path('banana_station_music_music_rock') }}">Rock</a></li>
+    </ul>
+    <ul class="footer-credit">
+        <li><a href="{{ path('banana_station_music_racine') }}">Home</a></li>
+        <li><a href="{{ path('banana_station_core_racine') }}">Banana Station</a></li>
+        {% if is_granted('ROLE_MUSIC') %}
+            <li><a href="{{ path('banana_station_music_admin') }}">Admin</a></li>
+        {% endif %}
+    </ul>
+</div>
+
+<script src="{{ asset('public/js/jquery-2.1.0.min.js') }}"></script>
+<script src="{{ asset('public/js/music/menu.js') }}"></script>
+{% block javascripts %}
+{% endblock %}
+</body>
+</html>

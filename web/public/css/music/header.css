@@ -1,0 +1,130 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.menu {
+    position: relative;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-item {
+    height: 150px;
+    width: 16.66%;
+    float: left;
+    border: 10px solid rgba(0,0,0,0.2);
+    box-sizing: border-box;
+    overflow: hidden;
+    white-space: nowrap;
+    /*transition*/
+    -webkit-transition:all 200ms linear;
+    -moz-transition:all 200ms linear;
+    -o-transition:all 200ms linear;
+    transition:all 200ms linear;
+}
+
+.menu-item:hover {
+    border-width: 15px;
+    /*transition*/
+    -webkit-transition:all 200ms linear;
+    -moz-transition:all 200ms linear;
+    -o-transition:all 200ms linear;
+    transition:all 200ms linear;
+}
+
+.menu-image {
+    width: 100%;
+    height: 50%;
+    text-align: center;
+}
+
+.menu-image img {
+    height: 60px;
+    padding-top: 10px;
+    opacity:0.7;
+}
+
+.menu-title {
+    font-family:'Raleway', sans-serif;
+    font-size:25px;
+    text-decoration:none;
+    color:#000;
+    opacity:0.7;
+    text-align:center;
+}
+
+.menu-phone {
+    position: relative;
+    display: none;
+    opacity: 0.7;
+    background: #39cccc;
+    border: 10px solid rgba(0,0,0,0.2);
+    box-sizing: border-box;
+}
+
+.menu-phone img {
+    margin-left: 10px;
+}
+
+@media screen and (max-width: 480px) {
+    .menu-item {
+        width: 100%;
+    }
+
+    .menu-title {
+        margin: 0;
+    }
+}
+
+@media screen and (min-width: 480px) and (max-width: 768px) {
+    .menu-item {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .menu {
+        display: none;
+    }
+
+    .menu-item {
+        height: auto;
+        /*transition*/
+        -webkit-transition: none;
+        -moz-transition: none;
+        -o-transition: none;
+        transition: none;
+    }
+
+    .menu-item:hover {
+        border-width: 10px;
+        /*transition*/
+        -webkit-transition: none;
+        -moz-transition: none;
+        -o-transition: none;
+        transition: none;
+    }
+
+    .menu-image {
+        display: none;
+    }
+
+    .menu-title {
+        margin: 10px;
+    }
+
+    .menu-phone {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .menu-item {
+        width: 33.33%;
+        height: 130px;
+    }
+}

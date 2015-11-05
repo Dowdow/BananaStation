@@ -1,0 +1,9 @@
+parameters:
+    banana_station_music.compteur.class: BananaStation\MusicBundle\Service\Compteur
+
+services:
+    banana_station_music.stat:
+        class: %banana_station_music.compteur.class%
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: twig.extension }

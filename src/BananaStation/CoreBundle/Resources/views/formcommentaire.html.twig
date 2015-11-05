@@ -1,0 +1,19 @@
+{% extends "::core.html.twig" %}
+{% block body %}
+    <section id="main" class="wrapper">
+        <div class="container">
+            <h2>Edition de votre commentaire</h2>
+
+            {{ form_start(form) }}
+            <div class="row uniform 50%">
+                <div class="12u$">
+                    {{ form_widget(form.contenu, { 'attr': { 'placeholder': 'Contenu de la note', 'rows': 4 } }) }}
+                </div>
+                <div class="12u$">
+                    <input type="submit" value="Editer" class="special" />
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </section>
+{% endblock %}

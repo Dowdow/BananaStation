@@ -1,0 +1,9 @@
+{% extends "::music.html.twig" %}
+
+{% block body %}
+    <div class="admin-form">
+        <h1>Bienvenue à toi grand admin {{ app.user.username }} !</h1>
+        <p><a href="{{ path('banana_station_music_admin_add') }}">Ajouter une music</a></p>
+        <p><a href="{{ path('logout') }}">Deconnexion</a></p>
+    </div>
+{% endblock %}

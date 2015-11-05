@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width">
+    {% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/user/header.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/user/content.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/user/footer.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/user/form.min.css') }}"/>
+    {% endblock %}
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link rel="icon" href="{{ asset('public/favicon.ico') }}"/>
+    <title>{% block title %}Banana User{% endblock %}</title>
+</head>
+<body>
+
+<div class="header">
+    <h1>Banana Station User Center</h1>
+</div>
+
+{% if alert is defined and alert %}
+    <div class="{{ alert.type }}">{{ alert.message }}</div>
+{% endif %}
+
+{% block body %}
+{% endblock %}
+
+<div class="footer">
+    <ul>
+        <li><a href="{{ path('banana_station_music_racine') }}">Banana Music</a></li>
+        <li><a href="{{ path('banana_station_core_racine') }}">Banana Station</a></li>
+        <li><a href="{{ path('banana_station_games_racine') }}">Banana Games</a></li>
+    </ul>
+</div>
+
+{% block javascripts %}
+{% endblock %}
+</body>
+</html>

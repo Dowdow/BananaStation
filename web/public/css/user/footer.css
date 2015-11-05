@@ -1,0 +1,47 @@
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #01ff70;
+    padding: 10px;
+    z-index: 999;
+}
+
+.footer ul {
+    display: table;
+    width: 40%;
+    margin: 10px auto 10px auto;
+    padding-left: 0;
+    text-align: center;
+}
+
+.footer li {
+    display: table-cell;
+}
+
+.footer li a {
+    font-family: 'Lobster', cursive;
+    font-size: 1.5em;
+    color: #111111;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 480px) {
+    .footer ul {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .footer ul {
+        width: 80%;
+        margin: 0 auto 0 auto;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .footer ul {
+        width: 60%;
+    }
+}

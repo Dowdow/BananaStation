@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width">
+    {% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/games/header.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/games/content.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/games/footer.css') }}" />
+    {% endblock %}
+    <title>Banana Games</title>
+</head>
+<body>
+
+<header>
+    <h1>Banana Games</h1>
+</header>
+
+<div class="content">
+{% block body %}
+{% endblock %}
+</div>
+
+<footer>
+    <p><a href="{{ path('banana_station_core_racine') }}">Banana Station</a></p>
+</footer>
+
+{% block javascripts %}
+{% endblock %}
+</body>
+</html>

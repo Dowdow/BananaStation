@@ -1,0 +1,96 @@
+.content {
+    position: relative;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 100px;
+    font-family: 'Arial', sans-serif;
+}
+
+.content-title {
+    text-align: center;
+}
+
+.bouton {
+    background-color: #01ff70;
+    border: 1px solid #2ecc40;
+    padding: 5px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    color: #111111;
+}
+
+.bouton:hover {
+    background-color: rgba(1,255,112,0.8);
+}
+
+.bouton:active {
+    /*box-shadow*/
+    -webkit-box-shadow: 1px 1px 5px black inset, 0 1px 0 rgba(255, 255, 255, 0.4);
+    -moz-box-shadow: 1px 1px 5px black inset, 0 1px 0 rgba(255, 255, 255, 0.4);
+    box-shadow: 1px 1px 5px black inset, 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.cgu {
+    text-align: justify;
+}
+
+.cgu h2 {
+    text-align: center;
+}
+
+.alert-good {
+    position: relative;
+    width: 60%;
+    margin: 10px auto 10px auto;
+    padding: 10px;
+    border-radius: 3px;
+    text-align: center;
+    font-size: 15px;
+    color: #111111;
+    background-color: #01ff70;
+}
+
+.alert-bad {
+    position: relative;
+    width: 60%;
+    margin: 10px auto 10px auto;
+    padding: 10px;
+    border-radius: 3px;
+    text-align: center;
+    font-size: 15px;
+    color: #dddddd;
+    background-color: #ff4136;
+}
+
+@media screen and (max-width: 768px) {
+    .content {
+        width: 80%;
+    }
+
+    .alert-good {
+        width: 80%;
+    }
+
+    .alert-bad {
+        width: 80%;
+    }
+
+    #recaptcha_widget_div {
+        overflow: scroll;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .content {
+        width: 70%;
+    }
+
+    .alert-good {
+        width: 70%;
+    }
+
+    .alert-bad {
+        width: 70%;
+    }
+}

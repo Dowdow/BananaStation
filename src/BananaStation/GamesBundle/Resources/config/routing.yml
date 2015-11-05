@@ -1,0 +1,14 @@
+banana_station_games_racine:
+    path:     /
+    host: %host_games%
+    defaults: { _controller: BananaStationGamesBundle:Games:index }
+
+banana_station_games_games:
+    path:     /games
+    host: %host_games%
+    defaults: { _controller: BananaStationGamesBundle:Games:games }
+
+banana_station_games_admin:
+    path:     /admin
+    host: %host_games%
+    defaults: { _controller: BananaStationGamesBundle:Admin:admin }

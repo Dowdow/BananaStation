@@ -1,0 +1,11 @@
+parameters:
+    banana_station_user.mailer.class: BananaStation\UserBundle\Service\Mailer
+    banana_station_user.alert.class: BananaStation\UserBundle\Service\Alert
+
+services:
+    banana_station_user.mailer:
+        class: %banana_station_user.mailer.class%
+        arguments: [%mailer_from%,@mailer,@templating]
+
+    banana_station_user.alert:
+        class: %banana_station_user.alert.class%

@@ -1,0 +1,80 @@
+{% extends "::core.html.twig" %}
+{% block body %}
+    <section id="main" class="wrapper">
+        <div class="container">
+            {% if projets|length > 0 %}
+                <header class="major">
+                    <h2>Projects</h2>
+                    <p>L'intégralité de nos projets.</p>
+                </header>
+
+                <form>
+                    <div class="row uniform align-center">
+                        <div class="3u 12u$(4)">
+                            <input type="radio" id="all" onclick="checkall()" name="etat" checked>
+                            <label for="all">Tous</label>
+                        </div>
+                        <div class="3u 12u$(4)">
+                            <input type="radio" id="progress" onclick="checkprogress()" name="etat">
+                            <label for="progress">En cours</label>
+                        </div>
+                        <div class="3u 12u$(4)">
+                            <input type="radio" id="finish" onclick="checkfinish()" name="etat">
+                            <label for="finish">Terminés</label>
+                        </div>
+                        <div class="3u 12u$(4)">
+                            <input type="radio" id="pause"  onclick="checkpause()" name="etat">
+                            <label for="pause">En pause</label>
+                        </div>
+                    </div>
+                </form>
+
+                <ul class="alt">
+                    {% for projet in projets %}
+                        <li class="{{ projet.etat }}">
+                            <h3 class="align-center"><a href="{{ path('banana_station_core_project', { id : projet.id }) }}">{{ projet.nom|raw }}</a></h3>
+                            <h4 class="align-center"><span class="icon label fa-user"></span> {{ projet.utilisateur.username }} <span class="icon label fa-calendar"></span> {{ projet.date.date|date('d/m/Y') }} <span class="icon label fa-rocket"></span> {{ projet.progression }}% <span class="icon label fa-comments"></span> {{ projet.commentaires.count }} <span class="icon label fa-comments-o"></span> {{ projet.notes.count }}</h4>
+                            <p>
+                        <span class="image {% if loop.index%2 == 1 %}left{% else %}right{% endif %}">
+                            {% if projet.image|length %}
+                                <img src="{{ asset('public/img/core/projet/' ~ projet.id ~ '.' ~ projet.image) }}" alt="{{ projet.nom|raw }}" />
+                            {% endif %}
+                        </span>
+                                {{ projet.description|raw }}
+                            </p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <h3>Aucun Projet à afficher.</h3>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}
+{% block javascript %}
+    <script>
+        function checkall() {
+            $('li.E').show();
+            $('li.T').show();
+            $('li.P').show();
+        }
+
+        function checkprogress() {
+            $('li.E').show();
+            $('li.T').hide();
+            $('li.P').hide();
+        }
+
+        function checkfinish() {
+            $('li.E').hide();
+            $('li.T').show();
+            $('li.P').hide();
+        }
+
+        function checkpause() {
+            $('li.E').hide();
+            $('li.T').hide();
+            $('li.P').show();
+        }
+    </script>
+{% endblock %}

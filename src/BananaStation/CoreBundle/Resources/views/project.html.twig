@@ -1,0 +1,81 @@
+{% extends "::core.html.twig" %}
+{% block body %}
+    <section id="main" class="wrapper">
+        <div class="container">
+            <header class="major">
+                <h2>{{ projet.nom|raw }}  {% if is_granted('ROLE_CORE')%}<a href="{{ path('banana_station_core_admin_project_edit', { 'id': projet.id }) }}"><span class="icon label fa-edit"></span></a> <a href="{{ path('banana_station_core_admin_project_delete', { 'id': projet.id }) }}"><span class="icon label fa-remove"></span></a>{% endif %}</h2>
+                <p><span class="icon label fa-user"></span> {{ projet.utilisateur.username }} <span class="icon label fa-calendar"></span> {{ projet.date.date|date('d/m/Y') }} <span class="icon label fa-flag"></span> {{ projet.etat }} <span class="icon label fa-rocket"></span> {{ projet.progression }}% <span class="icon label fa-comments"></span> {{ projet.commentaires.count }} <span class="icon label fa-comments-o"></span> {{ projet.notes.count }}</p>
+            </header>
+
+            <section>
+                <p>
+                    <span class="image left">
+                        <img src="{{ asset('public/img/core/projet/' ~ projet.id ~ '.' ~ projet.image) }}" alt="{{ projet.nom|raw }}" />
+                    </span>
+                <p>{{ projet.description|markdown }}</p>
+                <form method="post" class="align-center">
+                    <div class="row uniform 50%">
+                        <div class="3u 6u$(4)"></div>
+                        <div class="3u 6u$(4)">
+                            <input type="submit" class="bouton plusme" name="plusme" value="Plusme +{{ plusmes }}" />
+                        </div>
+                        <div class="3u 6u$(4)">
+                            <input type="submit" class="bouton moinsme" name="moinsme" value="Moinsme -{{ moinsmes }}" />
+                        </div>
+                    </div>
+                </form>
+
+                <div class="row">
+                    <section class="6u 12u$(4)">
+                        <h3>Notes</h3>
+                        {% for note in projet.notes %}
+                            <section>
+                                <h4><span class="icon label fa-user"></span> {{ note.utilisateur.username }} <span class="icon label fa-calendar"></span> {{ note.date.date|date('d/m/Y') }}
+                                    {% if is_granted('ROLE_CORE')%}<a href="{{ path('banana_station_core_admin_note_edit', { 'id': note.id }) }}"><span class="icon label fa-edit"></span></a>  <a href="{{ path('banana_station_core_admin_note_delete', { 'id': note.id }) }}"><span class="icon label fa-remove"></span></a>{% endif %}</h4>
+                                <p>{{ note.contenu|markdown }}</p>
+                            </section>
+                        {% endfor %}
+                        {% if is_granted('ROLE_CORE') %}
+                            {{ form_start(formnote) }}
+                            <div class="row uniform">
+                                <div class="9u 12u$(4)">
+                                    {{ form_widget(formnote.contenu, { 'attr': { 'placeholder': 'Contenu de votre note' } }) }}
+                                </div>
+                                <div class="3u 12u$(4)">
+                                    <input type="submit" class="special" name="noter" value="Noter" />
+                                </div>
+                            </div>
+                            {{ form_end(formnote) }}
+                        {% endif %}
+                    </section>
+                    <section class="6u 12u$(4)">
+                        <h3>Commentaires</h3>
+                        {% for commentaire in projet.commentaires %}
+                            <section>
+                                <h4><span class="icon label fa-user"></span> {{ commentaire.utilisateur.username }} <span class="icon label fa-calendar"></span> {{ commentaire.date.date|date('d/m/Y G:i') }}
+                                    {% if is_granted('ROLE_USER') and app.user.username == commentaire.utilisateur.username %}<a href="{{ path('banana_station_core_project_edit_commentaire', { 'id': projet.id, 'idcom': commentaire.id }) }}"><span class="icon label fa-edit"></span></a>{% endif %}
+                                    {% if is_granted('ROLE_USER') and app.user.username == commentaire.utilisateur.username or is_granted('ROLE_CORE') %}<a href="{{ path('banana_station_core_project_delete_commentaire', { 'id': projet.id, 'idcom': commentaire.id }) }}"><span class="icon label fa-remove"></span></a>{% endif %}
+                                </h4>
+                            </section>
+                            <p>{{ commentaire.contenu }}</p>
+                        {% endfor %}
+                        {% if is_granted('ROLE_USER') %}
+                            {{ form_start(formcom) }}
+                            <div class="row uniform">
+                                <div class="9u 12u$(4)">
+                                    {{ form_widget(formcom.contenu, { 'attr': { 'placeholder': 'Contenu de votre commentaire' } }) }}
+                                </div>
+                                <div class="3u 12u$(4)">
+                                    <input type="submit" class="special" name="commenter" value="Commenter" />
+                                </div>
+                            </div>
+                            {{ form_end(formcom) }}
+                        {% else %}
+                            <p>Connectez-vous ou inscrivez-vous pour rédiger un commentaire à propos de cette news.</p>
+                        {% endif %}
+                    </section>
+                </div>
+            </section>
+        </div>
+    </section>
+{% endblock %}

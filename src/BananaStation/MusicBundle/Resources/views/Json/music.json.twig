@@ -1,0 +1,13 @@
+{
+"musics": [
+{% for music in musics %}
+    {
+        "id": {{ music.id }},
+        "title": "{{ music.title }}",
+        "youtubeid": "{{ music.youtubeid }}",
+        "style": "{{ music.style }}",
+        "date": "{{ music.date.date }}"
+    }{% if loop.last == false %},{% endif %}
+{% endfor %}
+]
+}

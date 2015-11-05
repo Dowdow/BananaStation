@@ -1,0 +1,31 @@
+{% extends "::music.html.twig" %}
+
+{% block body %}
+    <div class="admin-form">
+        {% if form %}
+            <h1>Ajouter une music :</h1>
+            {{ form_start(form) }}
+            <table>
+                <tr>
+                    <td><label>Title</label></td>
+                    <td>{{ form_widget(form.title) }}</td>
+                </tr>
+                <tr>
+                    <td><label>YouTube Id</label></td>
+                    <td>{{ form_widget(form.youtubeid) }}</td>
+                </tr>
+                <tr>
+                    <td><label>Style</label></td>
+                    <td>{{ form_widget(form.style) }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" class="bouton" value="Valider"/></td>
+                </tr>
+            </table>
+            {{ form_end(form) }}
+        {% else %}
+            <h1>Supprimer une music :</h1>
+            <form method="post"><input type="submit" class="bouton" value="Valider"/></form>
+        {% endif %}
+    </div>
+{% endblock %}

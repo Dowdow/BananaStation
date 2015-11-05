@@ -1,0 +1,27 @@
+<div class="block aside">
+    <div class="block-header">
+        <h2>Récent</h2>
+    </div>
+    <div class="block-content">
+        <table>
+            {% for content in getRecent() %}
+                <tr>
+                    <td class="table-name">{{ content.user }}</td>
+                    {% if content.type == 'avis' %}
+                        <td><img class="table-img" src="{{ asset('public/img/core/avis.svg') }}" alt="{{ content.title }}"></td>
+                        <td><a href="{{ path('banana_station_core_projet', { 'id': content.id }) }}">{{ content.title }}</a></td>
+                    {% elseif content.type == 'commentaire' %}
+                        <td><img class="table-img" src="{{ asset('public/img/core/commentaire.svg') }}" alt="{{ content.title }}"></td>
+                        <td><a href="{{ path('banana_station_core_projet', { 'id': content.id }) }}">{{ content.title }}</a></td>
+                    {% elseif content.type == 'note' %}
+                        <td><img class="table-img" src="{{ asset('public/img/core/note.svg') }}" alt="{{ content.title }}"></td>
+                        <td><a href="{{ path('banana_station_core_project', { 'id': content.id }) }}">{{ content.title }}</a></td>
+                    {% elseif content.type == 'projet' %}
+                        <td><img class="table-img" src="{{ asset('public/img/core/projet.svg') }}" alt="{{ content.title }}"></td>
+                        <td><a href="{{ path('banana_station_core_project', { 'id': content.id }) }}">{{ content.title }}</a></td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>

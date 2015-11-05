@@ -1,0 +1,16 @@
+html, body {
+    position: relative;
+    height: auto;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    position: relative;
+    height: 100%;
+}
+
+.content h1 {
+    text-align: center;
+}

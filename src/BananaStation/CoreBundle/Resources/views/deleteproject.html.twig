@@ -1,0 +1,13 @@
+{% extends "::core.html.twig" %}
+{% block body %}
+    <section id="main" class="wrapper">
+        <div class="container">
+            <h2>Supprimer le projet "{{ project.nom }}"</h2>
+
+            <form method="post">
+                <p>Êtes vous sûr de vouloir supprimer ce projet ?</p>
+                <input type="submit" class="bouton" value="Supprimer"/>
+            </form>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,123 @@
+.footer-music {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    clear: both;
+    background: #111111;
+    border: 10px solid rgba(0,0,0,0.5);
+    box-sizing: border-box;
+}
+
+.footer-rubric {
+    display: table;
+    list-style-type: none;
+    margin: 0 auto 0 auto;
+    padding-left: 0;
+    border-spacing: 10px;
+}
+
+.footer-rubric li {
+    display: table-cell;
+}
+
+.footer-rubric li a {
+    font-family:'Raleway', sans-serif;
+    font-size: 15px;
+    color: #dddddd;
+    text-decoration: none;
+    text-shadow: 1px 1px 2px rgba(221, 221, 221, 0.3);
+}
+
+.footer-credit {
+    display: table;
+    list-style-type: none;
+    margin: 0 auto 0 auto;
+    padding-left: 0;
+    border-spacing: 20px;
+}
+
+.footer-credit li {
+    display: table-cell;
+}
+
+.footer-credit li a {
+    font-family:'Raleway', sans-serif;
+    font-size: 20px;
+    color: #dddddd;
+    text-decoration: none;
+    text-shadow: 1px 1px 2px rgba(221, 221, 221, 0.3);
+}
+
+.footer-stat-total {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    clear: both;
+    background: #39cccc;
+    border: 10px solid rgba(0,0,0,0.2);
+    box-sizing: border-box;
+}
+
+.footer-stat-total h4 {
+    font-family:'Raleway', sans-serif;
+    font-size: 20px;
+    color: #000;
+    opacity: 0.7;
+    text-align: center;
+}
+
+.footer-stat-genre {
+    position: relative;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-stat-genre div {
+    width: 16.66%;
+    float: left;
+    border: 10px solid rgba(0,0,0,0.2);
+    box-sizing: border-box;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.footer-stat-genre h4 {
+    font-family:'Raleway', sans-serif;
+    font-size: 20px;
+    color: #000;
+    opacity: 0.7;
+    text-align: center;
+}
+
+@media screen and (max-width: 480px) {
+    .footer-rubric {
+        border-spacing: 10px;
+    }
+
+    .footer-stat-genre div {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 480px) and (max-width: 768px) {
+    .footer-stat-genre div {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .footer-stat-total h4 {
+        margin: 10px;
+    }
+
+    .footer-stat-genre h4 {
+        margin: 10px;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .footer-stat-genre div {
+        width: 33.33%;
+    }
+}

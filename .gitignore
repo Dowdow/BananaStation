@@ -1,0 +1,12 @@
+/app/cache/*
+/app/logs/*
+/app/config/parameters.yml
+/app/bootstrap*
+/bin/
+/vendor/
+/web/bundles/
+/composer.phar
+/.idea/*
+/web/public/video/*
+/web/public/img/core/projet/*
+clearcache.sh

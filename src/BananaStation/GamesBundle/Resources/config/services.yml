@@ -1,0 +1,7 @@
+parameters:
+#    banana_station_games.example.class: BananaStation\GamesBundle\Example
+
+services:
+#    banana_station_games.example:
+#        class: %banana_station_games.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

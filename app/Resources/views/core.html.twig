@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Banana Station{% endblock %}</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    {% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/core/skel.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/core/style.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/core/style-xlarge.css') }}" />
+    {% endblock %}
+    <!--[if lte IE 8]><script src="{{ asset('public/js/core/html5shiv.js') }}"></script><![endif]-->
+    <script src="{{ asset('public/js/core/jquery.min.js') }}"></script>
+    <script src="{{ asset('public/js/core/skel.min.js') }}"></script>
+    <script src="{{ asset('public/js/core/skel-layers.min.js') }}"></script>
+    <script src="{{ asset('public/js/core/init.js') }}"></script>
+</head>
+<body{% if app.request.attributes.get('_route') == 'banana_station_core_racine' or app.request.attributes.get('_route') == 'banana_station_core_home' %} class="landing" {% endif %}>
+
+<!-- Header -->
+<header id="header">
+    <h1><a href="{{ path('banana_station_core_racine') }}">Banana Station</a></h1>
+    <nav id="nav">
+        <ul>
+            <li><a href="{{ path('banana_station_core_home') }}">Home</a></li>
+            <li><a href="{{ path('banana_station_core_projects') }}">Projects</a></li>
+            <li><a href="{{ path('banana_station_core_about') }}">About</a></li>
+            {% if is_granted('ROLE_USER') %}
+                <li><a class="button special" href="{{ path('banana_station_user_account') }}">{{ app.user.username }}</a></li>
+                {% if is_granted('ROLE_CORE') %}
+                    <li><a class="button special" href="{{ path('banana_station_core_admin') }}">Admin</a></li>
+                {% endif %}
+                <li><a class="button special" href="{{ path('logout') }}">Deconnexion</a></li>
+            {% else %}
+                <li><a class="button special" href="{{ path('banana_station_user_register') }}">Inscription</a></li>
+                <li><a class="button special" href="{{ path('login') }}">Connexion</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>
+
+{% block body %}
+{% endblock %}
+
+<!-- Footer -->
+<footer id="footer">
+    <div class="container">
+        <section class="links">
+            <div class="row">
+                <section class="3u 6u(medium) 12u$(small)">
+                    <h3>Navigation</h3>
+                    <ul class="unstyled">
+                        <li><a href="{{ path('banana_station_core_home') }}">Home</a></li>
+                        <li><a href="{{ path('banana_station_core_projects') }}">Projects</a></li>
+                        <li><a href="{{ path('banana_station_core_about') }}">About</a></li>
+                    </ul>
+                </section>
+                <section class="3u 6u$(medium) 12u$(small)">
+                    <h3>Projects</h3>
+                    <ul class="unstyled">
+                        {% for project in getFooterContentProjects() %}
+                            <li><a href="{{ path('banana_station_core_project',{ 'id': project.id }) }}">{{ project.nom }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </section>
+                <section class="3u 6u$(medium) 12u$(small)">
+                    <h3>Most Plusmed</h3>
+                    <ul class="unstyled">
+                        {% for project in getTopPlusme() %}
+                            <li><a href="{{ path('banana_station_core_project',{ 'id': project.id }) }}">{{ project.nom }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </section>
+                <section class="3u 6u$(medium) 12u$(small)">
+                    <h3>Most commented</h3>
+                    <ul class="unstyled">
+                        {% for project in getTopComment() %}
+                            <li><a href="{{ path('banana_station_core_project',{ 'id': project.id }) }}">{{ project.nom }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </section>
+            </div>
+        </section>
+        <div class="row">
+            <div class="8u 12u$(medium)">
+                <ul class="copyright">
+                    <li>&copy; Banana Station. All rights reserved.</li>
+                    <li>Design: <a href="http://templated.co">TEMPLATED</a></li>
+                </ul>
+            </div>
+            <div class="4u$ 12u$(medium)">
+                <ul class="icons">
+                    <li>
+                        <a class="icon rounded fa-twitter" href="https://twitter.com/DatGuyLeo" target="_blank"><span class="label">Twitter</span></a>
+                    </li>
+                    <li>
+                        <a class="icon rounded fa-linkedin" href="https://fr.linkedin.com/pub/léo-riera/89/831/363/" target="_blank"><span class="label">LinkedIn</span></a>
+                    </li>
+                    <li>
+                        <a class="icon rounded fa-twitter" href="https://twitter.com/VincentVoyer1" target="_blank"><span class="label">Twitter</span></a>
+                    </li>
+                    <li>
+                        <a class="icon rounded fa-linkedin" href="https://fr.linkedin.com/pub/vincent-voyer/89/830/94a" target="_blank"><span class="label">LinkedIn</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+{% block javascript %}
+{% endblock %}
+</body>
+</html>

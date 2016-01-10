@@ -40,7 +40,7 @@
                                 <img src="{{ asset('public/img/core/projet/' ~ projet.id ~ '.' ~ projet.image) }}" alt="{{ projet.nom|raw }}" />
                             {% endif %}
                         </span>
-                                {{ projet.description|raw }}
+                                {{ projet.description|markdown }}
                             </p>
                         </li>
                     {% endfor %}

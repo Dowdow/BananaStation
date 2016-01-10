@@ -38,6 +38,9 @@ function editMusic() {
         height: '315',
         width: '560',
         videoId: youtubeID,
+        playerVars: {
+            iv_load_policy: 3
+        },
         events: {
             'onReady': function(event) {
                 event.target.playVideo();

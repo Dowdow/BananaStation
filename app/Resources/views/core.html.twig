@@ -28,6 +28,8 @@
             <li><a href="{{ path('banana_station_core_home') }}">Home</a></li>
             <li><a href="{{ path('banana_station_core_projects') }}">Projects</a></li>
             <li><a href="{{ path('banana_station_core_about') }}">About</a></li>
+            <li><a href="{{ path('banana_station_music_racine') }}" target="_blank">Banana Music</a></li>
+            <li><a href="{{ path('banana_station_games_racine') }}" target="_blank">Banana Games</a></li>
             {% if is_granted('ROLE_USER') %}
                 <li><a class="button special" href="{{ path('banana_station_user_account') }}">{{ app.user.username }}</a></li>
                 {% if is_granted('ROLE_CORE') %}

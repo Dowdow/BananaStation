@@ -1,71 +1,71 @@
 banana_station_core_racine:
-    pattern:  /
+    path:  /
     host: %host_core%
     defaults: { _controller: BananaStationCoreBundle:Home:home }
 
 banana_station_core_home:
-    pattern:  /home
+    path:  /home
     host: %host_core%
     defaults: { _controller: BananaStationCoreBundle:Home:home }
 
 banana_station_core_about:
-    pattern:  /about
+    path:  /about
     host: %host_core%
     defaults: { _controller: BananaStationCoreBundle:Other:about }
 
 banana_station_core_project:
-    pattern: /project/{id}
+    path: /project/{id}
     host: %host_core%
     defaults: { _controller: BananaStationCoreBundle:Project:project }
 
 banana_station_core_projects:
-    pattern: /projects
+    path: /projects
     host: %host_core%
     defaults: { _controller: BananaStationCoreBundle:Project:projects }
 
 banana_station_core_project_edit_commentaire:
-    pattern: /project/{id}/commentaire/edit/{idcom}
+    path: /project/{id}/commentaire/edit/{idcom}
     host: %host_core%
     defaults: { _controller: BananaStationCoreBundle:Project:editcommentaire }
 
 banana_station_core_project_delete_commentaire:
-    pattern: /project/{id}/commentaire/delete/{idcom}
+    path: /project/{id}/commentaire/delete/{idcom}
     host: %host_core%
     defaults: { _controller: BananaStationCoreBundle:Project:deletecommentaire }
 
 banana_station_core_admin:
-    pattern: /admin
+    path: /admin
     host: %host_core%
     defaults: { _controller: BananaStationCoreBundle:Admin:admin }
 
 banana_station_core_admin_project_add:
-    pattern: /admin/project/add
+    path: /admin/project/add
     host: %host_core%
     defaults: { _controller: BananaStationCoreBundle:Admin:projectadd }
 
 banana_station_core_admin_project_edit:
-    pattern: /admin/project/edit/{id}
+    path: /admin/project/edit/{id}
     host: %host_core%
     defaults: { _controller: BananaStationCoreBundle:Admin:projectedit }
     requirements:
         id: \d+
 
 banana_station_core_admin_project_delete:
-    pattern: /admin/project/delete/{id}
+    path: /admin/project/delete/{id}
     host: %host_core%
     defaults: { _controller: BananaStationCoreBundle:Admin:projectdelete }
     requirements:
         id: \d+
 
 banana_station_core_admin_note_edit:
-    pattern: /admin/note/edit/{id}
+    path: /admin/note/edit/{id}
     host: %host_core%
     defaults: { _controller: BananaStationCoreBundle:Admin:noteedit }
     requirements:
         id: \d+
 
 banana_station_core_admin_note_delete:
-    pattern: /admin/note/delete/{id}
+    path: /admin/note/delete/{id}
     host: %host_core%
     defaults: { _controller: BananaStationCoreBundle:Admin:notedelete }
     requirements:

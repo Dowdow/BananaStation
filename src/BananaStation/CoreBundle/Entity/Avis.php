@@ -39,7 +39,7 @@ class Avis {
     /**
      * @var Utilisateur
      *
-     * @ORM\ManyToOne(targetEntity="BananaStation\UserBundle\Entity\Utilisateur")
+     * @ORM\ManyToOne(targetEntity="BananaStation\UserBundle\Entity\Utilisateur", inversedBy="avis")
      * @ORM\JoinColumn(nullable=false)
      */
     private $utilisateur;

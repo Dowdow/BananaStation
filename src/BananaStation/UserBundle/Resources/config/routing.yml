@@ -1,25 +1,25 @@
 banana_station_user_register:
-    pattern: /register
+    path: /register
     defaults: { _controller: BananaStationUserBundle:User:register }
 
 banana_station_user_forgetpassword:
-    pattern: /forgetpassword
+    path: /forgetpassword
     defaults: { _controller: BananaStationUserBundle:User:forgetpassword }
     
 banana_station_user_forgetpassword_token:
-    pattern: /forgetpassword/{token}
+    path: /forgetpassword/{token}
     defaults: { _controller: BananaStationUserBundle:User:forgetpasswordtoken }
     requirements:
         token: \w+
 
 banana_station_user_account:
-    pattern: /account
+    path: /account
     defaults: { _controller: BananaStationUserBundle:Account:account }
 
 banana_station_user_cgu:
-    pattern:  /cgu
+    path:  /cgu
     defaults: { _controller: BananaStationUserBundle:User:cgu }
 
 banana_station_user_success:
-    pattern:  /success/{type}
+    path:  /success/{type}
     defaults: { _controller: BananaStationUserBundle:User:success }

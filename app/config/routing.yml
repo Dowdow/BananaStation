@@ -15,11 +15,11 @@ banana_station_core:
     prefix:   /
 
 login:
-    pattern:  /login
+    path:  /login
     defaults: { _controller: BananaStationUserBundle:User:login }
 
 login_check:
-    pattern:  /check
+    path:  /check
 
 logout:
-    pattern:  /logout
+    path:  /logout

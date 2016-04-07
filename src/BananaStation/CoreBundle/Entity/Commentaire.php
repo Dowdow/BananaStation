@@ -42,7 +42,7 @@ class Commentaire {
     /**
      * @var Utilisateur
      *
-     * @ORM\ManyToOne(targetEntity="BananaStation\UserBundle\Entity\Utilisateur")
+     * @ORM\ManyToOne(targetEntity="BananaStation\UserBundle\Entity\Utilisateur", inversedBy="commentaires")
      * @ORM\JoinColumn(nullable=false)
      */
     private $utilisateur;

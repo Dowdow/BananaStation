@@ -16,7 +16,7 @@ class AdminController extends Controller {
     }
 
     public function projectAddAction(Request $request) {
-        $user = $this->get('security.context')->getToken()->getUser();
+        $user = $this->getUser();
 
         $project = new Projet();
         $form = $this->createForm(ProjetType::class, $project);

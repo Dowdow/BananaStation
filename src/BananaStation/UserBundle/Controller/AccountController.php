@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 class AccountController extends Controller {
 
     public function accountAction(Request $request) {
-        $user = $this->get('security.context')->getToken()->getUser();
+        $user = $this->getUser();
         $alert = $this->get('banana_station_user.alert');
 
         $formPass = $this->createForm(ChangePasswordType::class);
@@ -59,7 +59,7 @@ class AccountController extends Controller {
         }
 
         if($request->request->get('delete')) {
-            $security = $this->get('security.context');
+            $security = $this->get('security.authorization_checker');
             if(!$security->isGranted('ROLE_ADMIN') && !$security->isGranted('ROLE_CORE') && !$security->isGranted('ROLE_MUSIC')) {
                 if($request->request->get('erase') == 'EFFACER') {
                     $this->getDoctrine()->getManager()->remove($user);

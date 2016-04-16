@@ -42,11 +42,11 @@ class ProjectController extends Controller {
         $note = new Note();
         $formnote = $this->createForm(NoteType::class, $note);
 
-        $utilisateur = $this->get('security.context')->getToken()->getUser();
+        $utilisateur = $this->getUser();
 
         if ($request->getMethod() == 'POST') {
 
-            if ($this->get('security.context')->isGranted('ROLE_USER')) {
+            if ($this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
                 // Gestion de l'avis
                 if ($request->get('plusme') != null || $request->get('moinsme') != null) {
                     if ($request->get('plusme') != null) {
@@ -75,14 +75,14 @@ class ProjectController extends Controller {
                 $formcom->handleRequest($request);
                 if ($formcom->isValid()) {
                     $commentaire->setprojet($project);
-                    $commentaire->setUtilisateur($this->get('security.context')->getToken()->getUser());
+                    $commentaire->setUtilisateur($this->getUser());
                     $em->persist($commentaire);
                     $em->flush();
                     return $this->redirect($this->generateUrl('banana_station_core_project', array('id' => $id)));
                 }
             }
             // Gestion de la note
-            if ($this->get('security.context')->isGranted('ROLE_CORE')) {
+            if ($this->get('security.authorization_checker')->isGranted('ROLE_CORE')) {
                 $formnote->handleRequest($request);
                 if ($formnote->isValid()) {
                     $note->setProjet($project);
@@ -117,13 +117,13 @@ class ProjectController extends Controller {
     }
 
     public function editCommentaireAction(Request $request, $id, $idcom) {
-        if($this->get('security.context')->isGranted('ROLE_USER') == false) {
+        if($this->get('security.authorization_checker')->isGranted('ROLE_USER') == false) {
             throw new AccessDeniedException();
         }
         $em = $this->getDoctrine()->getManager();
         $projetRepo = $em->getRepository('BananaStationCoreBundle:Projet');
         $commentRepo = $em->getRepository('BananaStationCoreBundle:Commentaire');
-        $user = $this->get('security.context')->getToken()->getUser();
+        $user = $this->getUser();
         $projet = $projetRepo->findOneById($id);
         $commentaire = $commentRepo->findOneById($idcom);
         if($projet == null || $commentaire == null) {
@@ -145,19 +145,19 @@ class ProjectController extends Controller {
     }
 
     public function deleteCommentaireAction(Request $request, $id, $idcom) {
-        if($this->get('security.context')->isGranted('ROLE_USER') == false) {
+        if($this->get('security.authorization_checker')->isGranted('ROLE_USER') == false) {
             throw new AccessDeniedException();
         }
         $em = $this->getDoctrine()->getManager();
         $projetRepo = $em->getRepository('BananaStationCoreBundle:Projet');
         $commentRepo = $em->getRepository('BananaStationCoreBundle:Commentaire');
-        $user = $this->get('security.context')->getToken()->getUser();
+        $user = $this->getUser();
         $projet = $projetRepo->findOneById($id);
         $commentaire = $commentRepo->findOneById($idcom);
         if($projet == null || $commentaire == null) {
             throw new NotFoundHttpException();
         }
-        if($user->getId() != $commentaire->getUtilisateur()->getId() && $this->get('security.context')->isGranted('ROLE_CORE') == false) {
+        if($user->getId() != $commentaire->getUtilisateur()->getId() && $this->get('security.authorization_checker')->isGranted('ROLE_CORE') == false) {
             throw new AccessDeniedException();
         }
         if($request->getMethod() == 'POST') {

@@ -4,7 +4,6 @@ namespace BananaStation\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\SecurityContext;
 use BananaStation\UserBundle\Entity\Utilisateur;
 use BananaStation\UserBundle\Form\UtilisateurType;
 use BananaStation\UserBundle\Form\RecoverType;
@@ -134,10 +133,8 @@ class UserController extends Controller {
     }
 
     public function loginAction(Request $request) {
-        $session = $request->getSession();
-
         return $this->render('BananaStationUserBundle::login.html.twig', array(
-            'username' => $session->get(SecurityContext::LAST_USERNAME)
+            'username' =>  $this->get('security.authentication_utils')->getLastUsername()
         ));
     }
 

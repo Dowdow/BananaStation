@@ -21,12 +21,12 @@ class MusicType extends AbstractType
             ->add('youtubeid', TextType::class)
             ->add('style', ChoiceType::class, array(
                 'choices' => array(
-                    'G' => 'Games',
-                    'H' => 'Hip-Hop',
-                    'M' => 'Movie',
-                    'E' => 'Electro & House',
-                    'D' => 'Dubstep & Drum and bass',
-                    'R' => 'Rock'
+                    'Games' => 'G',
+                    'Hip-Hop' => 'H',
+                    'Movie' => 'M',
+                    'Electro & House' => 'E',
+                    'Dubstep & Drum and bass' => 'D',
+                    'Rock' => 'R'
                 )))
         ;
     }

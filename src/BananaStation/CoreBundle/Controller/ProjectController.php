@@ -145,7 +145,7 @@ class ProjectController extends Controller {
     }
 
     public function deleteCommentaireAction(Request $request, $id, $idcom) {
-        if($this->get('security.authorization_checker')->isGranted('ROLE_USER') == false) {
+        if(!$this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
             throw new AccessDeniedException();
         }
         $em = $this->getDoctrine()->getManager();
@@ -161,11 +161,10 @@ class ProjectController extends Controller {
             throw new AccessDeniedException();
         }
         if($request->getMethod() == 'POST') {
-            if($request->request->get('supprimer')) {
-                $em->remove($commentaire);
-                $em->flush();
-                return $this->redirect($this->generateUrl('banana_station_core_project', array('id' => $id)));
-            }
+            var_dump('Supprimer');
+            $em->remove($commentaire);
+            $em->flush();
+            return $this->redirect($this->generateUrl('banana_station_core_project', array('id' => $id)));
         }
         return $this->render('BananaStationCoreBundle::deletecommentaire.html.twig', array('commentaire' => $commentaire));
     }

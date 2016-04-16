@@ -24,7 +24,7 @@ class RecoverType extends AbstractType {
             )))
             ->add('recaptcha', EWZRecaptchaType::class, array(
                 'constraints' => array(
-                    new Recaptcha\True()
+                    new Recaptcha\IsTrue()
                 )));
     }
 

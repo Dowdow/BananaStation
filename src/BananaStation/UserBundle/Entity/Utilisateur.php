@@ -2,6 +2,8 @@
 
 namespace BananaStation\UserBundle\Entity;
 
+use BananaStation\CoreBundle\Entity\Avis;
+use BananaStation\CoreBundle\Entity\Commentaire;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use EWZ\Bundle\RecaptchaBundle\Validator\Constraints as Recaptcha;
@@ -294,10 +296,10 @@ class Utilisateur implements UserInterface {
     /**
      * Add commentaires
      *
-     * @param \BananaStation\CoreBundle\Entity\Commentaire $commentaires
+     * @param Commentaire $commentaires
      * @return Utilisateur
      */
-    public function addCommentaire(\BananaStation\CoreBundle\Entity\Commentaire $commentaires)
+    public function addCommentaire(Commentaire $commentaires)
     {
         $this->commentaires[] = $commentaires;
 
@@ -307,9 +309,9 @@ class Utilisateur implements UserInterface {
     /**
      * Remove commentaires
      *
-     * @param \BananaStation\CoreBundle\Entity\Commentaire $commentaires
+     * @param Commentaire $commentaires
      */
-    public function removeCommentaire(\BananaStation\CoreBundle\Entity\Commentaire $commentaires)
+    public function removeCommentaire(Commentaire $commentaires)
     {
         $this->commentaires->removeElement($commentaires);
     }
@@ -327,10 +329,10 @@ class Utilisateur implements UserInterface {
     /**
      * Add avis
      *
-     * @param \BananaStation\CoreBundle\Entity\Avis $avis
+     * @param Avis $avis
      * @return Utilisateur
      */
-    public function addAvi(\BananaStation\CoreBundle\Entity\Avis $avis)
+    public function addAvi(Avis $avis)
     {
         $this->avis[] = $avis;
 
@@ -340,9 +342,9 @@ class Utilisateur implements UserInterface {
     /**
      * Remove avis
      *
-     * @param \BananaStation\CoreBundle\Entity\Avis $avis
+     * @param Avis $avis
      */
-    public function removeAvi(\BananaStation\CoreBundle\Entity\Avis $avis)
+    public function removeAvi(Avis $avis)
     {
         $this->avis->removeElement($avis);
     }

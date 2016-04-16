@@ -62,7 +62,7 @@ class AdminController extends Controller {
         if($request->getMethod() == 'POST') {
             $this->getDoctrine()->getManager()->remove($project);
             $this->getDoctrine()->getManager()->flush();
-            return $this->redirect($this->generateUrl('banana_station_core_project_page', array('id' => 1)));
+            return $this->redirect($this->generateUrl('banana_station_core_projects', array('id' => 1)));
         }
 
         return $this->render('BananaStationCoreBundle::deleteproject.html.twig', array('project' => $project));

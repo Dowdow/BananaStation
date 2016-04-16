@@ -5,7 +5,6 @@ namespace BananaStation\CoreBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\PercentType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -25,12 +24,12 @@ class ProjetType extends AbstractType
             ->add('description', TextareaType::class)
             ->add('etat', ChoiceType::class, array(
                 'choices' => array(
-                    'E' => 'En cours',
-                    'T' => 'Terminé',
-                    'P' => 'En pause'
+                    'En cours' => 'E',
+                    'Terminé' => 'T',
+                    'En pause' => 'P'
                 )))
             ->add('progression', PercentType::class, array(
-                'type' => IntegerType::class
+                'type' => 'integer'
             ))
             ->add('file', FileType::class, array('required' => false))
         ;

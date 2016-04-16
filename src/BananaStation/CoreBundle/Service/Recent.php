@@ -87,7 +87,7 @@ class Recent extends \Twig_Extension {
 
     public function getFunctions() {
         return array(
-            'getRecent' => new \Twig_Function_Method($this, 'getRecent')
+            'getRecent' => new \Twig_SimpleFunction('getRecent', array($this, 'getRecent'))
         );
     }
 

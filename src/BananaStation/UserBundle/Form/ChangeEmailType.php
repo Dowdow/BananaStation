@@ -2,6 +2,7 @@
 
 namespace BananaStation\UserBundle\Form;
 
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -21,11 +22,11 @@ class ChangeEmailType extends AbstractType {
             ));
 
         $builder
-            ->add('aemail', 'email', $constraints)
-            ->add('nemail', 'email', $constraints);
+            ->add('aemail', EmailType::class, $constraints)
+            ->add('nemail', EmailType::class, $constraints);
     }
 
-    public function getName() {
+    public function getBlockPrefix() {
         return 'bananastation_userbundle_utilisateur_change_email';
     }
 } 

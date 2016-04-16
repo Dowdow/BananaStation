@@ -11,7 +11,7 @@ class FooterContent extends \Twig_Extension {
     public function __construct(EntityManager $em) {
         $this->em = $em;
     }
-    
+
      public function getFooterContentProjects() {
         $projectRepo = $this->em->getRepository('BananaStationCoreBundle:Projet');
         return $projectRepo->findLastThree();
@@ -19,7 +19,7 @@ class FooterContent extends \Twig_Extension {
 
     public function getFunctions() {
         return array(
-            'getFooterContentProjects' => new \Twig_Function_Method($this, 'getFooterContentProjects')
+            'getFooterContentProjects' => new \Twig_SimpleFunction('getFooterContentProjects', array($this, 'getFooterContentProjects'))
         );
     }
 

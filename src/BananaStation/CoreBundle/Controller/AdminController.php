@@ -2,13 +2,11 @@
 
 namespace BananaStation\CoreBundle\Controller;
 
-use BananaStation\CoreBundle\Entity\News;
 use BananaStation\CoreBundle\Entity\Projet;
-use BananaStation\CoreBundle\Form\NewsType;
 use BananaStation\CoreBundle\Form\NoteType;
 use BananaStation\CoreBundle\Form\ProjetType;
-use BananaStation\CoreBundle\Service\Alert;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class AdminController extends Controller {
@@ -17,12 +15,11 @@ class AdminController extends Controller {
         return $this->render('BananaStationCoreBundle::admin.html.twig');
     }
 
-    public function projectAddAction() {
+    public function projectAddAction(Request $request) {
         $user = $this->get('security.context')->getToken()->getUser();
-        $request = $this->get('request');
 
         $project = new Projet();
-        $form = $this->createForm(new ProjetType(), $project);
+        $form = $this->createForm(ProjetType::class, $project);
         if($request->getMethod() == 'POST') {
             $form->handleRequest($request);
             if($form->isValid()) {
@@ -36,16 +33,14 @@ class AdminController extends Controller {
         return $this->render('BananaStationCoreBundle::formproject.html.twig', array('form' => $form->createView()));
     }
 
-    public function projectEditAction($id) {
-        $request = $this->get('request');
-
+    public function projectEditAction(Request $request, $id) {
         $projectRepo = $this->getDoctrine()->getManager()->getRepository('BananaStationCoreBundle:Projet');
         $project = $projectRepo->findOneById($id);
         if($project == null) {
             throw new NotFoundHttpException();
         }
 
-        $form = $this->createForm(new ProjetType(), $project);
+        $form = $this->createForm(ProjetType::class, $project);
         if($request->getMethod() == 'POST') {
             $form->handleRequest($request);
             if($form->isValid()) {
@@ -57,9 +52,7 @@ class AdminController extends Controller {
         return $this->render('BananaStationCoreBundle::formproject.html.twig', array('form' => $form->createView()));
     }
 
-    public function projectDeleteAction($id) {
-        $request = $this->get('request');
-
+    public function projectDeleteAction(Request $request, $id) {
         $projectRepo = $this->getDoctrine()->getManager()->getRepository('BananaStationCoreBundle:Projet');
         $project = $projectRepo->findOneById($id);
         if($project == null) {
@@ -75,16 +68,14 @@ class AdminController extends Controller {
         return $this->render('BananaStationCoreBundle::deleteproject.html.twig', array('project' => $project));
     }
 
-    public function noteEditAction($id) {
-        $request = $this->get('request');
-
+    public function noteEditAction(Request $request, $id) {
         $noteRepo = $this->getDoctrine()->getManager()->getRepository('BananaStationCoreBundle:Note');
         $note = $noteRepo->findOneById($id);
         if($note == null) {
             throw new NotFoundHttpException();
         }
 
-        $form = $this->createForm(new NoteType(), $note);
+        $form = $this->createForm(NoteType::class, $note);
         if($request->getMethod() == 'POST') {
             $form->handleRequest($request);
             if($form->isValid()) {
@@ -96,9 +87,7 @@ class AdminController extends Controller {
         return $this->render('BananaStationCoreBundle::formnote.html.twig', array('form' => $form->createView()));
     }
 
-    public function noteDeleteAction($id) {
-        $request = $this->get('request');
-
+    public function noteDeleteAction(Request $request, $id) {
         $noteRepo = $this->getDoctrine()->getManager()->getRepository('BananaStationCoreBundle:Note');
         $note = $noteRepo->findOneById($id);
         if($note == null) {

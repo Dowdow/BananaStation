@@ -3,6 +3,7 @@
 namespace BananaStation\MusicBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -55,9 +56,7 @@ class MusicController extends Controller
             new Response('application/json',200, array('Content-Type' => 'application/json')));
     }
 
-    public function searchAction() {
-        $request = $this->get('request');
-
+    public function searchAction(Request $request) {
         if(!$request->request->get('search')){
             if(!$request->headers->get('referer')) {
                 return $this->redirect($this->generateUrl('banana_station_music_racine'));

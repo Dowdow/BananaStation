@@ -6,6 +6,7 @@ use BananaStation\CoreBundle\Entity\Avis;
 use BananaStation\CoreBundle\Entity\Commentaire;
 use BananaStation\CoreBundle\Form\CommentaireType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use BananaStation\CoreBundle\Entity\Note;
 use BananaStation\CoreBundle\Form\NoteType;
@@ -13,7 +14,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class ProjectController extends Controller {
 
-    public function projectAction($id) {
+    public function projectAction(Request $request, $id) {
         $em = $this->getDoctrine()->getManager();
         $projectRepo = $em->getRepository('BananaStationCoreBundle:Projet');
 
@@ -36,13 +37,11 @@ class ProjectController extends Controller {
 
         // Création du formulaire de commentaire
         $commentaire = new Commentaire();
-        $formcom = $this->createForm(new CommentaireType(), $commentaire);
+        $formcom = $this->createForm(CommentaireType::class, $commentaire);
         // Création du formulaire de note
         $note = new Note();
-        $formnote = $this->createForm(new NoteType(), $note);
+        $formnote = $this->createForm(NoteType::class, $note);
 
-
-        $request = $this->get('request');
         $utilisateur = $this->get('security.context')->getToken()->getUser();
 
         if ($request->getMethod() == 'POST') {
@@ -117,7 +116,7 @@ class ProjectController extends Controller {
         return $this->render('BananaStationCoreBundle::projects.html.twig', array('projets' => $projects));
     }
 
-    public function editCommentaireAction($id, $idcom) {
+    public function editCommentaireAction(Request $request, $id, $idcom) {
         if($this->get('security.context')->isGranted('ROLE_USER') == false) {
             throw new AccessDeniedException();
         }
@@ -133,8 +132,8 @@ class ProjectController extends Controller {
         if($user->getId() != $commentaire->getUtilisateur()->getId()) {
             throw new AccessDeniedException();
         }
-        $request = $this->get('request');
-        $form = $this->createForm(new CommentaireType(), $commentaire);
+
+        $form = $this->createForm(CommentaireType::class, $commentaire);
         if($request->getMethod() == 'POST') {
             $form->handleRequest($request);
             if($form->isValid()) {
@@ -145,7 +144,7 @@ class ProjectController extends Controller {
         return $this->render('BananaStationCoreBundle::formcommentaire.html.twig', array('form' => $form->createView()));
     }
 
-    public function deleteCommentaireAction($id, $idcom) {
+    public function deleteCommentaireAction(Request $request, $id, $idcom) {
         if($this->get('security.context')->isGranted('ROLE_USER') == false) {
             throw new AccessDeniedException();
         }
@@ -161,7 +160,6 @@ class ProjectController extends Controller {
         if($user->getId() != $commentaire->getUtilisateur()->getId() && $this->get('security.context')->isGranted('ROLE_CORE') == false) {
             throw new AccessDeniedException();
         }
-        $request = $this->get('request');
         if($request->getMethod() == 'POST') {
             if($request->request->get('supprimer')) {
                 $em->remove($commentaire);

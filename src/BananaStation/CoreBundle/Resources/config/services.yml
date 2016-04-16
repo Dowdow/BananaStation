@@ -7,28 +7,28 @@ parameters:
 
 services:
     banana_station_core.footer:
-        class: %banana_station_core.footer.class%
-        arguments: [@doctrine.orm.entity_manager]
+        class: '%banana_station_core.footer.class%'
+        arguments: ['@doctrine.orm.entity_manager']
         tags:
             - { name: twig.extension }
-    
+
     banana_station_core.top:
-        class: %banana_station_core.top.class%
-        arguments: [@doctrine.orm.entity_manager]
+        class: '%banana_station_core.top.class%'
+        arguments: ['@doctrine.orm.entity_manager']
         tags:
             - { name: twig.extension }
 
     banana_station_core.stat:
-        class: %banana_station_core.stat.class%
-        arguments: [@doctrine.orm.entity_manager]
+        class: '%banana_station_core.stat.class%'
+        arguments: ['@doctrine.orm.entity_manager']
         tags:
             - { name: twig.extension }
 
     banana_station_core.recent:
-        class: %banana_station_core.recent.class%
-        arguments: [@doctrine.orm.entity_manager]
+        class: '%banana_station_core.recent.class%'
+        arguments: ['@doctrine.orm.entity_manager']
         tags:
             - { name: twig.extension }
 
     banana_station_core.alert:
-        class: %banana_station_core.alert.class%
+        class: '%banana_station_core.alert.class%'

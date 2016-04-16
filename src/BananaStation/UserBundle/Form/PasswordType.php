@@ -13,7 +13,7 @@ class PasswordType extends AbstractType {
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        $builder->add('password', 'password', array(
+        $builder->add('password', \Symfony\Component\Form\Extension\Core\Type\PasswordType::class, array(
             'constraints' => array(
                 new Assert\NotNull(),
                 new Assert\NotBlank(),
@@ -26,7 +26,7 @@ class PasswordType extends AbstractType {
         );
     }
 
-    public function getName() {
+    public function getBlockPrefix() {
         return 'bananastation_userbundle_utilisateur_password';
     }
 

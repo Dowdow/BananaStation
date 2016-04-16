@@ -3,8 +3,9 @@
 namespace BananaStation\CoreBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CommentaireType extends AbstractType {
 
@@ -13,13 +14,13 @@ class CommentaireType extends AbstractType {
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        $builder->add('contenu', 'textarea');
+        $builder->add('contenu', TextareaType::class);
     }
 
     /**
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver) {
+    public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults(array(
             'data_class' => 'BananaStation\CoreBundle\Entity\Commentaire'
         ));
@@ -28,7 +29,7 @@ class CommentaireType extends AbstractType {
     /**
      * @return string
      */
-    public function getName() {
+    public function getBlockPrefix() {
         return 'bananastation_corebundle_commentaire';
     }
 

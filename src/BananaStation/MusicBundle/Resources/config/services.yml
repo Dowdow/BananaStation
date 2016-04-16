@@ -3,7 +3,7 @@ parameters:
 
 services:
     banana_station_music.compteur:
-        class: %banana_station_music.compteur.class%
-        arguments: [@doctrine.orm.entity_manager]
+        class: '%banana_station_music.compteur.class%'
+        arguments: ['@doctrine.orm.entity_manager']
         tags:
             - { name: twig.extension }

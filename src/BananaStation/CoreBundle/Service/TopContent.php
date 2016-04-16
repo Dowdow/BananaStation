@@ -32,8 +32,8 @@ class TopContent extends \Twig_Extension {
 
     public function getFunctions() {
         return array(
-            'getTopPlusme' => new \Twig_Function_Method($this, 'getTopPlusme'),
-            'getTopComment' => new \Twig_Function_Method($this, 'getTopComment')
+            'getTopPlusme' => new \Twig_SimpleFunction('getTopPlusme', array($this, 'getTopPlusme')),
+            'getTopComment' => new \Twig_SimpleFunction('getTopComment', array($this, 'getTopComment'))
         );
     }
 

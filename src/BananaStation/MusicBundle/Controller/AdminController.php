@@ -5,6 +5,7 @@ namespace BananaStation\MusicBundle\Controller;
 use BananaStation\MusicBundle\Entity\Music;
 use BananaStation\MusicBundle\Form\MusicType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class AdminController extends Controller  {
@@ -13,11 +14,9 @@ class AdminController extends Controller  {
         return $this->render('BananaStationMusicBundle:Page:admin.html.twig');
     }
 
-    public function addAction() {
-        $request = $this->get('request');
-
+    public function addAction(Request $request) {
         $music = new Music();
-        $form = $this->createForm(new MusicType(), $music);
+        $form = $this->createForm(MusicType::class, $music);
 
         if($request->getMethod() == 'POST') {
             $form->handleRequest($request);
@@ -31,9 +30,7 @@ class AdminController extends Controller  {
         return $this->render('BananaStationMusicBundle:Page:form.html.twig', array('form' => $form->createView()));
     }
 
-    public function editAction($id) {
-        $request = $this->get('request');
-
+    public function editAction(Request $request, $id) {
         $musicRepo = $this->getDoctrine()->getManager()->getRepository('BananaStationMusicBundle:Music');
         $music = $musicRepo->findOneById($id);
 
@@ -41,7 +38,7 @@ class AdminController extends Controller  {
             throw new NotFoundHttpException();
         }
 
-        $form = $this->createForm(new MusicType(), $music);
+        $form = $this->createForm(MusicType::class, $music);
 
         if($request->getMethod() == 'POST') {
             $form->handleRequest($request);
@@ -54,9 +51,7 @@ class AdminController extends Controller  {
         return $this->render('BananaStationMusicBundle:Page:form.html.twig', array('form' => $form->createView()));
     }
 
-    public function deleteAction($id) {
-        $request = $this->get('request');
-
+    public function deleteAction(Request $request, $id) {
         $musicRepo = $this->getDoctrine()->getManager()->getRepository('BananaStationMusicBundle:Music');
         $music = $musicRepo->findOneById($id);
 

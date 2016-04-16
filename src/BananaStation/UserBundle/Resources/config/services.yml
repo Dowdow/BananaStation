@@ -4,8 +4,8 @@ parameters:
 
 services:
     banana_station_user.mailer:
-        class: %banana_station_user.mailer.class%
-        arguments: [%mailer_from%,@mailer,@templating]
+        class: '%banana_station_user.mailer.class%'
+        arguments: ['%mailer_from%','@mailer','@templating']
 
     banana_station_user.alert:
-        class: %banana_station_user.alert.class%
+        class: '%banana_station_user.alert.class%'

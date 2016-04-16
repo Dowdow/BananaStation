@@ -6,16 +6,16 @@ use BananaStation\UserBundle\Service\Alert;
 use BananaStation\UserBundle\Form\ChangeEmailType;
 use BananaStation\UserBundle\Form\ChangePasswordType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class AccountController extends Controller {
 
-    public function accountAction() {
+    public function accountAction(Request $request) {
         $user = $this->get('security.context')->getToken()->getUser();
-        $request = $this->get('request');
         $alert = $this->get('banana_station_user.alert');
 
-        $formPass = $this->createForm(new ChangePasswordType());
-        $formEmail = $this->createForm(new ChangeEmailType());
+        $formPass = $this->createForm(ChangePasswordType::class);
+        $formEmail = $this->createForm(ChangeEmailType::class);
         if($request->getMethod() == 'POST') {
             if($request->request->get('password')) {
                 $formPass->handleRequest($request);

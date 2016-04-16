@@ -34,10 +34,10 @@ class StatAdmin extends \Twig_Extension {
 
     public function getFunctions() {
         return array(
-            'getNumberUser' => new \Twig_Function_Method($this, 'getNumberUser'),
-            'getNumberPlusme' => new \Twig_Function_Method($this, 'getNumberPlusme'),
-            'getNumberMoinsme' => new \Twig_Function_Method($this, 'getNumberMoinsme'),
-            'getNumberComment' => new \Twig_Function_Method($this, 'getNumberComment')
+            'getNumberUser' => new \Twig_SimpleFunction('getNumberUser', array($this, 'getNumberUser')),
+            'getNumberPlusme' => new \Twig_SimpleFunction('getNumberPlusme', array($this, 'getNumberPlusme')),
+            'getNumberMoinsme' => new \Twig_SimpleFunction('getNumberMoinsme', array($this, 'getNumberMoinsme')),
+            'getNumberComment' => new \Twig_SimpleFunction('getNumberComment', array($this, 'getNumberComment'))
         );
     }
 

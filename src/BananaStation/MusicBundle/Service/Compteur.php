@@ -49,13 +49,13 @@ class Compteur extends \Twig_Extension{
 
     public function getFunctions() {
         return array(
-            'getTotalMusic' => new \Twig_Function_Method($this, 'getTotalMusic'),
-            'getTotalGames' => new \Twig_Function_Method($this, 'getTotalGames'),
-            'getTotalHipHop' => new \Twig_Function_Method($this, 'getTotalHipHop'),
-            'getTotalMovies' => new \Twig_Function_Method($this, 'getTotalMovies'),
-            'getTotalElectro' => new \Twig_Function_Method($this, 'getTotalElectro'),
-            'getTotalDubstep' => new \Twig_Function_Method($this, 'getTotalDubstep'),
-            'getTotalRock' => new \Twig_Function_Method($this, 'getTotalRock')
+            'getTotalMusic' => new \Twig_SimpleFunction('getTotalMusic', array($this, 'getTotalMusic')),
+            'getTotalGames' => new \Twig_SimpleFunction('getTotalGames', array($this, 'getTotalGames')),
+            'getTotalHipHop' => new \Twig_SimpleFunction('getTotalHipHop', array($this, 'getTotalHipHop')),
+            'getTotalMovies' => new \Twig_SimpleFunction('getTotalMovies', array($this, 'getTotalMovies')),
+            'getTotalElectro' => new \Twig_SimpleFunction('getTotalElectro', array($this, 'getTotalElectro')),
+            'getTotalDubstep' => new \Twig_SimpleFunction('getTotalDubstep', array($this, 'getTotalDubstep')),
+            'getTotalRock' => new \Twig_SimpleFunction('getTotalRock', array($this, 'getTotalRock'))
         );
     }
 

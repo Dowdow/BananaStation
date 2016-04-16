@@ -3,6 +3,7 @@
 namespace BananaStation\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContext;
 use BananaStation\UserBundle\Entity\Utilisateur;
 use BananaStation\UserBundle\Form\UtilisateurType;
@@ -13,16 +14,15 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class UserController extends Controller {
 
-    public function registerAction() {
+    public function registerAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
         $userRepo = $em->getRepository('BananaStationUserBundle:Utilisateur');
         $alert = NULL;
 
         // Création du formulaire d'utilisateur
         $user = new Utilisateur();
-        $form = $this->createForm(new UtilisateurType(), $user);
+        $form = $this->createForm(UtilisateurType::class, $user);
 
-        $request = $this->get('request');
         if ($request->getMethod() == 'POST') {
             $form->handleRequest($request);
             $alert = $this->get('banana_station_user.alert');
@@ -58,15 +58,14 @@ class UserController extends Controller {
         return $this->render('BananaStationUserBundle::register.html.twig', array('form' => $form->createView(), 'alert' => $alert));
     }
 
-    public function forgetPasswordAction() {
+    public function forgetPasswordAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
         $userRepo = $em->getRepository('BananaStationUserBundle:Utilisateur');
         $alert = NULL;
 
         // Création du formulaire
-        $form = $this->createForm(new RecoverType());
+        $form = $this->createForm(RecoverType::class);
 
-        $request = $this->get('request');
         if ($request->getMethod() == 'POST') {
             $form->handleRequest($request);
             $alert = $this->get('banana_station_user.alert');
@@ -92,7 +91,7 @@ class UserController extends Controller {
         return $this->render('BananaStationUserBundle::forgetpassword.html.twig', array('form' => $form->createView(), 'alert' => $alert));
     }
 
-    public function forgetPasswordTokenAction($token) {
+    public function forgetPasswordTokenAction(Request $request, $token) {
         $em = $this->getDoctrine()->getManager();
         $userRepo = $em->getRepository('BananaStationUserBundle:Utilisateur');
         $alert = NULL;
@@ -102,9 +101,8 @@ class UserController extends Controller {
         }
 
         // Création du formulaire
-        $form = $this->createForm(new PasswordType());
+        $form = $this->createForm(PasswordType::class);
 
-        $request = $this->get('request');
         if ($request->getMethod() == 'POST') {
             $form->handleRequest($request);
             $alert = $this->get('banana_station_user.alert');
@@ -135,8 +133,7 @@ class UserController extends Controller {
         return $this->render('BananaStationUserBundle::forgetpasswordtoken.html.twig', array('form' => $form->createView(), 'alert' => $alert));
     }
 
-    public function loginAction() {
-        $request = $this->get('request');
+    public function loginAction(Request $request) {
         $session = $request->getSession();
 
         return $this->render('BananaStationUserBundle::login.html.twig', array(

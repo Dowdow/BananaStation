@@ -3,8 +3,10 @@
 namespace BananaStation\MusicBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class MusicType extends AbstractType
 {
@@ -15,9 +17,9 @@ class MusicType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', 'text')
-            ->add('youtubeid', 'text')
-            ->add('style', 'choice', array(
+            ->add('title', TextType::class)
+            ->add('youtubeid', TextType::class)
+            ->add('style', ChoiceType::class, array(
                 'choices' => array(
                     'G' => 'Games',
                     'H' => 'Hip-Hop',
@@ -30,9 +32,9 @@ class MusicType extends AbstractType
     }
 
     /**
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'BananaStation\MusicBundle\Entity\Music'
@@ -42,7 +44,7 @@ class MusicType extends AbstractType
     /**
      * @return string
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'bananastation_musicbundle_music';
     }

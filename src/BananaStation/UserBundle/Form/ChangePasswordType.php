@@ -2,6 +2,7 @@
 
 namespace BananaStation\UserBundle\Form;
 
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -26,11 +27,11 @@ class ChangePasswordType extends AbstractType {
                 ))));
 
         $builder
-            ->add('apassword', 'password', $constraints)
-            ->add('npassword', 'password', $constraints);
+            ->add('apassword', PasswordType::class, $constraints)
+            ->add('npassword', PasswordType::class, $constraints);
     }
 
-    public function getName() {
+    public function getBlockPrefix() {
         return 'bananastation_userbundle_utilisateur_change_password';
     }
 } 

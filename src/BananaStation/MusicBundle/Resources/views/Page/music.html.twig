@@ -1,5 +1,9 @@
 {% extends "::music.html.twig" %}
 
+{% block metas %}
+    <meta name="theme-color" content="{{ style|mcolor }}">
+{% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" type="text/css" href="{{ asset('public/css/music/grid.css') }}"/>
@@ -23,9 +27,9 @@
         <h2 id="music-title"></h2>
     </section>
 
-    <section id="grid" class="{{ style|mcolor }}">
+    <section id="grid" class="{{ style|mcolorclass }}">
         {% for music in musics %}
-            <div id="{{ music.youtubeid }}" class="{{ music.style|mcolor }}" onclick="openPlayer(event)"
+            <div id="{{ music.youtubeid }}" class="{{ music.style|mcolorclass }}" onclick="openPlayer(event)"
                  data="{{ loop.index0 }}">
                 <img src="http://img.youtube.com/vi/{{ music.youtubeid }}/0.jpg" alt="{{ music.title }}"/>
                 <h3>{{ music.title }}</h3>

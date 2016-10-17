@@ -1,0 +1,192 @@
+@font-face {
+    font-family: Lobster;
+    src: url("../../fonts/Lobster.otf") format("opentype");
+}
+
+@font-face {
+    font-family: Roboto;
+    src: url("../../fonts/Roboto.ttf") format("ttf");
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, sans-serif;
+}
+
+*:focus {
+    outline: none;
+}
+
+header {
+    font-family: Lobster, sans-serif;
+    text-align: center;
+    color: #222222;
+}
+
+header small {
+    font-weight: normal;
+}
+
+section {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 130px;
+}
+
+section h3 {
+    font-family: Lobster, sans-serif;
+    font-weight: lighter;
+    text-align: center;
+}
+
+section a {
+    font-family: Roboto, sans-serif;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    min-height: 110px;
+    border-top: 5px dashed #FFDC00;
+    background: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+footer div {
+    width: 30%;
+}
+
+footer h4 {
+    font-family: Lobster, sans-serif;
+    font-size: medium;
+    font-weight: normal;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+footer select {
+    font-family: Lobster, sans-serif;
+    font-size: 18px;
+    background-color: #FFDC00;
+    border: none;
+    padding: 8px;
+    text-align: center;
+    width: 100%;
+}
+
+footer input[type="range"] {
+    width: 100%;
+}
+
+form {
+    text-align: center;
+}
+
+input[type="text"] {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid;
+    height: 30px;
+    padding-left: 5px;
+}
+
+button {
+    background-color: #FFDC00;
+    border: 1px solid #FFDC00;
+    height: 30px;
+    min-width: 50px;
+    color: #111111;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.button-center {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    text-align: center;
+}
+
+#room-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+#room-list a {
+    font-family: Lobster, sans-serif;
+    width: 30%;
+    font-size: 20px;
+    margin: 5px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #FFDC00;
+    text-align: center;
+    cursor: pointer;
+}
+
+#users {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+#users > div {
+    width: 30%;
+}
+
+#users h4 {
+    font-family: Lobster, sans-serif;
+    font-size: medium;
+    font-weight: normal;
+    text-align: center;
+}
+
+#users > div > div {
+    width: 100%;
+    text-align: center;
+}
+
+#users button {
+    width: 45%;
+}
+
+@media screen and (max-width: 480px) {
+
+    #room-list a {
+        width: 90%;
+    }
+
+    #users > div {
+        width: 100%;
+    }
+
+}
+
+@media screen and (min-width: 480px)and (max-width: 768px) {
+
+    #room-list a {
+        width: 45%;
+    }
+
+    #users > div {
+        width: 45%;
+    }
+
+}
+
+@media screen and (max-width: 1024px) {
+
+    section {
+        width: 100%;
+    }
+
+}

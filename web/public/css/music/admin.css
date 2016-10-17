@@ -1,0 +1,16 @@
+section {
+    font-family:'Raleway', sans-serif;
+    text-align: center;
+}
+
+section form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+section form input, section form select {
+    margin-bottom: 10px;
+}

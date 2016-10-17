@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/music/global.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/music/index.css') }}"/>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:300' rel='stylesheet' type='text/css'>
+    <title>Banana Music</title>
+</head>
+<body>
+
+<h1>#BananaMusic</h1>
+
+<section>
+    <a class="red" href="{{ path('banana_station_music_music_games') }}">
+        <div>
+            <img src="{{ asset('public/img/music/playstation.svg') }}"/>
+            <h2>Games</h2>
+        </div>
+        <div class="hidden">
+            <p>Listen to games music</p>
+        </div>
+    </a>
+    <a class="orange" href="{{ path('banana_station_music_music_hiphop') }}">
+        <div>
+            <img src="{{ asset('public/img/music/dollar.svg') }}"/>
+            <h2>Hip-Hop</h2>
+        </div>
+        <div class="hidden">
+            <p>Listen to hip-hop music</p>
+        </div>
+    </a>
+    <a class="yellow" href="{{ path('banana_station_music_music_movies') }}">
+        <div>
+            <img src="{{ asset('public/img/music/movie.svg') }}"/>
+            <h2>Movies</h2>
+        </div>
+        <div class="hidden">
+            <p>Listen to movie music</p>
+        </div>
+    </a>
+    <a class="blue" href="{{ path('banana_station_music_music_electro') }}">
+        <div>
+            <img src="{{ asset('public/img/music/disk.svg') }}"/>
+            <h2>Electro & House</h2>
+        </div>
+        <div class="hidden">
+            <p>Listen to E&H music</p>
+        </div>
+    </a>
+    <a class="green" href="{{ path('banana_station_music_music_dubstep') }}">
+        <div>
+            <img src="{{ asset('public/img/music/syringe.svg') }}"/>
+            <h2>Dubstep & Dnb</h2>
+        </div>
+        <div class="hidden">
+            <p>Listen to D&B music</p>
+        </div>
+    </a>
+    <a class="grey" href="{{ path('banana_station_music_music_rock') }}">
+        <div>
+            <img src="{{ asset('public/img/music/guitar.svg') }}"/>
+            <h2>Rock</h2>
+        </div>
+        <div class="hidden">
+            <p>Listen to rock music</p>
+        </div>
+    </a>
+</section>
+
+<div class="video">
+    <video id="video" autoplay="autoplay" loop="loop" poster="{{ asset('public/img/music/c-skate.png') }}">
+        <source src="{{ asset('public/video/music/video.mp4') }}" type="video/mp4">
+        <source src="{{ asset('public/video/music/video.ogv') }}" type="video/ogg">
+        <source src="{{ asset('public/video/music/video.webm') }}" type="video/webm">
+    </video>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var video = document.getElementById('video');
+        var x, y, resolution, body, html;
+
+        function resizeVideo() {
+            if (document.body) {
+                x = document.body.clientWidth;
+            } else {
+                x = window.innerWidth;
+            }
+            body = document.body;
+            html = document.documentElement;
+            y = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+            resolution = x / y;
+            console.log(x);
+            console.log(y);
+            console.log(resolution);
+            if (resolution >= 16 / 9) {
+                video.style.width = x + "px";
+                video.style.height = "auto";
+            } else {
+                video.style.width = "auto";
+                video.style.height = y + "px";
+            }
+        }
+
+        window.onresize = function () {
+            resizeVideo();
+        };
+
+        resizeVideo();
+    });
+</script>
+</body>
+</html>

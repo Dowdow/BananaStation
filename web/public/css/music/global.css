@@ -1,0 +1,52 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+*:focus {
+    outline: none;
+}
+
+.red {
+    background: #ff4136;
+}
+
+.orange {
+    background: #ff851b;
+}
+
+.yellow {
+    background: #ffdc00;
+}
+
+.blue {
+    background: #0074d9;
+}
+
+.green {
+    background: #2ecc40;
+}
+
+.grey {
+    background: #aaaaaa;
+}
+
+.cyan {
+    background: #39cccc;
+}
+
+.shaded1 {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.shaded2 {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.shaded3 {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.shaded4 {
+    background: rgba(255, 255, 255, 0.4);
+}

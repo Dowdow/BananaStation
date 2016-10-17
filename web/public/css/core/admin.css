@@ -1,0 +1,40 @@
+#admin {
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #30435b;
+}
+
+#admin h2 {
+    text-align: center;
+    font-size: 50px;
+}
+
+#admin h3 {
+    text-align: center;
+    font-size: 30px;
+}
+
+#admin p {
+    text-align: center;
+    font-size: 20px;
+}
+
+#admin a {
+    text-align: center;
+    color: #30435b;
+}
+
+#admin table {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 200px;
+    font-size: 20px;
+}
+
+@media screen and (max-width: 768px) {
+
+    #admin table {
+        width: 90%;
+    }
+
+}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width">
+    {% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/music/global.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/music/header.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/music/footer.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/nprogress.css') }}"/>
+    {% endblock %}
+    <link href='http://fonts.googleapis.com/css?family=Raleway:300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Sniglet:800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <title>{% block title %}Banana Music{% endblock %}</title>
+</head>
+<body>
+<header>
+    <section>
+        <a href="{{ path('banana_station_music_music_games') }}" class="red">
+            <img src="{{ asset('public/img/music/playstation.svg') }}"/>
+            <h2>Games</h2>
+        </a>
+        <a href="{{ path('banana_station_music_music_hiphop') }}" class="orange">
+            <img src="{{ asset('public/img/music/dollar.svg') }}"/>
+            <h2>Hip-Hop</h2>
+        </a>
+        <a href="{{ path('banana_station_music_music_movies') }}" class="yellow">
+            <img src="{{ asset('public/img/music/movie.svg') }}"/>
+            <h2>Movies</h2>
+        </a>
+        <a href="{{ path('banana_station_music_music_electro') }}" class="blue">
+            <img src="{{ asset('public/img/music/disk.svg') }}"/>
+            <h2>Electro & House</h2>
+        </a>
+        <a href="{{ path('banana_station_music_music_dubstep') }}" class="green">
+            <img src="{{ asset('public/img/music/syringe.svg') }}"/>
+            <h2>Dubstep & D&B</h2>
+        </a>
+        <a href="{{ path('banana_station_music_music_rock') }}" class="grey">
+            <img src="{{ asset('public/img/music/guitar.svg') }}"/>
+            <h2>Rock</h2>
+        </a>
+    </section>
+</header>
+
+<!--
+<section>
+    <img onclick="displayMenu()" src="{{ asset('public/img/music/menu-phone.svg') }}" alt="menu-phone">
+</section>
+-->
+
+{% block body %}
+{% endblock %}
+
+<footer>
+    <section id="total">
+        <h4>Musics total : {{ getTotalMusic() }}</h4>
+    </section>
+
+    <section id="totals">
+        <h4 class="red">Games total : {{ getTotalGames() }}</h4>
+        <h4 class="orange">Hip-Hop total : {{ getTotalHipHop() }}</h4>
+        <h4 class="yellow">Movies total : {{ getTotalMovies() }}</h4>
+        <h4 class="blue">E & H total : {{ getTotalElectro() }}</h4>
+        <h4 class="green">D & D&B total : {{ getTotalDubstep() }}</h4>
+        <h4 class="grey">Rock total : {{ getTotalRock() }}</h4>
+    </section>
+
+    <section id="nav">
+        <ul>
+            <li><a href="{{ path('banana_station_music_music_games') }}">Games</a></li>
+            <li><a href="{{ path('banana_station_music_music_hiphop') }}">Hip-Hop</a></li>
+            <li><a href="{{ path('banana_station_music_music_movies') }}">Movies</a></li>
+        </ul>
+        <ul>
+            <li><a href="{{ path('banana_station_music_music_electro') }}">Electro & House</a></li>
+            <li><a href="{{ path('banana_station_music_music_dubstep') }}">Dubstep & Drum and bass</a></li>
+            <li><a href="{{ path('banana_station_music_music_rock') }}">Rock</a></li>
+        </ul>
+        <ul>
+            <li><a href="{{ path('banana_station_music_racine') }}">Home</a></li>
+            <li><a href="{{ path('banana_station_core_racine') }}">Banana Station</a></li>
+            {% if is_granted('ROLE_MUSIC') %}
+                <li><a href="{{ path('banana_station_music_admin') }}">Admin</a></li>
+            {% endif %}
+        </ul>
+    </section>
+</footer>
+
+{% block javascripts %}
+{% endblock %}
+</body>
+</html>

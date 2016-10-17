@@ -1,0 +1,232 @@
+section {
+    width: 100%;
+}
+
+#music {
+    background: #dddddd;
+    height: 0;
+    width: 100%;
+    font-family: 'Lobster', cursive;
+    color: rgba(0, 0, 0, 0.8);;
+    text-align: center;
+    box-shadow: inset 0 0 10px 0 #111111;
+    overflow: hidden;
+    transition: all 200ms ease;
+}
+
+#music div:nth-child(2) {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#music iframe {
+    margin-top: -20px;
+    box-shadow: 0 0 12px #111111;
+}
+
+#music img {
+    position: relative;
+    height: 100px;
+    opacity: 0.9;
+    cursor: pointer;
+    transition: all 200ms linear;
+}
+
+#music img:first-child:hover {
+    margin-top: 10px;
+    transition: all 200ms linear;
+}
+
+#music img:last-child:hover {
+    margin-top: 10px;
+    transition: all 200ms linear;
+}
+
+#music h2 {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#music-cross {
+    font-family: 'Sniglet', cursive;
+    font-size: 30px;
+    cursor: pointer;
+    text-align: right;
+    margin-right: 15px;
+    padding-top: 10px;
+}
+
+#grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+#grid div {
+    width: 25%;
+    margin: 0;
+    padding: 0;
+    border: 10px solid rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    overflow: hidden;
+    transition: all 100ms linear;
+    cursor: pointer;
+}
+
+#grid div:hover {
+    border-color: rgba(0, 0, 0, 0);
+    transition: all 100ms linear;
+}
+
+#grid div img {
+    width: 100%;
+}
+
+#grid div h3 {
+    font-family: 'Raleway', cursive;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.7);
+    cursor: pointer;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#grid div a {
+    color: #dddddd;
+    cursor: pointer;
+    font-family: 'Lobster', cursive;
+    font-size: 15px;
+    text-decoration: none;
+    text-align: center;
+    margin-left: 10px;
+}
+
+#more {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: #dddddd;
+    border: 10px solid rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+#more h3 {
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    font-size: 30px;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+#search {
+    width: 100%;
+    padding: 10px;
+    background: #39cccc;
+    border: 10px solid rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    transition: all 200ms linear;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#search label {
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+#search input[type=text] {
+    border: 0;
+    border-radius: 0;
+    background: #3be6e6;
+    margin-left: 20px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.5em;
+    width: 100%;
+    outline: none;
+}
+
+#empty {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: #dddddd;
+    border: 10px solid rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+#empty h3 {
+    font-family: 'Raleway', cursive;
+    font-size: 2em;
+    text-align: center;
+    color: #000;
+    opacity: 0.7;
+}
+
+@media screen and (max-width: 480px) {
+
+    #music iframe {
+        width: 215px;
+        height: 121px;
+    }
+
+    #grid div {
+        width: 100%;
+    }
+
+    @-moz-document url-prefix(http://music.banana-station/music) {
+        #search input[type=text] {
+            width: 50%;
+        }
+    }
+
+}
+
+@media screen and (min-width: 480px) and (max-width: 768px) {
+
+    #music iframe {
+        width: 375px;
+        height: 211px;
+    }
+
+    #grid div {
+        width: 50%;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+
+    #music iframe {
+        margin-top: 0;
+    }
+
+    #music img {
+        height: 50px;
+        width: 50px;
+    }
+
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+
+    #grid div {
+        width: 33.33%;
+    }
+
+}
+
+@media screen and (max-width: 1024px) {
+
+}

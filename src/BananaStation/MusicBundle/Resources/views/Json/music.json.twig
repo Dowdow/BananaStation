@@ -1,0 +1,17 @@
+{
+    "musics": [
+        {% for music in musics %}
+        {
+            "id": "{{ music.id }}",
+            "title": "{{ music.title }}",
+            "youtubeid": "{{ music.youtubeid }}",
+            "style": "{{ music.style }}",
+            "date": "{{ music.date.date }}",
+            "edit": "{{ path('banana_station_music_admin_edit', { id : music.id }) }}",
+            "delete": "{{ path('banana_station_music_admin_delete', { id : music.id }) }}"
+        }
+        {% if loop.last == false %},
+        {% endif %}
+        {% endfor %}
+    ]
+}

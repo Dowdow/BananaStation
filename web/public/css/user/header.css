@@ -1,0 +1,22 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    padding: 10px;
+    background: #01ff70;
+}
+
+header h1 {
+    font-family: 'Lobster', cursive;
+    font-size: 2em;
+    text-align: center;
+    color: #111111;
+}
+
+@media screen and (max-width: 768px) {
+    header h1 {
+        margin: 0;
+    }
+}

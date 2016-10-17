@@ -1,0 +1,31 @@
+{% extends "::user.html.twig" %}
+{% block body %}
+    <section>
+        <h2>Inscription</h2>
+        {{ form_start(form, {'method': 'POST', 'attr': {'class': 'form-horizontal'} }) }}
+        <div class="form-group">
+            <label class="control-label">Identifiant</label>
+            {{ form_widget(form.username, { 'attr': {'class': 'form-control', 'placeholder': 'Entre 6 et 30 caractères'} }) }}
+        </div>
+        <div class="form-group">
+            <label class="control-label">Adresse email</label>
+            {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder': 'Adresse email'} }) }}
+        </div>
+        <div class="form-group">
+            <label class="control-label">Mot de passe</label>
+            {{ form_widget(form.password, { 'attr': {'class': 'form-control', 'placeholder': 'Entre 8 et 30 caractères'} }) }}
+        </div>
+        <div class="form-group">
+            <label>Complétez le captcha :</label>
+            {{ form_widget(form.recaptcha) }}
+            <p>En cliquant sur le bouton "Inscription", vous acceptez les <a href="{{ path('banana_station_user_cgu') }}" target="_blank">conditions générales d'utilisation</a> de banana-station.fr</p>
+        </div>
+        <div class="form-group">
+            <input type="submit" name="valider" value="Inscription"/>
+        </div>
+        <div class="form-group">
+            <a href="{{ path('login') }}">Vous êtes déjà inscrit ?</a>
+        </div>
+        {{ form_end(form) }}
+    </section>
+{% endblock %}

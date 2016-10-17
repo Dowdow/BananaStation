@@ -1,0 +1,70 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#FFDC00">
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/poke/style.css') }}">
+    <title>Banana Poke</title>
+</head>
+<body>
+<header>
+    <h1>Banana Poke
+        <small id="header-small"></small>
+    </h1>
+</header>
+
+<section id="login">
+    <form id="login-form">
+        <input id="login-name" type="text" placeholder="Name"/>
+        <button id="login-button" type="submit">Go</button>
+    </form>
+</section>
+
+<section id="room">
+    <h3>Rooms available</h3>
+    <div id="room-list"></div>
+
+    <h3>Create your own room</h3>
+    <form id="room-create-form">
+        <input type="text" id="room-name" placeholder="Name">
+        <button id="room-create-button" type="submit">New Room</button>
+    </form>
+</section>
+
+<section id="app">
+    <div class="button-center">
+        <button id="fast-poke-room" type="button">Fast Poke Room</button>
+        <button id="poke-room" type="button">Poke Room</button>
+        <button id="leave-room" type="button">Leave room</button>
+    </div>
+    <div id="users"></div>
+</section>
+
+<footer>
+    <div>
+        <h4>Volume</h4>
+        <input id="volume" type="range" value="3" max="10" min="0" step="1">
+    </div>
+    <div>
+        <h4>Notification image</h4>
+        <select id="image-select">
+            <option value="{{ asset('public/img/poke/notifications/default.jpg') }}">Default</option>
+            <option value="{{ asset('public/img/poke/notifications/dwayne.jpg') }}">Dwayne</option>
+        </select>
+    </div>
+    <div>
+        <h4>Notification sound</h4>
+        <select id="audio-select">
+            <option value="{{ asset('public/audio/poke/notification.mp3') }}">Default</option>
+            <option value="{{ asset('public/audio/poke/notification2.mp3') }}">Classic</option>
+        </select>
+        <audio id="sound" src="{{ asset('public/audio/poke/notification.mp3') }}" preload="auto"></audio>
+    </div>
+</footer>
+
+<script src="{{ server }}/socket.io/socket.io.js"></script>
+<script>
+    var socket = io.connect('{{ server }}');
+</script>
+<script src="{{ asset('public/js/poke/client.js') }}"></script>
+</body>
+</html>

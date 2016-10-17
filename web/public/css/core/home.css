@@ -1,0 +1,289 @@
+@font-face {
+    font-family: 'tronregular';
+    src: url('../../fonts/tron/tron-webfont.eot');
+    src: url('../../fonts/tron/tron-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../../fonts/tron/tron-webfont.woff2') format('woff2'),
+    url('../../fonts/tron/tron-webfont.woff') format('woff'),
+    url('../../fonts/tron/tron-webfont.ttf') format('truetype'),
+    url('../../fonts/tron/tron-webfont.svg#tronregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Lobster;
+    src: url("../../fonts/Lobster.otf") format("opentype");
+}
+
+#projects {
+    height: 300px;
+    max-height: 300px;
+    font-family: 'Source Sans Pro', sans-serif;
+    background-image: url("../../img/core/bg.jpg");
+    padding-top: 150px;
+}
+
+#projects p {
+    margin: 0;
+    font-size: 30px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+#projects p:nth-child(2) {
+    margin-top: 70px;
+}
+
+#projects a {
+    text-align: center;
+    text-decoration: none;
+    color: #FFFFFF;
+    font-size: 40px;
+    border-radius: 5%;
+    padding: 0.5em;
+    border: solid 1px rgba(255, 255, 255, 0.35);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+#projects a:hover {
+    background-color: rgba(255, 255, 255, 0.35);
+    transition: all 0.2s ease;
+}
+
+#sites {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    background: #F5F5F5;
+    padding-top: 50px;
+    padding-bottom: 100px;
+}
+
+#sites a {
+    min-width: 400px;
+    max-width: 400px;
+    height: 250px;
+    margin-top: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+    text-decoration: none;
+}
+
+#music {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    transition: all 0.05s ease;
+}
+
+#music h3 {
+    position: absolute;
+    margin-left: 108px;
+    font-family: 'Raleway', sans-serif;
+    color: #000;
+    opacity: 0.7;
+    font-size: 25px;
+    margin-top: 8px;
+    text-align: center;
+}
+
+#music span {
+    width: 33.33%;
+    box-sizing: border-box;
+    border: 10px solid rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+#music span:nth-child(2) {
+    background: #ff4136;
+}
+
+#music span:nth-child(2) img {
+    width: 70px;
+    padding-top: 32px;
+}
+
+#music span:nth-child(3) {
+    background: #ff851b;
+}
+
+#music span:nth-child(3) img {
+    width: 40px;
+    padding-top: 23px;
+}
+
+#music span:nth-child(4) {
+    background: #ffdc00;
+}
+
+#music span:nth-child(4) img {
+    width: 50px;
+    padding-top: 40px;
+}
+
+#music span:nth-child(5) {
+    background: #0074d9;
+}
+
+#music span:nth-child(5) img {
+    width: 50px;
+    padding-top: 25px;
+}
+
+#music span:nth-child(6) {
+    background: #2ecc40;
+}
+
+#music span:nth-child(6) img {
+    width: 60px;
+    padding-top: 20px;
+}
+
+#music span:nth-child(7) {
+    background: #aaaaaa;
+}
+
+#music span:nth-child(7) img {
+    width: 25px;
+    padding-top: 15px;
+}
+
+#music img {
+    display: block;
+    vertical-align: middle;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.7;
+}
+
+#tron {
+    background-size: 50px 50px;
+    background-color: #0C141F;
+    background-image: linear-gradient(transparent 98%, #6FC3DF 98%, #6FC3DF),
+    linear-gradient(90deg, transparent 98%, #6FC3DF 98%, #6FC3DF);
+    border: 2px solid #6FC3DF;
+    border-radius: 3px;
+    font-family: 'tronregular', sans-serif;
+    overflow: hidden;
+    box-sizing: border-box;
+    box-shadow: 0 0 20px #6FC3DF;
+}
+
+#tron h3 {
+    color: #DF740C;
+    text-shadow: #FFE64D 1px 1px, 0 0 10px #DF740C;
+    text-align: center;
+}
+
+#tron img {
+    margin-top: -60px;
+}
+
+#poke {
+    border: 10px solid #FFDC00;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    overflow: hidden;
+    font-family: Lobster, sans-serif;
+}
+
+#poke h3 {
+    position: absolute;
+    margin-left: 105px;
+    font-size: 30px;
+    margin-top: 0;
+    text-align: center;
+    color: #000000;
+}
+
+#poke span {
+    width: 200px;
+    height: 60px;
+    background: #FFDC00;
+    margin: 10px;
+}
+
+#poke span:nth-child(3), #poke span:nth-child(5) {
+    align-self: flex-end;
+}
+
+#about {
+    font-family: 'Source Sans Pro', sans-serif;
+    background: #30435B;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+#about h3 {
+    text-align: center;
+    font-size: 50px;
+    margin: 0;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    font-weight: lighter;
+}
+
+#about p {
+    font-size: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    margin: 0;
+    font-weight: lighter;
+}
+
+#about p:first-child {
+    text-align: left;
+    padding: 30px 100px 50px;
+}
+
+#about a {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+@media screen and (max-width: 480px) {
+
+    #sites a {
+        min-width: 90%;
+        max-width: 90%;
+    }
+
+    #music h3 {
+        left: 0;
+        right: 0;
+        margin-left: 0;
+    }
+
+    #poke h3 {
+        left: 0;
+        right: 0;
+        margin-left: 0;
+    }
+
+}
+
+@media screen and (max-width: 1024px) {
+
+    #sites {
+        flex-direction: column;
+        padding: 0;
+    }
+
+    #sites a {
+        margin: 50px auto 0;
+    }
+
+    #sites a:last-child {
+        margin-bottom: 50px;
+    }
+
+    #about p:first-child {
+        padding: 30px 20px 50px;
+    }
+
+}

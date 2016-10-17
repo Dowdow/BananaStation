@@ -1,0 +1,17 @@
+{% extends "::user.html.twig" %}
+{% block body %}
+    <section>
+        <h2>{{ title }}</h2>
+        <div class="alert-good">{{ message }}</div>
+
+        <div>
+            {% if is_granted('ROLE_USER') %}
+                <p><a href="{{ path('banana_station_user_account') }}">Accèder à mon compte</a></p>
+                <p><a href="{{ path('logout') }}">Se déconnecter</a></p>
+            {% else %}
+                <p><a href="{{ path('login') }}">Se connecter</a></p>
+            {% endif %}
+        </div>
+
+    </section>
+{% endblock %}

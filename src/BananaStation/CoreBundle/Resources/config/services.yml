@@ -1,0 +1,33 @@
+parameters:
+    banana_station_core.footer.class: BananaStation\CoreBundle\Service\FooterContent
+    banana_station_core.top.class: BananaStation\CoreBundle\Service\TopContent
+    banana_station_core.stat.class: BananaStation\CoreBundle\Service\StatAdmin
+    banana_station_core.alert.class: BananaStation\CoreBundle\Service\Alert
+    banana_station_core.project_state.class: BananaStation\CoreBundle\Service\ProjectState
+
+services:
+    banana_station_core.footer:
+        class: "%banana_station_core.footer.class%"
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: twig.extension }
+
+    banana_station_core.top:
+        class: "%banana_station_core.top.class%"
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: twig.extension }
+
+    banana_station_core.stat:
+        class: "%banana_station_core.stat.class%"
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: twig.extension }
+
+    banana_station_core.alert:
+        class: "%banana_station_core.alert.class%"
+
+    app.twig_extension:
+        class: "%banana_station_core.project_state.class%"
+        tags:
+            - { name: twig.extension }

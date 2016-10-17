@@ -1,0 +1,67 @@
+banana_station_music_racine:
+    path:  /
+    host: "%host_music%"
+    defaults: { _controller: BananaStationMusicBundle:Music:home }
+
+banana_station_music_music_games:
+    path:  /music/games
+    host: "%host_music%"
+    defaults: { _controller: BananaStationMusicBundle:Music:games }
+
+banana_station_music_music_hiphop:
+    path:  /music/hip-hop
+    host: "%host_music%"
+    defaults: { _controller: BananaStationMusicBundle:Music:hiphop }
+
+banana_station_music_music_movies:
+    path:  /music/movies
+    host: "%host_music%"
+    defaults: { _controller: BananaStationMusicBundle:Music:movies }
+
+banana_station_music_music_electro:
+    path:  /music/electro-house
+    host: "%host_music%"
+    defaults: { _controller: BananaStationMusicBundle:Music:electro }
+
+banana_station_music_music_dubstep:
+    path:  /music/dubstep-drum-and-bass
+    host: "%host_music%"
+    defaults: { _controller: BananaStationMusicBundle:Music:dubstep }
+
+banana_station_music_music_rock:
+    path:  /music/rock
+    host: "%host_music%"
+    defaults: { _controller: BananaStationMusicBundle:Music:rock }
+
+banana_station_music_search:
+    path:  /music/search
+    host: "%host_music%"
+    defaults: { _controller: BananaStationMusicBundle:Music:search }
+
+banana_station_music_page:
+    path:  /music/page/{style}/{page}
+    host: "%host_music%"
+    defaults: { _controller: BananaStationMusicBundle:Music:page }
+    requirements:
+        style: g|h|m|e|d|r|s
+        page: \d+
+
+banana_station_music_admin:
+    path:  /admin
+    host: "%host_music%"
+    defaults: { _controller: BananaStationMusicBundle:Admin:admin }
+
+banana_station_music_admin_add:
+    path:  /admin/add
+    host: "%host_music%"
+    defaults: { _controller: BananaStationMusicBundle:Admin:add }
+
+banana_station_music_admin_edit:
+    path:  /admin/edit/{id}
+    host: "%host_music%"
+    defaults: { _controller: BananaStationMusicBundle:Admin:edit }
+
+banana_station_music_admin_delete:
+    path:  /admin/delete/{id}
+    host: "%host_music%"
+    defaults: { _controller: BananaStationMusicBundle:Admin:delete }

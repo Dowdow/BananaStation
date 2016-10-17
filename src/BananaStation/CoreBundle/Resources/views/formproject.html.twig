@@ -1,0 +1,30 @@
+{% extends "::core.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/core/form.css') }}"/>
+{% endblock %}
+
+{% block body %}
+    <section>
+        <h2>Formulaire de projet</h2>
+
+        {{ form_start(form) }}
+
+        {{ form_widget(form.nom, { 'attr': { 'placeholder': 'Nom' } }) }}
+
+        {{ form_widget(form.etat) }}
+
+        {{ form_widget(form.description, { 'attr': { 'placeholder': 'Description', 'rows': 6 } }) }}
+
+        {{ form_widget(form.progression, { 'attr': { 'placeholder': 'Progression' } }) }}
+
+        {{ form_widget(form.file) }}
+
+        <input type="submit" value="Publier"/>
+
+        <input type="reset" value="Reset"/>
+
+        {{ form_end(form) }}
+    </section>
+{% endblock %}

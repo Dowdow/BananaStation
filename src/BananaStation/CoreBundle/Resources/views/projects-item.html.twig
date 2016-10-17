@@ -1,0 +1,16 @@
+<a href="{{ path('banana_station_core_project', { id : projet.id }) }}" xmlns="http://www.w3.org/1999/html">
+    {% if projet.image|length %}
+        <img src="{{ asset('public/img/core/projet/' ~ projet.id ~ '.' ~ projet.image) }}"
+             alt="{{ projet.nom|raw }}"/>
+    {% endif %}
+
+    <h3>{{ projet.nom|raw }}</h3>
+    <h4><i class="fa fa-user"></i> {{ projet.utilisateur.username }}</h4>
+    <h4><i class="fa fa-clock-o"></i> {{ projet.date.date|date('d/m/Y') }}</h4>
+    <h4><i class="fa fa-flag"></i> {{ projet.etat|pstate }}</h4>
+    <h4>
+        <i class="fa fa-line-chart"></i> {{ projet.progression }}%&emsp;
+        <i class="fa fa-comments"></i> {{ projet.commentaires.count }}&emsp;
+        <i class="fa fa-comments-o"></i> {{ projet.notes.count }}&emsp;
+    </h4>
+</a>

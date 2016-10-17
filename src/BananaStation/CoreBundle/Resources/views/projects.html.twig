@@ -1,0 +1,41 @@
+{% extends "::core.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/core/projects.css') }}"/>
+{% endblock %}
+
+{% block body %}
+    <section>
+        {% if projets|length > 0 %}
+            <h2>Projects</h2>
+            <p>L'intégralité de nos projets.</p>
+
+            <div id="projects">
+                <div>
+                    {% for projet in projets %}
+                        {% if loop.index0 % 3 == 0 %}
+                            {% include "BananaStationCoreBundle::projects-item.html.twig" %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div>
+                    {% for projet in projets %}
+                        {% if loop.index0 % 3 == 1 %}
+                            {% include "BananaStationCoreBundle::projects-item.html.twig" %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div>
+                    {% for projet in projets %}
+                        {% if loop.index0 % 3 == 2 %}
+                            {% include "BananaStationCoreBundle::projects-item.html.twig" %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% else %}
+            <h3>Aucun Projet à afficher.</h3>
+        {% endif %}
+    </section>
+{% endblock %}

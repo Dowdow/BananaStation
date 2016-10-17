@@ -1,0 +1,60 @@
+{% extends "::core.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/core/home.css') }}"/>
+{% endblock %}
+
+{% block body %}
+
+    <section id="projects">
+        <p>Consultez ici la liste des tous les projets Banana Station</p>
+        <p><a href="{{ path('banana_station_core_projects') }}">Projects</a></p>
+    </section>
+
+    <section id="sites">
+        <a id="music" href="{{ path('banana_station_music_racine') }}" target="_blank">
+            <h3>Banana Music</h3>
+            <span>
+                <img src="{{ asset('public/img/music/playstation.svg') }}"/>
+            </span>
+            <span>
+                <img src="{{ asset('public/img/music/dollar.svg') }}"/>
+            </span>
+            <span>
+                <img src="{{ asset('public/img/music/movie.svg') }}"/>
+            </span>
+            <span>
+                <img src="{{ asset('public/img/music/disk.svg') }}"/>
+            </span>
+            <span>
+                <img src="{{ asset('public/img/music/syringe.svg') }}"/>
+            </span>
+            <span>
+                <img src="{{ asset('public/img/music/guitar.svg') }}"/>
+            </span>
+        </a>
+        <a id="tron" href="{{ path('banana_station_tron_racine') }}" target="_blank">
+            <h3>Banana Tron</h3>
+            <img src="{{ asset('public/img/core/tron.png') }}" alt="Banana Tron">
+        </a>
+        <a id="poke" href="{{ path('banana_station_poke_racine') }}" target="_blank">
+            <h3>Banana Poke</h3>
+            <span></span>
+            <span></span>
+            <span></span>
+        </a>
+    </section>
+
+    <section id="about">
+        <h3>Banana Station vous dites ?</h3>
+        <p>Banana Station c'est un grand bac à sable regroupant plein de projets issus de mes études et de mes
+            expérimentations personnelles. Partisan de l'open source, tout le code source est hébergé sur Git Hub.
+            Mets-toi bien il y a plein de choses à découvrir ici ;)</p>
+        <p><i class="fa fa-twitter"></i>&emsp;<a href="https://www.twitter.com/DatGuyLeo" target="_blank">@DatGuyLeo</a>
+        </p>
+        <p><i class="fa fa-linkedin-square"></i>&emsp;<a href="http://www.linkedin.com/in/léo-riera-36383189"
+                                                         target="_blank">Léo Riera</a></p>
+    </section>
+
+{% endblock %}

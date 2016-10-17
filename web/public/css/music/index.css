@@ -1,0 +1,170 @@
+h1 {
+    position: fixed;
+    font-family: 'Raleway', sans-serif;
+    text-transform: uppercase;
+    bottom: 5%;
+    left: 5%;
+    margin: 0;
+    padding: 0;
+    font-size: 70px;
+    color: rgba(255, 255, 255, 0.5);
+    z-index: 2;
+}
+
+section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    z-index: 3;
+    padding: 50px 10%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+section a {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 200px;
+    max-height: 200px;
+    border-radius: 2px;
+    border: 10px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    transition: all 300ms linear;
+    text-decoration: none;
+    overflow: hidden;
+}
+
+section a div {
+    height: 100%;
+}
+
+section a div img {
+    display: block;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 70px;
+    opacity: 0.7;
+    transition: all 200ms linear;
+}
+
+section a div h2 {
+    font-family: 'Raleway', sans-serif;
+    font-size: 25px;
+    color: rgba(0, 0, 0, 0.7);
+    text-align: center;
+}
+
+section a .hidden {
+    width: 100%;
+    height: 0;
+    color: #000;
+    background: rgba(0, 0, 0, 0.2);
+    text-align: center;
+    opacity: 0;
+    transition: all 200ms 100ms;
+}
+
+section a .hidden p {
+    font-family: 'Raleway', sans-serif;
+    font-size: 15px;
+    margin: 0;
+    padding: 15px 0 0;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.video {
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    overflow: hidden;
+    background: url(../../img/music/c-skate.png) no-repeat center center fixed;
+    background-size: cover;
+}
+
+video {
+    display: block;
+}
+
+section a:hover div img {
+    margin-top: 5px;
+    transition: all 200ms linear;
+}
+
+section a:hover div h2 {
+    top: 30%;
+    transition: all 200ms 100ms linear;
+}
+
+section a:hover .hidden {
+    opacity: 1;
+    height: 50px;
+    transition: all 200ms 300ms;
+}
+
+@media screen and (max-width: 768px) {
+
+    h1 {
+        font-size: 30px;
+    }
+
+}
+
+@media screen and (min-width: 768px) and (max-width: 1400px) {
+
+    section::after {
+        content: '';
+        width: 100%;
+    }
+
+    section a:nth-child(n+4) {
+        order: 1;
+    }
+
+}
+
+@media screen and (max-width: 1024px) {
+
+    section {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    video {
+        display: none;
+    }
+
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1400px) {
+
+    section {
+        padding-left: 15%;
+        padding-right: 15%;
+    }
+
+}
+
+@media screen and (max-width: 1400px) {
+
+    section {
+        flex-wrap: wrap;
+        padding-top: 25px;
+    }
+
+    section a {
+        margin-top: 25px;
+    }
+
+}
+
+@media screen and (min-width: 1400px) and (max-width: 1800px) {
+
+    section {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+}

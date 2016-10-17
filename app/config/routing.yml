@@ -1,0 +1,29 @@
+banana_station_tron:
+    resource: "@BananaStationTronBundle/Resources/config/routing.yml"
+    prefix:   /
+
+banana_station_poke:
+    resource: "@BananaStationPokeBundle/Resources/config/routing.yml"
+    prefix:   /
+
+banana_station_music:
+    resource: "@BananaStationMusicBundle/Resources/config/routing.yml"
+    prefix:   /
+
+banana_station_user:
+    resource: "@BananaStationUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+banana_station_core:
+    resource: "@BananaStationCoreBundle/Resources/config/routing.yml"
+    prefix:   /
+
+login:
+    path:  /login
+    defaults: { _controller: BananaStationUserBundle:User:login }
+
+login_check:
+    path:  /check
+
+logout:
+    path:  /logout

@@ -1,0 +1,24 @@
+{% extends "::core.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/core/about.css') }}"/>
+{% endblock %}
+
+{% block body %}
+    <section id="about">
+        <h2>About</h2>
+        <p>Utilisation des cookies : aucune</p>
+        <p>La plupart des images présentes sur ce site ne sont pas la propriété de Banana-Station.fr</p>
+        <p><a href="{{ path('banana_station_user_cgu') }}" target="_blank">Conditions générales d'utilisation</a>
+        </p>
+        <p>Copyright © 2013 - 2015 Banana-Station.fr - Tous droits réservés</p>
+    </section>
+
+    <section id="contact">
+        <h2>Nous contacter</h2>
+        <p>Si vous avez la moindre question sur un projet ou une section du site,<br/> ou tout simplement des propositions ou
+            problèmes,<br/> vous pouvez me contacter par mail à l'adresse suivante : </p>
+        <p><a href="mailto:contact@banana-station.fr">contact@banana-station.fr</a></p>
+    </section>
+{% endblock %}

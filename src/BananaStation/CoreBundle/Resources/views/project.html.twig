@@ -59,6 +59,8 @@
                     {% endif %}
                 </h5>
                 <p>{{ note.contenu|markdown }}</p>
+            {% else %}
+                <p class="align">Aucune note pour ce projet</p>
             {% endfor %}
             {% if is_granted('ROLE_CORE') %}
                 {{ form_start(formnote) }}
@@ -86,6 +88,8 @@
                     {% endif %}
                 </h5>
                 <p>{{ commentaire.contenu }}</p>
+            {% else %}
+                <p class="align">Aucun commentaire pour ce projet</p>
             {% endfor %}
             {% if is_granted('ROLE_USER') %}
                 {{ form_start(formcom) }}
@@ -93,7 +97,7 @@
                 <input type="submit" name="commenter" value="Commenter"/>
                 {{ form_end(formcom) }}
             {% else %}
-                <p id="offline">
+                <p class="align">
                     <a href="{{ path('login') }}">Connectez-vous</a> ou <a
                             href="{{ path('banana_station_user_register') }}">inscrivez-vous</a>
                     pour rédiger un commentaire à propos de ce projet.

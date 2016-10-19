@@ -139,7 +139,7 @@ form textarea {
     color: #30435B;
 }
 
-#community #offline {
+#community section p.align {
     text-align: center;
 }
 
@@ -159,6 +159,11 @@ form textarea {
 
     #community section {
         width: 100%;
+    }
+
+    #community h4 {
+        margin-top: 25px;
+        margin-bottom: 25px;
     }
 
     #community h5 {

@@ -4,40 +4,40 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "908574469bb9bc3d59bc452282a321b4",
-    "content-hash": "926444b4c49cf4688c4b0c29a6a12a58",
+    "hash": "eb2580f6ffd600c07fd124e984873d36",
+    "content-hash": "8c38be3d4645c5ef2da1b0c05850b296",
     "packages": [
         {
             "name": "doctrine/annotations",
-            "version": "v1.2.7",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/annotations.git",
-                "reference": "f25c8aab83e0c3e976fd7d19875f198ccf2f7535"
+                "reference": "30e07cf03edc3cd3ef579d0dd4dd8c58250799a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/annotations/zipball/f25c8aab83e0c3e976fd7d19875f198ccf2f7535",
-                "reference": "f25c8aab83e0c3e976fd7d19875f198ccf2f7535",
+                "url": "https://api.github.com/repos/doctrine/annotations/zipball/30e07cf03edc3cd3ef579d0dd4dd8c58250799a5",
+                "reference": "30e07cf03edc3cd3ef579d0dd4dd8c58250799a5",
                 "shasum": ""
             },
             "require": {
                 "doctrine/lexer": "1.*",
-                "php": ">=5.3.2"
+                "php": "^5.6 || ^7.0"
             },
             "require-dev": {
                 "doctrine/cache": "1.*",
-                "phpunit/phpunit": "4.*"
+                "phpunit/phpunit": "^5.6.1"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.3.x-dev"
+                    "dev-master": "1.4.x-dev"
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Doctrine\\Common\\Annotations\\": "lib/"
+                "psr-4": {
+                    "Doctrine\\Common\\Annotations\\": "lib/Doctrine/Common/Annotations"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -73,7 +73,7 @@
                 "docblock",
                 "parser"
             ],
-            "time": "2015-08-31 12:32:49"
+            "time": "2016-10-24 11:45:47"
         },
         {
             "name": "doctrine/cache",
@@ -213,16 +213,16 @@
         },
         {
             "name": "doctrine/common",
-            "version": "v2.6.1",
+            "version": "v2.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/common.git",
-                "reference": "a579557bc689580c19fee4e27487a67fe60defc0"
+                "reference": "7bce00698899aa2c06fe7365c76e4d78ddb15fa3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/common/zipball/a579557bc689580c19fee4e27487a67fe60defc0",
-                "reference": "a579557bc689580c19fee4e27487a67fe60defc0",
+                "url": "https://api.github.com/repos/doctrine/common/zipball/7bce00698899aa2c06fe7365c76e4d78ddb15fa3",
+                "reference": "7bce00698899aa2c06fe7365c76e4d78ddb15fa3",
                 "shasum": ""
             },
             "require": {
@@ -282,7 +282,7 @@
                 "persistence",
                 "spl"
             ],
-            "time": "2015-12-25 13:18:31"
+            "time": "2016-11-30 16:50:46"
         },
         {
             "name": "doctrine/dbal",
@@ -1464,25 +1464,25 @@
         },
         {
             "name": "symfony/monolog-bundle",
-            "version": "2.12.0",
+            "version": "3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/monolog-bundle.git",
-                "reference": "6acef3bd201c4f35e42e52dedf1fe088f30e07e8"
+                "reference": "5f2d2d62530cd66be361216107869a3b061045db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/monolog-bundle/zipball/6acef3bd201c4f35e42e52dedf1fe088f30e07e8",
-                "reference": "6acef3bd201c4f35e42e52dedf1fe088f30e07e8",
+                "url": "https://api.github.com/repos/symfony/monolog-bundle/zipball/5f2d2d62530cd66be361216107869a3b061045db",
+                "reference": "5f2d2d62530cd66be361216107869a3b061045db",
                 "shasum": ""
             },
             "require": {
                 "monolog/monolog": "~1.18",
                 "php": ">=5.3.2",
-                "symfony/config": "~2.3|~3.0",
-                "symfony/dependency-injection": "~2.3|~3.0",
-                "symfony/http-kernel": "~2.3|~3.0",
-                "symfony/monolog-bridge": "~2.3|~3.0"
+                "symfony/config": "~2.7|~3.0",
+                "symfony/dependency-injection": "~2.7|~3.0",
+                "symfony/http-kernel": "~2.7|~3.0",
+                "symfony/monolog-bridge": "~2.7|~3.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^4.8",
@@ -1492,7 +1492,7 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.x-dev"
+                    "dev-master": "3.x-dev"
                 }
             },
             "autoload": {
@@ -1520,7 +1520,7 @@
                 "log",
                 "logging"
             ],
-            "time": "2016-11-06 18:54:50"
+            "time": "2016-11-15 15:54:07"
         },
         {
             "name": "symfony/polyfill-apcu",
@@ -1920,16 +1920,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v3.1.7",
+            "version": "v3.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "db1c32c7237a6594e5e1974524c973d18066b141"
+                "reference": "b96a144bc875684f3338f697687147a2696d73eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/db1c32c7237a6594e5e1974524c973d18066b141",
-                "reference": "db1c32c7237a6594e5e1974524c973d18066b141",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/b96a144bc875684f3338f697687147a2696d73eb",
+                "reference": "b96a144bc875684f3338f697687147a2696d73eb",
                 "shasum": ""
             },
             "require": {
@@ -1997,6 +1997,7 @@
                 "symfony/validator": "self.version",
                 "symfony/var-dumper": "self.version",
                 "symfony/web-profiler-bundle": "self.version",
+                "symfony/workflow": "self.version",
                 "symfony/yaml": "self.version"
             },
             "require-dev": {
@@ -2006,7 +2007,7 @@
                 "doctrine/dbal": "~2.4",
                 "doctrine/doctrine-bundle": "~1.4",
                 "doctrine/orm": "~2.4,>=2.4.5",
-                "egulias/email-validator": "~1.2,>=1.2.1",
+                "egulias/email-validator": "~1.2,>=1.2.8|~2.0",
                 "monolog/monolog": "~1.11",
                 "ocramius/proxy-manager": "~0.4|~1.0|~2.0",
                 "phpdocumentor/reflection-docblock": "^3.0",
@@ -2018,7 +2019,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.1-dev"
+                    "dev-master": "3.2-dev"
                 }
             },
             "autoload": {
@@ -2057,7 +2058,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2016-11-21 02:44:44"
+            "time": "2016-11-30 08:46:24"
         },
         {
             "name": "twig/twig",
@@ -2176,16 +2177,16 @@
         },
         {
             "name": "symfony/phpunit-bridge",
-            "version": "v3.1.7",
+            "version": "v3.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/phpunit-bridge.git",
-                "reference": "c80098acb81e604eb18030c5e444032ef948f9e7"
+                "reference": "a56acfdb96be7c82f4bcf16b7c77f1960690b0e2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/c80098acb81e604eb18030c5e444032ef948f9e7",
-                "reference": "c80098acb81e604eb18030c5e444032ef948f9e7",
+                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/a56acfdb96be7c82f4bcf16b7c77f1960690b0e2",
+                "reference": "a56acfdb96be7c82f4bcf16b7c77f1960690b0e2",
                 "shasum": ""
             },
             "require": {
@@ -2194,10 +2195,13 @@
             "suggest": {
                 "symfony/debug": "For tracking deprecated interfaces usages at runtime with DebugClassLoader"
             },
+            "bin": [
+                "bin/simple-phpunit"
+            ],
             "type": "symfony-bridge",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.1-dev"
+                    "dev-master": "3.2-dev"
                 }
             },
             "autoload": {
@@ -2227,7 +2231,7 @@
             ],
             "description": "Symfony PHPUnit Bridge",
             "homepage": "https://symfony.com",
-            "time": "2016-11-17 10:59:24"
+            "time": "2016-11-25 22:54:21"
         }
     ],
     "aliases": [],
@@ -2240,8 +2244,5 @@
     "platform": {
         "php": ">=5.5.9"
     },
-    "platform-dev": [],
-    "platform-overrides": {
-        "php": "5.5.9"
-    }
+    "platform-dev": []
 }

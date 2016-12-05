@@ -14,12 +14,15 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class ProjectController extends Controller {
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function projectAction(Request $request, $id) {
         $em = $this->getDoctrine()->getManager();
-        $projectRepo = $em->getRepository('BananaStationCoreBundle:Projet');
-
-        $project = $projectRepo->findOneById($id);
-        if($project == null) {
+        $project = $em->getRepository('BananaStationCoreBundle:Projet')->findOneById($id);
+        if ($project == null) {
             throw new NotFoundHttpException();
         }
 
@@ -32,53 +35,49 @@ class ProjectController extends Controller {
 
         $utilisateur = $this->getUser();
 
-        if ($request->getMethod() == 'POST') {
-
-            if ($this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
-                // Gestion de l'avis
-                if ($request->get('plusme') != null || $request->get('moinsme') != null) {
-                    if ($request->get('plusme') != null) {
-                        $pouce = 'P';
-                    } else {
-                        $pouce = 'M';
-                    }
-                    $avisRepo = $em->getRepository('BananaStationCoreBundle:Avis');
-                    $avis = $avisRepo->findOneByUtilisateurProjet($utilisateur, $project);
-                    if (NULL == $avis) {
-                        $avis = new Avis();
-                        $avis->setPouce($pouce);
-                        $avis->setprojet($project);
-                        $avis->setUtilisateur($utilisateur);
-                        $em->persist($avis);
-                        $em->flush();
-                    } else {
-                        if ($avis->getPouce() != $pouce) {
-                            $avis->setPouce($pouce);
-                            $em->flush();
-                        }
-                    }
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
+            // Gestion de l'avis
+            if ($request->get('plusme') != null || $request->get('moinsme') != null) {
+                if ($request->get('plusme') != null) {
+                    $pouce = 'P';
+                } else {
+                    $pouce = 'M';
                 }
-
-                // Gestion du commentaire
-                $formcom->handleRequest($request);
-                if ($formcom->isValid()) {
-                    $commentaire->setprojet($project);
-                    $commentaire->setUtilisateur($this->getUser());
-                    $em->persist($commentaire);
+                $avis = $em->getRepository('BananaStationCoreBundle:Avis')->findOneByUtilisateurProjet($utilisateur, $project);
+                if ($avis == null) {
+                    $avis = new Avis();
+                    $avis->setPouce($pouce);
+                    $avis->setprojet($project);
+                    $avis->setUtilisateur($utilisateur);
+                    $em->persist($avis);
                     $em->flush();
-                    return $this->redirect($this->generateUrl('banana_station_core_project', array('id' => $id)));
+                } else {
+                    if ($avis->getPouce() != $pouce) {
+                        $avis->setPouce($pouce);
+                        $em->flush();
+                    }
                 }
             }
-            // Gestion de la note
-            if ($this->get('security.authorization_checker')->isGranted('ROLE_CORE')) {
-                $formnote->handleRequest($request);
-                if ($formnote->isValid()) {
-                    $note->setProjet($project);
-                    $note->setUtilisateur($utilisateur);
-                    $em->persist($note);
-                    $em->flush();
-                    return $this->redirect($this->generateUrl('banana_station_core_project',array('id' => $id)));
-                }
+
+            // Gestion du commentaire
+            $formcom->handleRequest($request);
+            if ($formcom->isSubmitted() && $formcom->isValid()) {
+                $commentaire->setprojet($project);
+                $commentaire->setUtilisateur($this->getUser());
+                $em->persist($commentaire);
+                $em->flush();
+                return $this->redirect($this->generateUrl('banana_station_core_project', array('id' => $id)));
+            }
+        }
+        // Gestion de la note
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_CORE')) {
+            $formnote->handleRequest($request);
+            if ($formnote->isSubmitted() && $formnote->isValid()) {
+                $note->setProjet($project);
+                $note->setUtilisateur($utilisateur);
+                $em->persist($note);
+                $em->flush();
+                return $this->redirect($this->generateUrl('banana_station_core_project', array('id' => $id)));
             }
         }
 
@@ -94,61 +93,77 @@ class ProjectController extends Controller {
             }
         }
 
-        return $this->render('BananaStationCoreBundle::project.html.twig', array('projet' => $project, 'plusmes' => $plusmes, 'moinsmes' => $moinsmes, 'formcom' => $formcom->createView(), 'formnote' => $formnote->createView()));
+        return $this->render('BananaStationCoreBundle::project.html.twig', array(
+            'projet' => $project,
+            'plusmes' => $plusmes,
+            'moinsmes' => $moinsmes,
+            'formcom' => $formcom->createView(),
+            'formnote' => $formnote->createView()
+        ));
     }
 
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function projectsAction() {
         $em = $this->getDoctrine()->getManager();
-        $projectRepo = $em->getRepository('BananaStationCoreBundle:Projet');
-        $projects = $projectRepo->findBy(array(), array('id' => 'DESC'));
+        $projects = $em->getRepository('BananaStationCoreBundle:Projet')->findBy(array(), array('id' => 'DESC'));
         return $this->render('BananaStationCoreBundle::projects.html.twig', array('projets' => $projects));
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @param $idcom
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function editCommentaireAction(Request $request, $id, $idcom) {
-        if($this->get('security.authorization_checker')->isGranted('ROLE_USER') == false) {
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_USER') == false) {
             throw new AccessDeniedException();
         }
         $em = $this->getDoctrine()->getManager();
-        $projetRepo = $em->getRepository('BananaStationCoreBundle:Projet');
-        $commentRepo = $em->getRepository('BananaStationCoreBundle:Commentaire');
+        $projet = $em->getRepository('BananaStationCoreBundle:Projet')->findOneById($id);
+        $commentaire = $em->getRepository('BananaStationCoreBundle:Commentaire')->findOneById($idcom);
         $user = $this->getUser();
-        $projet = $projetRepo->findOneById($id);
-        $commentaire = $commentRepo->findOneById($idcom);
-        if($projet == null || $commentaire == null) {
+        if ($projet == null || $commentaire == null) {
             throw new NotFoundHttpException();
         }
-        if($user->getId() != $commentaire->getUtilisateur()->getId()) {
+        if ($user->getId() != $commentaire->getUtilisateur()->getId()) {
             throw new AccessDeniedException();
         }
 
         $form = $this->createForm(CommentaireType::class, $commentaire);
-        if($request->getMethod() == 'POST') {
-            $form->handleRequest($request);
-            if($form->isValid()) {
-                $em->flush();
-                return $this->redirect($this->generateUrl('banana_station_core_project', array('id' => $id)));
-            }
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->flush();
+            return $this->redirect($this->generateUrl('banana_station_core_project', array('id' => $id)));
         }
         return $this->render('BananaStationCoreBundle::formcommentaire.html.twig', array('form' => $form->createView()));
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @param $idcom
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function deleteCommentaireAction(Request $request, $id, $idcom) {
-        if(!$this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
+        if (!$this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
             throw new AccessDeniedException();
         }
         $em = $this->getDoctrine()->getManager();
-        $projetRepo = $em->getRepository('BananaStationCoreBundle:Projet');
-        $commentRepo = $em->getRepository('BananaStationCoreBundle:Commentaire');
+        $projet = $em->getRepository('BananaStationCoreBundle:Projet')->findOneById($id);
+        $commentaire = $em->getRepository('BananaStationCoreBundle:Commentaire')->findOneById($idcom);
         $user = $this->getUser();
-        $projet = $projetRepo->findOneById($id);
-        $commentaire = $commentRepo->findOneById($idcom);
-        if($projet == null || $commentaire == null) {
+        if ($projet == null || $commentaire == null) {
             throw new NotFoundHttpException();
         }
-        if($user->getId() != $commentaire->getUtilisateur()->getId() && $this->get('security.authorization_checker')->isGranted('ROLE_CORE') == false) {
+        if ($user->getId() != $commentaire->getUtilisateur()->getId() &&
+            !$this->get('security.authorization_checker')->isGranted('ROLE_CORE')
+        ) {
             throw new AccessDeniedException();
         }
-        if($request->getMethod() == 'POST') {
+        if ($request->getMethod() == 'POST') {
             $em->remove($commentaire);
             $em->flush();
             return $this->redirect($this->generateUrl('banana_station_core_project', array('id' => $id)));

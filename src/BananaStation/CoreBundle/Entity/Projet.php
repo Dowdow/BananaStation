@@ -5,7 +5,7 @@ namespace BananaStation\CoreBundle\Entity;
 use BananaStation\UserBundle\Entity\Utilisateur;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -13,7 +13,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="banana_projet")
  * @ORM\Entity(repositoryClass="BananaStation\CoreBundle\Entity\Repository\ProjetRepository")
- * @ORM\HasLifecycleCallbacks
  */
 class Projet {
 
@@ -55,6 +54,7 @@ class Projet {
      * @var string
      *
      * @ORM\Column(name="image", type="string", length=255, nullable=false)
+     * @Assert\Image()
      */
     private $image;
 
@@ -93,16 +93,11 @@ class Projet {
     private $commentaires;
 
     /**
+     * @var ArrayCollection
+     *
      * @ORM\OneToMany(targetEntity="Note", mappedBy="projet", cascade={"persist", "remove"})
      */
     private $notes;
-
-    /**
-     * @Assert\Image()
-     */
-    private $file;
-
-    private $tempFilename;
 
     /**
      * Constructor
@@ -359,96 +354,6 @@ class Projet {
      */
     public function getNotes() {
         return $this->notes;
-    }
-
-    // FILE FUNCTIONS
-
-    /**
-     * Get file
-     *
-     * @return mixed
-     */
-    public function getFile() {
-        return $this->file;
-    }
-
-    /**
-     * Set file
-     *
-     * @param UploadedFile $file
-     */
-    public function setFile(UploadedFile $file) {
-        $this->file = $file;
-        if (null !== $this->image) {
-            $this->tempFilename = $this->image;
-            $this->image = null;
-        }
-    }
-
-    /**
-     * @ORM\PrePersist()
-     * @ORM\PreUpdate()
-     */
-    public function preUpload() {
-        if (null !== $this->file) {
-            $this->image = $this->file->guessExtension();
-        }
-    }
-
-    /**
-     * @ORM\PostPersist()
-     * @ORM\PostUpdate()
-     */
-    public function upload() {
-        if (null === $this->file) {
-            return;
-        }
-
-        if (null !== $this->tempFilename) {
-            $oldFile = $this->getUploadRootDir().'/'.$this->id.'.'.$this->tempFilename;
-            if (file_exists($oldFile)) {
-                unlink($oldFile);
-            }
-        }
-
-        $this->file->move(
-            $this->getUploadRootDir(),
-            $this->id.'.'.$this->image
-        );
-
-        $this->file = null;
-    }
-
-    /**
-     * @ORM\PreRemove()
-     */
-    public function preRemoveUpload() {
-        $this->tempFilename = $this->getUploadRootDir().'/'.$this->id.'.'.$this->image;
-    }
-
-    /**
-     * @ORM\PostRemove()
-     */
-    public function removeUpload() {
-        if (file_exists($this->tempFilename)) {
-            unlink($this->tempFilename);
-        }
-    }
-
-    /**
-     * Get the relative upload dir
-     * @return string
-     */
-    public function getUploadDir() {
-        return 'public/img/core/projet';
-    }
-
-    /**
-     * Get the absolute upload dir
-     * @return string
-     */
-    protected function getUploadRootDir() {
-        return __DIR__.'/../../../../web/'.$this->getUploadDir();
     }
 
 }

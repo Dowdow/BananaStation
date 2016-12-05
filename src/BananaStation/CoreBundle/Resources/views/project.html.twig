@@ -28,8 +28,10 @@
 
         <div>
             <div>
-                <img src="{{ asset('public/img/core/projet/' ~ projet.id ~ '.' ~ projet.image) }}"
-                     alt="{{ projet.nom|raw }}"/>
+                {% if projet.image|length %}
+                    <img src="{{ asset('public/img/core/projet/' ~ projet.id ~ '.' ~ projet.image) }}"
+                         alt="{{ projet.nom|raw }}"/>
+                {% endif %}
             </div>
             <article>
                 {{ projet.description|markdown }}

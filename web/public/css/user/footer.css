@@ -25,6 +25,10 @@ footer li a {
     text-decoration: none;
 }
 
+footer li a:hover {
+    color: #111111;
+}
+
 @media screen and (max-width: 768px) {
     footer ul {
         width: 100%;

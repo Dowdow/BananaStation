@@ -59,8 +59,6 @@ class ProjetImageUploaderListener {
             return;
         }
         if ($entity->getImage() == null) {
-            $this->tryRemove($entity->getId());
-            $entity->setImage('');
             return;
         }
         $this->file = $entity->getImage();

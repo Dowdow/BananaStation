@@ -27,33 +27,34 @@ class UserController extends Controller {
         $form = $this->createForm(UtilisateurType::class, $user);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            if ($userRepo->findOneByUsername($user->getUsername()) == null) {
-                if ($userRepo->findOneByEmail($user->getEmail()) == null) {
-                    $user->setSalt(md5(time()));
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                if ($userRepo->findOneByUsername($user->getUsername()) == null) {
+                    if ($userRepo->findOneByEmail($user->getEmail()) == null) {
+                        $user->setSalt(md5(time()));
 
-                    // Création du mot de passe
-                    $factory = $this->get('security.encoder_factory');
-                    $encoder = $factory->getEncoder($user);
-                    $password = $encoder->encodePassword($user->getPassword(), $user->getSalt());
-                    $user->setPassword($password);
-                    $em->persist($user);
-                    $em->flush();
+                        // Création du mot de passe
+                        $factory = $this->get('security.encoder_factory');
+                        $encoder = $factory->getEncoder($user);
+                        $password = $encoder->encodePassword($user->getPassword(), $user->getSalt());
+                        $user->setPassword($password);
+                        $em->persist($user);
+                        $em->flush();
 
-                    $mailer = $this->get('banana_station_user.mailer');
-                    $mailer->sendInscription($user);
+                        $mailer = $this->get('banana_station_user.mailer');
+                        $mailer->sendInscription($user);
 
-                    return $this->redirect($this->generateUrl('banana_station_user_success', array('type' => 'register')));
+                        return $this->redirect($this->generateUrl('banana_station_user_success', array('type' => 'register')));
+                    } else {
+                        $alert->build(Alert::TYPE_BAD, 'Cette adresse email est déjà utilisée. Veuillez en renseigner une autre.');
+                    }
                 } else {
-                    $alert->build(Alert::TYPE_BAD, 'Cette adresse email est déjà utilisée. Veuillez en renseigner une autre.');
+                    $alert->build(Alert::TYPE_BAD, 'Ce nom d\'utilisateur est déjà utilisé. Veuillez en choisir un autre.');
                 }
             } else {
-                $alert->build(Alert::TYPE_BAD, 'Ce nom d\'utilisateur est déjà utilisé. Veuillez en choisir un autre.');
+                $alert->build(Alert::TYPE_BAD, 'Veuillez remplir les champs correctement.');
             }
-        } else {
-            $alert->build(Alert::TYPE_BAD, 'Veuillez remplir les champs correctement.');
         }
-
         return $this->render('BananaStationUserBundle::register.html.twig', array('form' => $form->createView(), 'alert' => $alert));
     }
 

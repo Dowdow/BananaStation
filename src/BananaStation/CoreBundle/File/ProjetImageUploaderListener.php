@@ -17,10 +17,6 @@ class ProjetImageUploaderListener {
      * @var string
      */
     private $directory = 'public/img/core/projet';
-    /**
-     * @var array
-     */
-    private $formats = ['png', 'jpg', 'jpeg', 'svg', 'gif'];
 
     /**
      * @param LifecycleEventArgs $args
@@ -31,7 +27,6 @@ class ProjetImageUploaderListener {
             return;
         }
         if ($entity->getImage() == null) {
-            $this->tryRemove($entity->getId());
             $entity->setImage('');
             return;
         }
@@ -58,12 +53,20 @@ class ProjetImageUploaderListener {
         if (!$entity instanceof Projet) {
             return;
         }
+        $oldImage = $args->getOldValue('image');
         if ($entity->getImage() == null) {
+            if ($oldImage != '') {
+                $entity->setImage($oldImage);
+                return;
+            }
+            $entity->setImage('');
             return;
+        }
+        if ($oldImage != '') {
+            $this->deleteFile($entity->getId(), $oldImage);
         }
         $this->file = $entity->getImage();
         $entity->setImage($this->file->guessExtension());
-
     }
 
     /**
@@ -85,14 +88,7 @@ class ProjetImageUploaderListener {
         if (!$entity instanceof Projet) {
             return;
         }
-        if ($entity->getImage() == null) {
-            $this->tryRemove($entity->getId());
-            return;
-        }
-        $file = $this->directory . DIRECTORY_SEPARATOR . $entity->getId() . '.' . $entity->getImage();
-        if (file_exists($file)) {
-            unlink($file);
-        }
+        $this->deleteFile($entity->getId(), $entity->getImage());
     }
 
     /**
@@ -107,13 +103,12 @@ class ProjetImageUploaderListener {
 
     /**
      * @param $id
+     * @param $ext
      */
-    private function tryRemove($id) {
-        foreach ($this->formats as $f) {
-            $path = $this->directory . DIRECTORY_SEPARATOR . $id . '.' . $f;
-            if (file_exists($path)) {
-                unlink($path);
-            }
+    private function deleteFile($id, $ext) {
+        $file = $this->directory . DIRECTORY_SEPARATOR . $id . '.' . $ext;
+        if (file_exists($file)) {
+            unlink($file);
         }
     }
 

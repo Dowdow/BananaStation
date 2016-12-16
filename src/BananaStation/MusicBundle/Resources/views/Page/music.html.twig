@@ -31,7 +31,7 @@
         {% for music in musics %}
             <div id="{{ music.youtubeid }}" class="{{ music.style|mcolorclass }}" onclick="openPlayer(event)"
                  data="{{ loop.index0 }}">
-                <img src="http://img.youtube.com/vi/{{ music.youtubeid }}/0.jpg" alt="{{ music.title }}"/>
+                <img src="https://img.youtube.com/vi/{{ music.youtubeid }}/0.jpg" alt="{{ music.title }}"/>
                 <h3>{{ music.title }}</h3>
                 {% if is_granted('ROLE_MUSIC') %}
                     <a href="{{ path('banana_station_music_admin_edit', { id : music.id }) }}">Edit</a>

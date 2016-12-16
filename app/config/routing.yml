@@ -1,29 +1,37 @@
-banana_station_tron:
-    resource: "@BananaStationTronBundle/Resources/config/routing.yml"
-    prefix:   /
-
-banana_station_poke:
-    resource: "@BananaStationPokeBundle/Resources/config/routing.yml"
-    prefix:   /
-
-banana_station_music:
-    resource: "@BananaStationMusicBundle/Resources/config/routing.yml"
-    prefix:   /
-
 banana_station_user:
     resource: "@BananaStationUserBundle/Resources/config/routing.yml"
     prefix:   /
+    schemes:  [%protocol%]
 
 banana_station_core:
     resource: "@BananaStationCoreBundle/Resources/config/routing.yml"
     prefix:   /
+    schemes:  [%protocol%]
+
+banana_station_music:
+    resource: "@BananaStationMusicBundle/Resources/config/routing.yml"
+    prefix:   /
+    schemes:  [%protocol%]
+
+banana_station_tron:
+    resource: "@BananaStationTronBundle/Resources/config/routing.yml"
+    prefix:   /
+    schemes:  [%protocol%]
+
+banana_station_poke:
+    resource: "@BananaStationPokeBundle/Resources/config/routing.yml"
+    prefix:   /
+    schemes:  [%protocol%]
 
 login:
     path:  /login
     defaults: { _controller: BananaStationUserBundle:User:login }
+    schemes:  [%protocol%]
 
 login_check:
     path:  /check
+    schemes:  [%protocol%]
 
 logout:
     path:  /logout
+    schemes:  [%protocol%]

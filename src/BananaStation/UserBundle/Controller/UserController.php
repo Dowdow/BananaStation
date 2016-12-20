@@ -137,8 +137,19 @@ class UserController extends Controller {
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function loginAction() {
+        $authenticationUtils = $this->get('security.authentication_utils');
+        $alert = $this->get('banana_station_user.alert');
+
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        $error = $authenticationUtils->getLastAuthenticationError();
+        if($error) {
+            $alert->build(Alert::TYPE_BAD, 'Combinaison identifiant / mot de passe incorrecte.');
+        }
+
         return $this->render('BananaStationUserBundle::login.html.twig', array(
-            'username' => $this->get('security.authentication_utils')->getLastUsername()
+            'last_username' => $lastUsername,
+            'alert' => $alert
         ));
     }
 

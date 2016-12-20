@@ -18,14 +18,14 @@
         <div class="form-group">
             <label>Complétez le captcha :</label>
             {{ form_widget(form.recaptcha) }}
-            <p>En cliquant sur le bouton "Inscription", vous acceptez les <a href="{{ path('banana_station_user_cgu') }}" target="_blank">conditions générales d'utilisation</a> de banana-station.fr</p>
+            <p>En cliquant sur le bouton "Inscription", vous acceptez les <a
+                        href="{{ path('banana_station_user_cgu') }}" target="_blank">conditions générales
+                    d'utilisation</a> de banana-station.fr</p>
         </div>
         <div class="form-group">
             <input type="submit" name="valider" value="Inscription"/>
         </div>
-        <div class="form-group">
-            <a href="{{ path('login') }}">Vous êtes déjà inscrit ?</a>
-        </div>
         {{ form_end(form) }}
+        <a href="{{ path('login') }}">Vous êtes déjà inscrit ?</a>
     </section>
 {% endblock %}

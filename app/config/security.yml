@@ -22,6 +22,7 @@ security:
                 username_parameter: _username
                 password_parameter: _password
                 post_only: true
+                csrf_token_generator: security.csrf.token_manager
             logout:
                 path: logout
 

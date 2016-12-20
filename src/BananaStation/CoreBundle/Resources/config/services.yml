@@ -4,6 +4,7 @@ parameters:
     banana_station_core.stat.class: BananaStation\CoreBundle\Service\StatAdmin
     banana_station_core.alert.class: BananaStation\CoreBundle\Service\Alert
     banana_station_core.project_state.class: BananaStation\CoreBundle\Service\ProjectState
+    banana_station_core.slugger.class: BananaStation\CoreBundle\Service\Slugger
     banana_station_core.projet_image_uploader_listener.class: BananaStation\CoreBundle\File\ProjetImageUploaderListener
 
 services:
@@ -32,6 +33,9 @@ services:
         class: "%banana_station_core.project_state.class%"
         tags:
             - { name: twig.extension }
+
+    banana_station_core.slugger:
+        class: "%banana_station_core.slugger.class%"
 
     banana_station_core.projet_image_uploader_listener:
         class: "%banana_station_core.projet_image_uploader_listener.class%"

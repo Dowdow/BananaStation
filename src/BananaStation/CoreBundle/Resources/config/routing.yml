@@ -9,7 +9,7 @@ banana_station_core_about:
     defaults: { _controller: BananaStationCoreBundle:Other:about }
 
 banana_station_core_project:
-    path: /project/{id}
+    path: /project/{slug}
     host: "%host_core%"
     defaults: { _controller: BananaStationCoreBundle:Project:project }
 

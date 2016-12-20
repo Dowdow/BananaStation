@@ -67,7 +67,7 @@
         <h3>Projects</h3>
         <ul>
             {% for project in getFooterContentProjects() %}
-                <li><a href="{{ path('banana_station_core_project',{ 'id': project.id }) }}">{{ project.nom }}</a>
+                <li><a href="{{ path('banana_station_core_project',{ 'slug': project.slug }) }}">{{ project.nom }}</a>
                 </li>
             {% endfor %}
         </ul>
@@ -76,7 +76,7 @@
         <h3>Most Plusmed</h3>
         <ul>
             {% for project in getTopPlusme() %}
-                <li><a href="{{ path('banana_station_core_project',{ 'id': project.id }) }}">{{ project.nom }}</a>
+                <li><a href="{{ path('banana_station_core_project',{ 'slug': project.slug }) }}">{{ project.nom }}</a>
                 </li>
             {% endfor %}
         </ul>
@@ -85,7 +85,7 @@
         <h3>Most commented</h3>
         <ul>
             {% for project in getTopComment() %}
-                <li><a href="{{ path('banana_station_core_project',{ 'id': project.id }) }}">{{ project.nom }}</a>
+                <li><a href="{{ path('banana_station_core_project',{ 'slug': project.slug }) }}">{{ project.nom }}</a>
                 </li>
             {% endfor %}
         </ul>

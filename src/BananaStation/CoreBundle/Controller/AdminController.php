@@ -30,10 +30,11 @@ class AdminController extends Controller {
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $project->setSlug($this->get('banana_station_core.slugger')->slugify($project->getNom()));
             $project->setUtilisateur($user);
             $em->persist($project);
             $em->flush();
-            return $this->redirect($this->generateUrl('banana_station_core_project', array('id' => $project->getId())));
+            return $this->redirect($this->generateUrl('banana_station_core_project', array('slug' => $project->getSlug())));
         }
 
 
@@ -56,8 +57,9 @@ class AdminController extends Controller {
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $project->setSlug($this->get('banana_station_core.slugger')->slugify($project->getNom()));
             $em->flush();
-            return $this->redirect($this->generateUrl('banana_station_core_project', array('id' => $project->getId())));
+            return $this->redirect($this->generateUrl('banana_station_core_project', array('slug' => $project->getSlug())));
         }
 
         return $this->render('BananaStationCoreBundle::formproject.html.twig', array('form' => $form->createView()));

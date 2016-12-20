@@ -73,6 +73,13 @@ class Projet {
     private $progression;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string", length=255, nullable=false)
+     */
+    private $slug;
+
+    /**
      * @ORM\ManyToOne(targetEntity="BananaStation\UserBundle\Entity\Utilisateur")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -243,6 +250,27 @@ class Projet {
      */
     public function getProgression() {
         return $this->progression;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Projet
+     */
+    public function setSlug($slug) {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug() {
+        return $this->slug;
     }
 
     /**

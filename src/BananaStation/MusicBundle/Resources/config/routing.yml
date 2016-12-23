@@ -8,10 +8,10 @@ banana_station_music_music_games:
     host: "%host_music%"
     defaults: { _controller: BananaStationMusicBundle:Music:games }
 
-banana_station_music_music_hiphop:
-    path:  /music/hip-hop
+banana_station_music_music_trap:
+    path:  /music/trap
     host: "%host_music%"
-    defaults: { _controller: BananaStationMusicBundle:Music:hiphop }
+    defaults: { _controller: BananaStationMusicBundle:Music:trap }
 
 banana_station_music_music_movies:
     path:  /music/movies
@@ -43,7 +43,7 @@ banana_station_music_page:
     host: "%host_music%"
     defaults: { _controller: BananaStationMusicBundle:Music:page }
     requirements:
-        style: g|h|m|e|d|r|s
+        style: g|t|m|e|d|r|s
         page: \d+
 
 banana_station_music_admin:

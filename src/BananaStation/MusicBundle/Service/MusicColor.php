@@ -19,7 +19,7 @@ class MusicColor extends \Twig_Extension
             case 'G':
                 $style = '#ff4136';
                 break;
-            case 'H':
+            case 'T':
                 $style = '#ff851b';
                 break;
             case 'M':
@@ -46,7 +46,7 @@ class MusicColor extends \Twig_Extension
             case 'G':
                 $style = 'red';
                 break;
-            case 'H':
+            case 'T':
                 $style = 'orange';
                 break;
             case 'M':

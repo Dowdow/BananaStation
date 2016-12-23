@@ -23,9 +23,9 @@
             <img src="{{ asset('public/img/music/playstation.svg') }}"/>
             <h2>Games</h2>
         </a>
-        <a href="{{ path('banana_station_music_music_hiphop') }}" class="orange">
+        <a href="{{ path('banana_station_music_music_trap') }}" class="orange">
             <img src="{{ asset('public/img/music/dollar.svg') }}"/>
-            <h2>Hip-Hop</h2>
+            <h2>Trap</h2>
         </a>
         <a href="{{ path('banana_station_music_music_movies') }}" class="yellow">
             <img src="{{ asset('public/img/music/movie.svg') }}"/>
@@ -62,7 +62,7 @@
 
     <section id="totals">
         <h4 class="red">Games total : {{ getTotalGames() }}</h4>
-        <h4 class="orange">Hip-Hop total : {{ getTotalHipHop() }}</h4>
+        <h4 class="orange">Trap total : {{ getTotalTrap() }}</h4>
         <h4 class="yellow">Movies total : {{ getTotalMovies() }}</h4>
         <h4 class="blue">E & H total : {{ getTotalElectro() }}</h4>
         <h4 class="green">D & D&B total : {{ getTotalDubstep() }}</h4>
@@ -72,7 +72,7 @@
     <section id="nav">
         <ul>
             <li><a href="{{ path('banana_station_music_music_games') }}">Games</a></li>
-            <li><a href="{{ path('banana_station_music_music_hiphop') }}">Hip-Hop</a></li>
+            <li><a href="{{ path('banana_station_music_music_trap') }}">Trap</a></li>
             <li><a href="{{ path('banana_station_music_music_movies') }}">Movies</a></li>
         </ul>
         <ul>

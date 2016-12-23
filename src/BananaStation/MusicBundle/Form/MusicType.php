@@ -22,7 +22,7 @@ class MusicType extends AbstractType
             ->add('style', ChoiceType::class, array(
                 'choices' => array(
                     'Games' => 'G',
-                    'Hip-Hop' => 'H',
+                    'Trap' => 'T',
                     'Movie' => 'M',
                     'Electro & House' => 'E',
                     'Dubstep & Drum and bass' => 'D',

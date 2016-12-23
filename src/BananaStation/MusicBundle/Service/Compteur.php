@@ -22,9 +22,9 @@ class Compteur extends \Twig_Extension{
         return $musicRepo->getTotalStyle('G');
     }
 
-    public function getTotalHipHop() {
+    public function getTotalTrap() {
         $musicRepo = $this->em->getRepository('BananaStationMusicBundle:Music');
-        return $musicRepo->getTotalStyle('H');
+        return $musicRepo->getTotalStyle('T');
     }
 
     public function getTotalMovies() {
@@ -51,7 +51,7 @@ class Compteur extends \Twig_Extension{
         return array(
             'getTotalMusic' => new \Twig_SimpleFunction('getTotalMusic', array($this, 'getTotalMusic')),
             'getTotalGames' => new \Twig_SimpleFunction('getTotalGames', array($this, 'getTotalGames')),
-            'getTotalHipHop' => new \Twig_SimpleFunction('getTotalHipHop', array($this, 'getTotalHipHop')),
+            'getTotalTrap' => new \Twig_SimpleFunction('getTotalTrap', array($this, 'getTotalTrap')),
             'getTotalMovies' => new \Twig_SimpleFunction('getTotalMovies', array($this, 'getTotalMovies')),
             'getTotalElectro' => new \Twig_SimpleFunction('getTotalElectro', array($this, 'getTotalElectro')),
             'getTotalDubstep' => new \Twig_SimpleFunction('getTotalDubstep', array($this, 'getTotalDubstep')),

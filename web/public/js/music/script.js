@@ -190,7 +190,7 @@ function getColor(style) {
         case 'G':
             style = 'red';
             break;
-        case 'H':
+        case 'T':
             style = 'orange';
             break;
         case 'M':

@@ -25,8 +25,8 @@ class MusicController extends Controller {
     /**
      * @return Response
      */
-    public function hiphopAction() {
-        return $this->process('H');
+    public function trapAction() {
+        return $this->process('T');
     }
 
     /**

@@ -90,8 +90,8 @@ class AdminController extends Controller {
         switch ($style) {
             case 'G':
                 return $this->redirect($this->generateUrl('banana_station_music_music_games'));
-            case 'H':
-                return $this->redirect($this->generateUrl('banana_station_music_music_hiphop'));
+            case 'T':
+                return $this->redirect($this->generateUrl('banana_station_music_music_trap'));
             case 'M':
                 return $this->redirect($this->generateUrl('banana_station_music_music_movies'));
             case 'E':

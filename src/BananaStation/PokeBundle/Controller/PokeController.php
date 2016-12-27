@@ -11,7 +11,7 @@ class PokeController extends Controller {
      */
     public function indexAction() {
         return $this->render('BananaStationPokeBundle::index.html.twig',
-            array('server' => $this->container->getParameter('node_poke'))
+            ['server' => $this->container->getParameter('node_poke')]
         );
     }
 }

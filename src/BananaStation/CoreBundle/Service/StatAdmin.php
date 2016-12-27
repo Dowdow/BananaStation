@@ -33,12 +33,12 @@ class StatAdmin extends \Twig_Extension {
     }
 
     public function getFunctions() {
-        return array(
-            'getNumberUser' => new \Twig_SimpleFunction('getNumberUser', array($this, 'getNumberUser')),
-            'getNumberPlusme' => new \Twig_SimpleFunction('getNumberPlusme', array($this, 'getNumberPlusme')),
-            'getNumberMoinsme' => new \Twig_SimpleFunction('getNumberMoinsme', array($this, 'getNumberMoinsme')),
-            'getNumberComment' => new \Twig_SimpleFunction('getNumberComment', array($this, 'getNumberComment'))
-        );
+        return [
+            'getNumberUser' => new \Twig_SimpleFunction('getNumberUser', [$this, 'getNumberUser']),
+            'getNumberPlusme' => new \Twig_SimpleFunction('getNumberPlusme', [$this, 'getNumberPlusme']),
+            'getNumberMoinsme' => new \Twig_SimpleFunction('getNumberMoinsme', [$this, 'getNumberMoinsme']),
+            'getNumberComment' => new \Twig_SimpleFunction('getNumberComment', [$this, 'getNumberComment'])
+        ];
     }
 
     public function getName() {

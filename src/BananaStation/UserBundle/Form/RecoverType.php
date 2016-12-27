@@ -16,16 +16,16 @@ class RecoverType extends AbstractType {
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        $builder->add('email', EmailType::class, array(
-            'constraints' => array(
+        $builder->add('email', EmailType::class, [
+            'constraints' => [
                 new Assert\NotNull(),
                 new Assert\NotBlank(),
                 new Assert\Email()
-            )))
-            ->add('recaptcha', EWZRecaptchaType::class, array(
-                'constraints' => array(
+            ]])
+            ->add('recaptcha', EWZRecaptchaType::class, [
+                'constraints' => [
                     new Recaptcha\IsTrue()
-                )));
+                ]]);
     }
 
     public function getBlockPrefix() {

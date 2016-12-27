@@ -12,31 +12,31 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UtilisateurType extends AbstractType {
 
-  /**
-   * @param FormBuilderInterface $builder
-   * @param array $options
-   */
-  public function buildForm(FormBuilderInterface $builder, array $options) {
-    $builder->add('username', TextType::class)
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options) {
+        $builder->add('username', TextType::class)
             ->add('email', EmailType::class)
             ->add('password', PasswordType::class)
             ->add('recaptcha', EWZRecaptchaType::class);
-  }
+    }
 
-  /**
-   * @param OptionsResolver $resolver
-   */
-  public function configureOptions(OptionsResolver $resolver) {
-    $resolver->setDefaults(array(
-        'data_class' => 'BananaStation\UserBundle\Entity\Utilisateur'
-    ));
-  }
+    /**
+     * @param OptionsResolver $resolver
+     */
+    public function configureOptions(OptionsResolver $resolver) {
+        $resolver->setDefaults([
+            'data_class' => 'BananaStation\UserBundle\Entity\Utilisateur'
+        ]);
+    }
 
-  /**
-   * @return string
-   */
-  public function getBlockPrefix() {
-    return 'bananastation_userbundle_utilisateur';
-  }
+    /**
+     * @return string
+     */
+    public function getBlockPrefix() {
+        return 'bananastation_userbundle_utilisateur';
+    }
 
 }

@@ -2,18 +2,15 @@
 
 namespace BananaStation\CoreBundle\Service;
 
-class ProjectState extends \Twig_Extension
-{
+class ProjectState extends \Twig_Extension {
 
-    public function getFilters()
-    {
-        return array(
-            new \Twig_SimpleFilter('pstate', array($this, 'stateFilter')),
-        );
+    public function getFilters() {
+        return [
+            new \Twig_SimpleFilter('pstate', [$this, 'stateFilter']),
+        ];
     }
 
-    public function stateFilter($state)
-    {
+    public function stateFilter($state) {
         switch ($state) {
             case 'E':
                 $state = 'En cours';
@@ -33,8 +30,7 @@ class ProjectState extends \Twig_Extension
      *
      * @return string The extension name
      */
-    public function getName()
-    {
+    public function getName() {
         return 'project_state';
     }
 }

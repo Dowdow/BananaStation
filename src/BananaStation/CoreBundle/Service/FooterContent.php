@@ -12,15 +12,15 @@ class FooterContent extends \Twig_Extension {
         $this->em = $em;
     }
 
-     public function getFooterContentProjects() {
+    public function getFooterContentProjects() {
         $projectRepo = $this->em->getRepository('BananaStationCoreBundle:Projet');
         return $projectRepo->findLastThree();
     }
 
     public function getFunctions() {
-        return array(
-            'getFooterContentProjects' => new \Twig_SimpleFunction('getFooterContentProjects', array($this, 'getFooterContentProjects'))
-        );
+        return [
+            'getFooterContentProjects' => new \Twig_SimpleFunction('getFooterContentProjects', [$this, 'getFooterContentProjects'])
+        ];
     }
 
     public function getName() {

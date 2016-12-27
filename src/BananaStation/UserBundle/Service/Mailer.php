@@ -32,7 +32,7 @@ class Mailer {
         $subject = 'Bienvenue sur Banana Station !';
         $to = $user->getEmail();
         $body = $this->templating->render(
-            'BananaStationUserBundle:Mail:inscription.txt.twig', array('user' => $user)
+            'BananaStationUserBundle:Mail:inscription.txt.twig', ['user' => $user]
         );
 
         return $this->sendMessage($to, $subject, $body);
@@ -42,7 +42,7 @@ class Mailer {
         $subject = 'Votre mail de réinitialisation de mot de passe';
         $to = $user->getEmail();
         $body = $this->templating->render(
-            'BananaStationUserBundle:Mail:password.txt.twig', array('user' => $user)
+            'BananaStationUserBundle:Mail:password.txt.twig', ['user' => $user]
         );
 
         return $this->sendMessage($to, $subject, $body);

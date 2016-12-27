@@ -9,28 +9,28 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class NoteType extends AbstractType {
 
-  /**
-   * @param FormBuilderInterface $builder
-   * @param array $options
-   */
-  public function buildForm(FormBuilderInterface $builder, array $options) {
-    $builder->add('contenu', TextareaType::class);
-  }
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options) {
+        $builder->add('contenu', TextareaType::class);
+    }
 
-  /**
-   * @param OptionsResolver $resolver
-   */
-  public function configureOptions(OptionsResolver $resolver) {
-    $resolver->setDefaults(array(
-        'data_class' => 'BananaStation\CoreBundle\Entity\Note'
-    ));
-  }
+    /**
+     * @param OptionsResolver $resolver
+     */
+    public function configureOptions(OptionsResolver $resolver) {
+        $resolver->setDefaults([
+            'data_class' => 'BananaStation\CoreBundle\Entity\Note'
+        ]);
+    }
 
-  /**
-   * @return string
-   */
-  public function getBlockPrefix() {
-    return 'bananastation_corebundle_note';
-  }
+    /**
+     * @return string
+     */
+    public function getBlockPrefix() {
+        return 'bananastation_corebundle_note';
+    }
 
 }

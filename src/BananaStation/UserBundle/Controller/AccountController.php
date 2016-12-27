@@ -36,7 +36,7 @@ class AccountController extends Controller {
                     $password = $encoder->encodePassword($formPass->get('npassword')->getData(), $user->getSalt());
                     $user->setPassword($password);
                     $em->flush();
-                    return $this->redirect($this->generateUrl('banana_station_user_success', array('type' => 'password')));
+                    return $this->redirect($this->generateUrl('banana_station_user_success', ['type' => 'password']));
                 } else {
                     $alert->build(Alert::TYPE_BAD, 'Votre mot de passe actuel est incorrect.');
                 }
@@ -52,7 +52,7 @@ class AccountController extends Controller {
                 if ($user->getEmail() === $email) {
                     $user->setEmail($formEmail->get('nemail')->getData());
                     $em->flush();
-                    return $this->redirect($this->generateUrl('banana_station_user_success', array('type' => 'mail')));
+                    return $this->redirect($this->generateUrl('banana_station_user_success', ['type' => 'mail']));
                 } else {
                     $alert->build(Alert::TYPE_BAD, 'Votre email actuel est incorrect.');
                 }
@@ -81,11 +81,11 @@ class AccountController extends Controller {
         }
 
         return $this->render('BananaStationUserBundle::account.html.twig',
-            array(
+            [
                 'alert' => $alert,
                 'formPass' => $formPass->createView(),
                 'formEmail' => $formEmail->createView()
-            ));
+            ]);
     }
 
 } 

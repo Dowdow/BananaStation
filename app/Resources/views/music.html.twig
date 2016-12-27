@@ -37,7 +37,7 @@
         </a>
         <a href="{{ path('banana_station_music_music_dubstep') }}" class="green">
             <img src="{{ asset('public/img/music/syringe.svg') }}"/>
-            <h2>Dubstep & D&B</h2>
+            <h2>Dubstep & DnB</h2>
         </a>
         <a href="{{ path('banana_station_music_music_rock') }}" class="grey">
             <img src="{{ asset('public/img/music/guitar.svg') }}"/>
@@ -45,12 +45,6 @@
         </a>
     </section>
 </header>
-
-<!--
-<section>
-    <img onclick="displayMenu()" src="{{ asset('public/img/music/menu-phone.svg') }}" alt="menu-phone">
-</section>
--->
 
 {% block body %}
 {% endblock %}
@@ -65,7 +59,7 @@
         <h4 class="orange">Trap total : {{ getTotalTrap() }}</h4>
         <h4 class="yellow">Movies total : {{ getTotalMovies() }}</h4>
         <h4 class="blue">E & H total : {{ getTotalElectro() }}</h4>
-        <h4 class="green">D & D&B total : {{ getTotalDubstep() }}</h4>
+        <h4 class="green">D & DnB total : {{ getTotalDubstep() }}</h4>
         <h4 class="grey">Rock total : {{ getTotalRock() }}</h4>
     </section>
 

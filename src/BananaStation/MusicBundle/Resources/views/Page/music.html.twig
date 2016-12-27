@@ -9,6 +9,10 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('public/css/music/grid.css') }}"/>
 {% endblock %}
 
+{% block title %}
+    {{ style|mtitle }} - {{ parent() }}
+{% endblock %}
+
 {% block body %}
     <form id="search" method="post" action="{{ path('banana_station_music_search') }}">
         <label for="input-search">Search</label>

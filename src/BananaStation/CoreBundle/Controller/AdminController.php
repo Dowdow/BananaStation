@@ -34,11 +34,11 @@ class AdminController extends Controller {
             $project->setUtilisateur($user);
             $em->persist($project);
             $em->flush();
-            return $this->redirect($this->generateUrl('banana_station_core_project', array('slug' => $project->getSlug())));
+            return $this->redirect($this->generateUrl('banana_station_core_project', ['slug' => $project->getSlug()]));
         }
 
 
-        return $this->render('BananaStationCoreBundle::formproject.html.twig', array('form' => $form->createView()));
+        return $this->render('BananaStationCoreBundle::formproject.html.twig', ['form' => $form->createView()]);
     }
 
     /**
@@ -59,10 +59,10 @@ class AdminController extends Controller {
         if ($form->isSubmitted() && $form->isValid()) {
             $project->setSlug($this->get('banana_station_core.slugger')->slugify($project->getNom()));
             $em->flush();
-            return $this->redirect($this->generateUrl('banana_station_core_project', array('slug' => $project->getSlug())));
+            return $this->redirect($this->generateUrl('banana_station_core_project', ['slug' => $project->getSlug()]));
         }
 
-        return $this->render('BananaStationCoreBundle::formproject.html.twig', array('form' => $form->createView()));
+        return $this->render('BananaStationCoreBundle::formproject.html.twig', ['form' => $form->createView()]);
     }
 
     /**
@@ -80,10 +80,10 @@ class AdminController extends Controller {
         if ($request->getMethod() == 'POST') {
             $em->remove($project);
             $em->flush();
-            return $this->redirect($this->generateUrl('banana_station_core_projects', array('id' => 1)));
+            return $this->redirect($this->generateUrl('banana_station_core_projects', ['id' => 1]));
         }
 
-        return $this->render('BananaStationCoreBundle::deleteproject.html.twig', array('project' => $project));
+        return $this->render('BananaStationCoreBundle::deleteproject.html.twig', ['project' => $project]);
     }
 
     /**
@@ -102,10 +102,10 @@ class AdminController extends Controller {
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
-            return $this->redirect($this->generateUrl('banana_station_core_project', array('id' => $note->getProjet()->getId())));
+            return $this->redirect($this->generateUrl('banana_station_core_project', ['id' => $note->getProjet()->getId()]));
         }
 
-        return $this->render('BananaStationCoreBundle::formnote.html.twig', array('form' => $form->createView()));
+        return $this->render('BananaStationCoreBundle::formnote.html.twig', ['form' => $form->createView()]);
     }
 
     /**
@@ -124,9 +124,9 @@ class AdminController extends Controller {
             $projetid = $note->getProjet()->getId();
             $em->remove($note);
             $em->flush();
-            return $this->redirect($this->generateUrl('banana_station_core_project', array('id' => $projetid)));
+            return $this->redirect($this->generateUrl('banana_station_core_project', ['id' => $projetid]));
         }
 
-        return $this->render('BananaStationCoreBundle::deletenote.html.twig', array('note' => $note));
+        return $this->render('BananaStationCoreBundle::deletenote.html.twig', ['note' => $note]);
     }
 }

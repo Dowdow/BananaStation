@@ -31,10 +31,10 @@ class TopContent extends \Twig_Extension {
     }
 
     public function getFunctions() {
-        return array(
-            'getTopPlusme' => new \Twig_SimpleFunction('getTopPlusme', array($this, 'getTopPlusme')),
-            'getTopComment' => new \Twig_SimpleFunction('getTopComment', array($this, 'getTopComment'))
-        );
+        return [
+            'getTopPlusme' => new \Twig_SimpleFunction('getTopPlusme', [$this, 'getTopPlusme']),
+            'getTopComment' => new \Twig_SimpleFunction('getTopComment', [$this, 'getTopComment'])
+        ];
     }
 
     public function getName() {

@@ -4,7 +4,7 @@ namespace BananaStation\MusicBundle\Service;
 
 use Doctrine\ORM\EntityManager;
 
-class Compteur extends \Twig_Extension{
+class Compteur extends \Twig_Extension {
 
     protected $em;
 
@@ -48,15 +48,15 @@ class Compteur extends \Twig_Extension{
     }
 
     public function getFunctions() {
-        return array(
-            'getTotalMusic' => new \Twig_SimpleFunction('getTotalMusic', array($this, 'getTotalMusic')),
-            'getTotalGames' => new \Twig_SimpleFunction('getTotalGames', array($this, 'getTotalGames')),
-            'getTotalTrap' => new \Twig_SimpleFunction('getTotalTrap', array($this, 'getTotalTrap')),
-            'getTotalMovies' => new \Twig_SimpleFunction('getTotalMovies', array($this, 'getTotalMovies')),
-            'getTotalElectro' => new \Twig_SimpleFunction('getTotalElectro', array($this, 'getTotalElectro')),
-            'getTotalDubstep' => new \Twig_SimpleFunction('getTotalDubstep', array($this, 'getTotalDubstep')),
-            'getTotalRock' => new \Twig_SimpleFunction('getTotalRock', array($this, 'getTotalRock'))
-        );
+        return [
+            'getTotalMusic' => new \Twig_SimpleFunction('getTotalMusic', [$this, 'getTotalMusic']),
+            'getTotalGames' => new \Twig_SimpleFunction('getTotalGames', [$this, 'getTotalGames']),
+            'getTotalTrap' => new \Twig_SimpleFunction('getTotalTrap', [$this, 'getTotalTrap']),
+            'getTotalMovies' => new \Twig_SimpleFunction('getTotalMovies', [$this, 'getTotalMovies']),
+            'getTotalElectro' => new \Twig_SimpleFunction('getTotalElectro', [$this, 'getTotalElectro']),
+            'getTotalDubstep' => new \Twig_SimpleFunction('getTotalDubstep', [$this, 'getTotalDubstep']),
+            'getTotalRock' => new \Twig_SimpleFunction('getTotalRock', [$this, 'getTotalRock'])
+        ];
     }
 
     public function getName() {

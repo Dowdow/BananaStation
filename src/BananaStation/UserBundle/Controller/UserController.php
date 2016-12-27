@@ -44,7 +44,7 @@ class UserController extends Controller {
                         $mailer = $this->get('banana_station_user.mailer');
                         $mailer->sendInscription($user);
 
-                        return $this->redirect($this->generateUrl('banana_station_user_success', array('type' => 'register')));
+                        return $this->redirect($this->generateUrl('banana_station_user_success', ['type' => 'register']));
                     } else {
                         $alert->build(Alert::TYPE_BAD, 'Cette adresse email est déjà utilisée. Veuillez en renseigner une autre.');
                     }
@@ -55,7 +55,7 @@ class UserController extends Controller {
                 $alert->build(Alert::TYPE_BAD, 'Veuillez remplir les champs correctement.');
             }
         }
-        return $this->render('BananaStationUserBundle::register.html.twig', array('form' => $form->createView(), 'alert' => $alert));
+        return $this->render('BananaStationUserBundle::register.html.twig', ['form' => $form->createView(), 'alert' => $alert]);
     }
 
     /**
@@ -79,7 +79,7 @@ class UserController extends Controller {
                 $mailer = $this->get('banana_station_user.mailer');
                 $mailer->sendRecoverPassword($user);
 
-                return $this->redirect($this->generateUrl('banana_station_user_success', array('type' => 'recover')));
+                return $this->redirect($this->generateUrl('banana_station_user_success', ['type' => 'recover']));
             } else {
                 $alert->build(Alert::TYPE_BAD, 'Cette adresse email ne correspond à aucun utilisateur. Veuillez en renseigner une autre.');
             }
@@ -87,10 +87,10 @@ class UserController extends Controller {
             $alert->build(Alert::TYPE_BAD, 'Veuillez remplir les champs correctement.');
         }
 
-        return $this->render('BananaStationUserBundle::forgetpassword.html.twig', array(
+        return $this->render('BananaStationUserBundle::forgetpassword.html.twig', [
             'form' => $form->createView(),
             'alert' => $alert
-        ));
+        ]);
     }
 
     /**
@@ -122,15 +122,15 @@ class UserController extends Controller {
             $user->setPassword($password);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('banana_station_user_success', array('type' => 'recovered')));
+            return $this->redirect($this->generateUrl('banana_station_user_success', ['type' => 'recovered']));
         } else {
             $alert->build(Alert::TYPE_BAD, 'Veuillez remplir les champs correctement.');
         }
 
-        return $this->render('BananaStationUserBundle::forgetpasswordtoken.html.twig', array(
+        return $this->render('BananaStationUserBundle::forgetpasswordtoken.html.twig', [
             'form' => $form->createView(),
             'alert' => $alert
-        ));
+        ]);
     }
 
     /**
@@ -143,14 +143,14 @@ class UserController extends Controller {
         $lastUsername = $authenticationUtils->getLastUsername();
 
         $error = $authenticationUtils->getLastAuthenticationError();
-        if($error) {
+        if ($error) {
             $alert->build(Alert::TYPE_BAD, 'Combinaison identifiant / mot de passe incorrecte.');
         }
 
-        return $this->render('BananaStationUserBundle::login.html.twig', array(
+        return $this->render('BananaStationUserBundle::login.html.twig', [
             'last_username' => $lastUsername,
             'alert' => $alert
-        ));
+        ]);
     }
 
     /**
@@ -190,6 +190,6 @@ class UserController extends Controller {
                 throw new NotFoundHttpException();
                 break;
         }
-        return $this->render('BananaStationUserBundle::success.html.twig', array('title' => $title, 'message' => $message));
+        return $this->render('BananaStationUserBundle::success.html.twig', ['title' => $title, 'message' => $message]);
     }
 }

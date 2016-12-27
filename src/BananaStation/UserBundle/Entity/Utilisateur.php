@@ -248,7 +248,7 @@ class Utilisateur implements UserInterface {
             default :
                 break;
         }
-        return array($role);
+        return [$role];
     }
 
     /**
@@ -299,8 +299,7 @@ class Utilisateur implements UserInterface {
      * @param Commentaire $commentaires
      * @return Utilisateur
      */
-    public function addCommentaire(Commentaire $commentaires)
-    {
+    public function addCommentaire(Commentaire $commentaires) {
         $this->commentaires[] = $commentaires;
 
         return $this;
@@ -311,8 +310,7 @@ class Utilisateur implements UserInterface {
      *
      * @param Commentaire $commentaires
      */
-    public function removeCommentaire(Commentaire $commentaires)
-    {
+    public function removeCommentaire(Commentaire $commentaires) {
         $this->commentaires->removeElement($commentaires);
     }
 
@@ -321,8 +319,7 @@ class Utilisateur implements UserInterface {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getCommentaires()
-    {
+    public function getCommentaires() {
         return $this->commentaires;
     }
 
@@ -332,8 +329,7 @@ class Utilisateur implements UserInterface {
      * @param Avis $avis
      * @return Utilisateur
      */
-    public function addAvi(Avis $avis)
-    {
+    public function addAvi(Avis $avis) {
         $this->avis[] = $avis;
 
         return $this;
@@ -344,8 +340,7 @@ class Utilisateur implements UserInterface {
      *
      * @param Avis $avis
      */
-    public function removeAvi(Avis $avis)
-    {
+    public function removeAvi(Avis $avis) {
         $this->avis->removeElement($avis);
     }
 
@@ -354,8 +349,7 @@ class Utilisateur implements UserInterface {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getAvis()
-    {
+    public function getAvis() {
         return $this->avis;
     }
 

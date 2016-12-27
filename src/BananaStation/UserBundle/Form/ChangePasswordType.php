@@ -15,16 +15,18 @@ class ChangePasswordType extends AbstractType {
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
 
-        $constraints = array(
-            'constraints' => array(
+        $constraints = [
+            'constraints' => [
                 new Assert\NotNull(),
                 new Assert\NotBlank(),
-                new Assert\Length(array(
+                new Assert\Length([
                     'min' => '8',
                     'max' => '30',
                     'minMessage' => 'Votre mot de passe doit faire au moins {{ limit }} caractères',
                     'maxMessage' => 'Votre mot de passe ne peut pas être plus long que {{ limit }} caractères'
-                ))));
+                ])
+            ]
+        ];
 
         $builder
             ->add('apassword', PasswordType::class, $constraints)

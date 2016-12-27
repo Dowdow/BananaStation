@@ -11,7 +11,7 @@ class TronController extends Controller {
      */
     public function indexAction() {
         return $this->render('BananaStationTronBundle::index.html.twig',
-            array('server' => $this->container->getParameter('node_tron'))
+            ['server' => $this->container->getParameter('node_tron')]
         );
     }
 }

@@ -33,7 +33,7 @@ class AdminController extends Controller {
             return $this->redirectByStyle($music->getStyle());
         }
 
-        return $this->render('BananaStationMusicBundle:Page:form.html.twig', array('form' => $form->createView()));
+        return $this->render('BananaStationMusicBundle:Page:form.html.twig', ['form' => $form->createView()]);
     }
 
     /**
@@ -56,7 +56,7 @@ class AdminController extends Controller {
             return $this->redirectByStyle($music->getStyle());
         }
 
-        return $this->render('BananaStationMusicBundle:Page:form.html.twig', array('form' => $form->createView()));
+        return $this->render('BananaStationMusicBundle:Page:form.html.twig', ['form' => $form->createView()]);
     }
 
     /**
@@ -79,7 +79,7 @@ class AdminController extends Controller {
             return $this->redirectByStyle($style);
         }
 
-        return $this->render('BananaStationMusicBundle:Page:form.html.twig', array('form' => null));
+        return $this->render('BananaStationMusicBundle:Page:form.html.twig', ['form' => null]);
     }
 
     /**

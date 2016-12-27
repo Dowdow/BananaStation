@@ -13,16 +13,18 @@ class PasswordType extends AbstractType {
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        $builder->add('password', \Symfony\Component\Form\Extension\Core\Type\PasswordType::class, array(
-            'constraints' => array(
-                new Assert\NotNull(),
-                new Assert\NotBlank(),
-                new Assert\Length(array(
-                    'min' => '8',
-                    'max' => '30',
-                    'minMessage' => 'Votre mot de passe doit faire au moins {{ limit }} caractères',
-                    'maxMessage' => 'Votre mot de passe ne peut pas être plus long que {{ limit }} caractères'
-                ))))
+        $builder->add('password', \Symfony\Component\Form\Extension\Core\Type\PasswordType::class, [
+                'constraints' => [
+                    new Assert\NotNull(),
+                    new Assert\NotBlank(),
+                    new Assert\Length([
+                        'min' => '8',
+                        'max' => '30',
+                        'minMessage' => 'Votre mot de passe doit faire au moins {{ limit }} caractères',
+                        'maxMessage' => 'Votre mot de passe ne peut pas être plus long que {{ limit }} caractères'
+                    ])
+                ]
+            ]
         );
     }
 

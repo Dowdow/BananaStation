@@ -14,12 +14,13 @@ class ChangeEmailType extends AbstractType {
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        $constraints = array(
-            'constraints' => array(
+        $constraints = [
+            'constraints' => [
                 new Assert\NotNull(),
                 new Assert\NotBlank(),
                 new Assert\Email()
-            ));
+            ]
+        ];
 
         $builder
             ->add('aemail', EmailType::class, $constraints)

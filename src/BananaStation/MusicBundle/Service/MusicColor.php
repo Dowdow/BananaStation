@@ -2,19 +2,17 @@
 
 namespace BananaStation\MusicBundle\Service;
 
-class MusicColor extends \Twig_Extension
-{
+class MusicColor extends \Twig_Extension {
 
-    public function getFilters()
-    {
-        return array(
-            new \Twig_SimpleFilter('mcolor', array($this, 'musicColor')),
-            new \Twig_SimpleFilter('mcolorclass', array($this, 'musicColorClass')),
-        );
+    public function getFilters() {
+        return [
+            new \Twig_SimpleFilter('mcolor', [$this, 'musicColor']),
+            new \Twig_SimpleFilter('mcolorclass', [$this, 'musicColorClass']),
+            new \Twig_SimpleFilter('mtitle', [$this, 'musicTitle'])
+        ];
     }
 
-    public function musicColor($style)
-    {
+    public function musicColor($style) {
         switch ($style) {
             case 'G':
                 $style = '#ff4136';
@@ -40,8 +38,7 @@ class MusicColor extends \Twig_Extension
         return $style;
     }
 
-    public function musicColorClass($style)
-    {
+    public function musicColorClass($style) {
         switch ($style) {
             case 'G':
                 $style = 'red';
@@ -67,13 +64,38 @@ class MusicColor extends \Twig_Extension
         return $style;
     }
 
+    public function musicTitle($style) {
+        switch ($style) {
+            case 'G':
+                $style = 'Games';
+                break;
+            case 'T':
+                $style = 'Trap';
+                break;
+            case 'M':
+                $style = 'Movies';
+                break;
+            case 'E':
+                $style = 'Electro & House';
+                break;
+            case 'D':
+                $style = 'Dubstep & DnB';
+                break;
+            case 'R':
+                $style = 'Rock';
+                break;
+            case 'S':
+                $style = 'Search';
+        }
+        return $style;
+    }
+
     /**
      * Returns the name of the extension.
      *
      * @return string The extension name
      */
-    public function getName()
-    {
+    public function getName() {
         return 'music_color';
     }
 

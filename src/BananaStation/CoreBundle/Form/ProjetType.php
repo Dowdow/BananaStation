@@ -20,25 +20,25 @@ class ProjetType extends AbstractType {
         $builder
             ->add('nom', TextType::class)
             ->add('description', TextareaType::class)
-            ->add('etat', ChoiceType::class, array(
-                'choices' => array(
+            ->add('etat', ChoiceType::class, [
+                'choices' => [
                     'En cours' => 'E',
                     'Terminé' => 'T',
                     'En pause' => 'P'
-                )))
-            ->add('progression', PercentType::class, array(
+                ]])
+            ->add('progression', PercentType::class, [
                 'type' => 'integer'
-            ))
-            ->add('image', FileType::class, array('data_class' => null, 'required' => false));
+            ])
+            ->add('image', FileType::class, ['data_class' => null, 'required' => false]);
     }
 
     /**
      * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver) {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => 'BananaStation\CoreBundle\Entity\Projet'
-        ));
+        ]);
     }
 
     /**

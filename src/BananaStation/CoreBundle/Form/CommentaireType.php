@@ -21,9 +21,9 @@ class CommentaireType extends AbstractType {
      * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver) {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => 'BananaStation\CoreBundle\Entity\Commentaire'
-        ));
+        ]);
     }
 
     /**

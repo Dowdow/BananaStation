@@ -66,7 +66,7 @@ class ProjectController extends Controller {
                 $commentaire->setUtilisateur($this->getUser());
                 $em->persist($commentaire);
                 $em->flush();
-                return $this->redirect($this->generateUrl('banana_station_core_project', array('slug' => $slug)));
+                return $this->redirect($this->generateUrl('banana_station_core_project', ['slug' => $slug]));
             }
         }
         // Gestion de la note
@@ -77,7 +77,7 @@ class ProjectController extends Controller {
                 $note->setUtilisateur($utilisateur);
                 $em->persist($note);
                 $em->flush();
-                return $this->redirect($this->generateUrl('banana_station_core_project', array('slug' => $slug)));
+                return $this->redirect($this->generateUrl('banana_station_core_project', ['slug' => $slug]));
             }
         }
 
@@ -93,13 +93,13 @@ class ProjectController extends Controller {
             }
         }
 
-        return $this->render('BananaStationCoreBundle::project.html.twig', array(
+        return $this->render('BananaStationCoreBundle::project.html.twig', [
             'projet' => $project,
             'plusmes' => $plusmes,
             'moinsmes' => $moinsmes,
             'formcom' => $formcom->createView(),
             'formnote' => $formnote->createView()
-        ));
+        ]);
     }
 
     /**
@@ -107,8 +107,8 @@ class ProjectController extends Controller {
      */
     public function projectsAction() {
         $em = $this->getDoctrine()->getManager();
-        $projects = $em->getRepository('BananaStationCoreBundle:Projet')->findBy(array(), array('id' => 'DESC'));
-        return $this->render('BananaStationCoreBundle::projects.html.twig', array('projets' => $projects));
+        $projects = $em->getRepository('BananaStationCoreBundle:Projet')->findBy([], ['id' => 'DESC']);
+        return $this->render('BananaStationCoreBundle::projects.html.twig', ['projets' => $projects]);
     }
 
     /**
@@ -136,9 +136,9 @@ class ProjectController extends Controller {
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
-            return $this->redirect($this->generateUrl('banana_station_core_project', array('slug' => $commentaire->getProjet()->getSlug())));
+            return $this->redirect($this->generateUrl('banana_station_core_project', ['slug' => $commentaire->getProjet()->getSlug()]));
         }
-        return $this->render('BananaStationCoreBundle::formcommentaire.html.twig', array('form' => $form->createView()));
+        return $this->render('BananaStationCoreBundle::formcommentaire.html.twig', ['form' => $form->createView()]);
     }
 
     /**
@@ -167,9 +167,9 @@ class ProjectController extends Controller {
             $slug = $commentaire->getProjet()->getSlug();
             $em->remove($commentaire);
             $em->flush();
-            return $this->redirect($this->generateUrl('banana_station_core_project', array('slug' => $slug)));
+            return $this->redirect($this->generateUrl('banana_station_core_project', ['slug' => $slug]));
         }
-        return $this->render('BananaStationCoreBundle::deletecommentaire.html.twig', array('commentaire' => $commentaire));
+        return $this->render('BananaStationCoreBundle::deletecommentaire.html.twig', ['commentaire' => $commentaire]);
     }
 
 }

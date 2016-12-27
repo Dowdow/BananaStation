@@ -64,7 +64,7 @@ class MusicController extends Controller {
     private function process($style) {
         $em = $this->getDoctrine()->getManager();
         $musics = $em->getRepository('BananaStationMusicBundle:Music')->findByStyleOrder($style, 0);
-        return $this->render('BananaStationMusicBundle:Page:music.html.twig', array('musics' => $musics, 'style' => $style));
+        return $this->render('BananaStationMusicBundle:Page:music.html.twig', ['musics' => $musics, 'style' => $style]);
     }
 
     /**
@@ -81,8 +81,8 @@ class MusicController extends Controller {
 
         $musics = $em->getRepository('BananaStationMusicBundle:Music')->findByStyleOrder($style, $begin);
         return $this->render('BananaStationMusicBundle:Json:music.json.twig',
-            array('musics' => $musics, 'style' => $style),
-            new Response('application/json', 200, array('Content-Type' => 'application/json'))
+            ['musics' => $musics, 'style' => $style],
+            new Response('application/json', 200, ['Content-Type' => 'application/json'])
         );
     }
 
@@ -104,6 +104,6 @@ class MusicController extends Controller {
         $query = $request->request->get('search');
         $musics = $em->getRepository('BananaStationMusicBundle:Music')->findByTitleSearch($query);
 
-        return $this->render('BananaStationMusicBundle:Page:music.html.twig', array('musics' => $musics, 'style' => 'S'));
+        return $this->render('BananaStationMusicBundle:Page:music.html.twig', ['musics' => $musics, 'style' => 'S']);
     }
 }

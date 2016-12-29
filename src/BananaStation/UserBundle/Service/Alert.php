@@ -8,8 +8,8 @@ namespace BananaStation\UserBundle\Service;
 class Alert {
 
     // Constantes
-    const TYPE_GOOD = 'alert-good';
-    const TYPE_BAD = 'alert-bad';
+    const TYPE_GOOD = 'alert good';
+    const TYPE_BAD = 'alert bad';
 
     /**
      * Type de l'alerte

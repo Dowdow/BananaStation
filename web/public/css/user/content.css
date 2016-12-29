@@ -27,24 +27,21 @@ input[type=submit]:active {
     box-shadow: 1px 1px 5px black inset, 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
-.alert-good {
+.alert {
     width: 60%;
     margin: 10px auto 10px auto;
     padding: 10px;
     border-radius: 3px;
     text-align: center;
     font-size: 15px;
+}
+
+.good {
     color: #111111;
     background-color: #01ff70;
 }
 
-.alert-bad {
-    width: 60%;
-    margin: 10px auto 10px auto;
-    padding: 10px;
-    border-radius: 3px;
-    text-align: center;
-    font-size: 15px;
+.bad {
     color: #dddddd;
     background-color: #ff4136;
 }
@@ -54,11 +51,7 @@ input[type=submit]:active {
         width: 80%;
     }
 
-    .alert-good {
-        width: 80%;
-    }
-
-    .alert-bad {
+    .alert {
         width: 80%;
     }
 
@@ -69,11 +62,8 @@ input[type=submit]:active {
         width: 70%;
     }
 
-    .alert-good {
+    .alert {
         width: 70%;
     }
 
-    .alert-bad {
-        width: 70%;
-    }
 }

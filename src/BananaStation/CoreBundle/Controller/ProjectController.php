@@ -5,6 +5,7 @@ namespace BananaStation\CoreBundle\Controller;
 use BananaStation\CoreBundle\Entity\Avis;
 use BananaStation\CoreBundle\Entity\Commentaire;
 use BananaStation\CoreBundle\Form\CommentaireType;
+use BananaStation\UserBundle\Service\Alert;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -22,6 +23,7 @@ class ProjectController extends Controller {
     public function projectAction(Request $request, $slug) {
         $em = $this->getDoctrine()->getManager();
         $project = $em->getRepository('BananaStationCoreBundle:Projet')->findOneBySlug($slug);
+        $alert = $this->get('banana_station_user.alert');
         if ($project == null) {
             throw new NotFoundHttpException();
         }
@@ -37,12 +39,12 @@ class ProjectController extends Controller {
 
         if ($this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
             // Gestion de l'avis
-            if ($request->get('plusme') != null || $request->get('moinsme') != null) {
-                if ($request->get('plusme') != null) {
-                    $pouce = 'P';
-                } else {
-                    $pouce = 'M';
-                }
+            if ($request->get('plusme') != null) {
+                $pouce = 'P';
+            } elseif ($request->get('moinsme') != null) {
+                $pouce = 'M';
+            }
+            if (isset($pouce)) {
                 $avis = $em->getRepository('BananaStationCoreBundle:Avis')->findOneByUtilisateurProjet($utilisateur, $project);
                 if ($avis == null) {
                     $avis = new Avis();
@@ -52,10 +54,8 @@ class ProjectController extends Controller {
                     $em->persist($avis);
                     $em->flush();
                 } else {
-                    if ($avis->getPouce() != $pouce) {
-                        $avis->setPouce($pouce);
-                        $em->flush();
-                    }
+                    $avis->setPouce($pouce);
+                    $em->flush();
                 }
             }
 
@@ -68,7 +68,13 @@ class ProjectController extends Controller {
                 $em->flush();
                 return $this->redirect($this->generateUrl('banana_station_core_project', ['slug' => $slug]));
             }
+
+        } else {
+            if ($request->get('plusme') != null || $request->get('moinsme') != null) {
+                $alert->build(Alert::TYPE_BAD, 'Vous devez être connecté pour plusmer ou moinsmer un projet.');
+            }
         }
+
         // Gestion de la note
         if ($this->get('security.authorization_checker')->isGranted('ROLE_CORE')) {
             $formnote->handleRequest($request);
@@ -98,14 +104,16 @@ class ProjectController extends Controller {
             'plusmes' => $plusmes,
             'moinsmes' => $moinsmes,
             'formcom' => $formcom->createView(),
-            'formnote' => $formnote->createView()
+            'formnote' => $formnote->createView(),
+            'alert' => $alert
         ]);
     }
 
     /**
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function projectsAction() {
+    public
+    function projectsAction() {
         $em = $this->getDoctrine()->getManager();
         $projects = $em->getRepository('BananaStationCoreBundle:Projet')->findBy([], ['id' => 'DESC']);
         return $this->render('BananaStationCoreBundle::projects.html.twig', ['projets' => $projects]);
@@ -117,7 +125,8 @@ class ProjectController extends Controller {
      * @param $idcom
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function editCommentaireAction(Request $request, $id, $idcom) {
+    public
+    function editCommentaireAction(Request $request, $id, $idcom) {
         if ($this->get('security.authorization_checker')->isGranted('ROLE_USER') == false) {
             throw new AccessDeniedException();
         }
@@ -147,7 +156,8 @@ class ProjectController extends Controller {
      * @param $idcom
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function deleteCommentaireAction(Request $request, $id, $idcom) {
+    public
+    function deleteCommentaireAction(Request $request, $id, $idcom) {
         if (!$this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
             throw new AccessDeniedException();
         }

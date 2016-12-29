@@ -6,6 +6,11 @@
 {% endblock %}
 
 {% block body %}
+
+    {% if alert is defined and alert %}
+        <div class="{{ alert.type }}">{{ alert.message }}</div>
+    {% endif %}
+
     <section id="article">
         <h2>{{ projet.nom|raw }}
             {% if is_granted('ROLE_CORE') %}

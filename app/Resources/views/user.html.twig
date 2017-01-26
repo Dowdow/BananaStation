@@ -2,10 +2,11 @@
 
 <html lang="fr">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width">
     <meta name="theme-color" content="#01ff70">
     {% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/ie.css') }}"/>
         <link rel="stylesheet" type="text/css" href="{{ asset('public/css/user/header.css') }}"/>
         <link rel="stylesheet" type="text/css" href="{{ asset('public/css/user/content.css') }}"/>
         <link rel="stylesheet" type="text/css" href="{{ asset('public/css/user/footer.css') }}"/>
@@ -15,6 +16,7 @@
     <title>{% block title %}Banana User{% endblock %}</title>
 </head>
 <body>
+{% include "::ie.html.twig" %}
 
 <header>
     <h1>Banana Station User Center</h1>

@@ -2,10 +2,11 @@
 
 <html lang="fr">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
     {% block metas %}{% endblock %}
     {% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/ie.css') }}"/>
         <link rel="stylesheet" type="text/css" href="{{ asset('public/css/music/global.css') }}"/>
         <link rel="stylesheet" type="text/css" href="{{ asset('public/css/music/header.css') }}"/>
         <link rel="stylesheet" type="text/css" href="{{ asset('public/css/music/footer.css') }}"/>
@@ -17,6 +18,8 @@
     <title>{% block title %}Banana Music{% endblock %}</title>
 </head>
 <body>
+{% include "::ie.html.twig" %}
+
 <header>
     <section>
         <a href="{{ path('banana_station_music_music_games') }}" class="red">

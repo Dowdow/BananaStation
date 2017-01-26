@@ -3,7 +3,6 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width">
     <meta name="theme-color"
           content="{% if app.request.attributes.get('_route') == 'banana_station_core_racine' %}#171642{% else %}#149fe0{% endif %}">
@@ -11,6 +10,7 @@
     <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300" rel="stylesheet" type="text/css">
     {% block stylesheets %}
         <link rel="stylesheet" type="text/css" href="{{ asset('public/css/font-awesome.min.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/ie.css') }}"/>
         <link rel="stylesheet" type="text/css" href="{{ asset('public/css/core/header.css') }}"/>
         <link rel="stylesheet" type="text/css" href="{{ asset('public/css/core/global.css') }}"/>
         <link rel="stylesheet" type="text/css" href="{{ asset('public/css/core/footer.css') }}"/>
@@ -18,6 +18,7 @@
     <title>{% block title %}Banana Station{% endblock %}</title>
 </head>
 <body>
+{% include "::ie.html.twig" %}
 
 <header {% if app.request.attributes.get('_route') == 'banana_station_core_racine' %} class="home" {% endif %}>
     <section>

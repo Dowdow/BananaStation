@@ -1,11 +1,15 @@
 <html>
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#FFDC00">
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/ie.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('public/css/poke/style.css') }}">
     <title>Banana Poke</title>
 </head>
 <body>
+{% include "::ie.html.twig" %}
+
 <header>
     <h1>Banana Poke
         <small id="header-small"></small>

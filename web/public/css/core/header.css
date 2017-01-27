@@ -15,8 +15,12 @@ body .home {
 }
 
 header section {
-    margin-top: 20px;
+    margin-top: 17px;
     vertical-align: middle;
+}
+
+header section:first-child {
+    margin-top: 15px;
 }
 
 header h1 {

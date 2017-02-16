@@ -254,6 +254,10 @@
     margin-bottom: 5px;
 }
 
+#about ul li i {
+    vertical-align: middle;
+}
+
 #about a {
     color: rgba(255, 255, 255, 0.8);
 }

@@ -66,31 +66,16 @@ form textarea {
     margin-right: 10px;
 }
 
-#article > div {
-    display: flex;
-    flex-direction: row;
-    width: 70%;
+#article > article {
+    width: 60%;
+    font-size: 20px;
     margin-left: auto;
     margin-right: auto;
+    padding-top: 10px;
+    padding-bottom: 20px;
 }
 
-#article > div div {
-    width: 30%;
-}
-
-#article > div img {
-    display: block;
-    margin: 0 auto;
-    max-width: 100%;
-}
-
-#article > div article {
-    font-size: 20px;
-    margin-left: 2%;
-    margin-right: 2%;
-}
-
-#article > div article a {
+#article > article a {
     color: #30435B;
 }
 
@@ -145,14 +130,6 @@ form textarea {
 
 @media screen and (max-width: 768px) {
 
-    #article > div {
-        flex-direction: column;
-    }
-
-    #article > div div {
-        width: 100%;
-    }
-
     #community {
         flex-direction: column;
     }
@@ -180,8 +157,10 @@ form textarea {
 
 @media screen and (max-width: 1024px) {
 
-    #article div {
-        width: 100%;
+    #article article {
+        width: 96%;
+        margin-left: 2%;
+        margin-right: 2%;
     }
 
     #community {

@@ -23,7 +23,7 @@
             {% endif %}
         </h2>
         <ul>
-            <li><i class="fa fa-user"></i>{{ projet.utilisateur.username }}</li>
+            <li><i class="fa fa-user"></i> {{ projet.utilisateur.username }}</li>
             <li><i class="fa fa-calendar"></i> {{ projet.date.date|date('d/m/Y') }}</li>
             <li><i class="fa fa-flag"></i> {{ projet.etat|pstate }}</li>
             <li><i class="fa fa-rocket"></i> {{ projet.progression }}%
@@ -31,17 +31,9 @@
             <li><i class="fa fa-comments-o"></i> {{ projet.notes.count }}</li>
         </ul>
 
-        <div>
-            <div>
-                {% if projet.image|length %}
-                    <img src="{{ asset('public/img/core/projet/' ~ projet.id ~ '.' ~ projet.image) }}"
-                         alt="{{ projet.nom|raw }}"/>
-                {% endif %}
-            </div>
-            <article>
-                {{ projet.description|markdown }}
-            </article>
-        </div>
+        <article>
+            {{ projet.description|markdown }}
+        </article>
 
         <form method="post">
             <input type="submit" name="plusme" value="Plusme +{{ plusmes }}"/>

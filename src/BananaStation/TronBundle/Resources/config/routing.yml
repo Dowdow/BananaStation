@@ -1,4 +1,3 @@
 banana_station_tron_racine:
     path: /
-    host: "%host_tron%"
     defaults: { _controller: BananaStationTronBundle:Tron:index }

@@ -1,4 +1,3 @@
 banana_station_notifier_homepage:
     path:     /
     defaults: { _controller: BananaStationNotifierBundle:Notifier:index }
-    host: "%host_notifier%"

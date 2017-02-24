@@ -1,0 +1,88 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #111111;
+}
+
+header {
+    width: 100%;
+}
+
+header h1 {
+    margin: 0;
+    padding-top: 50px;
+    padding-bottom: 20px;
+    text-align: center;
+    font-size: 55px;
+}
+
+#presentation {
+    margin-bottom: 90px;
+}
+
+#presentation img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 0 12px #111111;
+}
+
+#presentation h2 {
+    text-align: center;
+    font-weight: 400;
+    font-size: 30px;
+    width: 60%;
+    margin: 50px auto 0;
+}
+
+#download {
+    background-color: #7ea4c3;
+}
+
+#download h2 {
+    text-align: center;
+    margin: 0;
+    font-size: 40px;
+    padding-top: 60px;
+    font-weight: 400;
+}
+
+#download ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 70%;
+    height: 250px;
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+}
+
+#download ul li {
+    background-color: #405569;
+    border-radius: 3px;
+    padding: 20px 30px;
+    box-shadow: 0 0 10px #111111;
+}
+
+#download ul li a {
+    text-decoration: none;
+    color: #cdcdcd;
+    font-size: 30px;
+}
+
+footer h3 {
+    margin: 0;
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    font-size: 30px;
+    font-weight: 400;
+}
+
+footer h3 a {
+    text-decoration: none;
+    color: #111111;
+}

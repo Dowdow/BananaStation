@@ -17,6 +17,7 @@ parameters:
     host_main:              ~
     host_core:              ~
     host_music:             ~
+    host_notifier:          ~
     host_poke:              ~
     host_tron:              ~
 

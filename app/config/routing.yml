@@ -1,3 +1,8 @@
+banana_station_notifier:
+    resource: "@BananaStationNotifierBundle/Resources/config/routing.yml"
+    prefix:   /
+    schemes:  ["%protocol%"]
+
 banana_station_user:
     resource: "@BananaStationUserBundle/Resources/config/routing.yml"
     prefix:   /

@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new \BananaStation\UserBundle\BananaStationUserBundle(),
             new \BananaStation\PokeBundle\BananaStationPokeBundle(),
             new \BananaStation\TronBundle\BananaStationTronBundle(),
+            new BananaStation\NotifierBundle\BananaStationNotifierBundle(),
             new \Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
             new \EWZ\Bundle\RecaptchaBundle\EWZRecaptchaBundle(),
         ];

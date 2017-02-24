@@ -1,0 +1,30 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="theme-color" content="#000000">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('public/css/notifier/style.css') }}">
+    <title>Banana Notifier</title>
+</head>
+<body>
+<header>
+    <h1>Banana Notifier</h1>
+</header>
+<section id="presentation">
+    <img src="{{ asset('public/img/notifier/notifier.png') }}">
+    <h2>Add your favorites news websites RSS links and get notified when they post new content !</h2>
+</section>
+<section id="download">
+    <h2>Download here</h2>
+    <ul>
+        <li><a href="{{ asset('public/zip/notifier/notifier-win64.zip') }}">Windows x64</a></li>
+        <li><a href="{{ asset('public/zip/notifier/notifier-osx64.zip') }}">OSX x64</a></li>
+        <li><a href="{{ asset('public/zip/notifier/notifier-lin64.zip') }}">Linux x64</a></li>
+    </ul>
+</section>
+<footer>
+    <h3><a href="{{ path('banana_station_core_racine') }}">Banana Station</a></h3>
+</footer>
+</body>
+</html>

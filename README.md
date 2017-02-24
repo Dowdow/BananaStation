@@ -25,6 +25,7 @@ Hosts to add in `/etc/hosts` :
 # Banana Station
 127.0.0.1	www.banana-station.local
 127.0.0.1	music.banana-station.local
+127.0.0.1   notifier.banana-station.local
 127.0.0.1	poke.banana-station.local
 127.0.0.1	tron.banana-station.local
 ```
@@ -46,6 +47,11 @@ NameVirtualHost *:80
 <VirtualHost *:80>
  DocumentRoot /var/www/html/BananaStation/web 
  ServerName music.banana-station.local
+</VirtualHost>
+
+<VirtualHost *:80>
+ DocumentRoot /var/www/html/BananaStation/web 
+ ServerName notifier.banana-station.local
 </VirtualHost>
 
 <VirtualHost *:80>

@@ -228,6 +228,8 @@
 
 #notifier {
     background-color: #7ea4c3;
+    box-sizing: border-box;
+    border: 10px solid #405569;
 }
 
 #notifier h3 {
@@ -260,7 +262,7 @@
 }
 
 #notifier span:nth-child(3) {
-    margin-top: -60px;
+    margin-top: -80px;
     margin-bottom: 5px;
 }
 

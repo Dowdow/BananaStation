@@ -73,16 +73,23 @@ header h1 {
     font-size: 30px;
 }
 
-footer h3 {
-    margin: 0;
-    text-align: center;
-    padding-top: 50px;
-    padding-bottom: 50px;
+footer ul {
+    width: 70%;
+    margin: 0 auto;
+    padding: 50px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    list-style: none;
+
+}
+
+footer ul li {
     font-size: 30px;
     font-weight: 400;
 }
 
-footer h3 a {
+footer ul li a {
     text-decoration: none;
     color: #111111;
 }

@@ -15,20 +15,20 @@
         <h2>{{ projet.nom|raw }}
             {% if is_granted('ROLE_CORE') %}
                 <a href="{{ path('banana_station_core_admin_project_edit', { 'id': projet.id }) }}">
-                    <i class="fa fa-edit"></i>
+                    <i class="fa fa-edit" aria-hidden="true"></i>
                 </a>
                 <a href="{{ path('banana_station_core_admin_project_delete', { 'id': projet.id }) }}">
-                    <i class="fa fa-remove"></i>
+                    <i class="fa fa-remove" aria-hidden="true"></i>
                 </a>
             {% endif %}
         </h2>
         <ul>
-            <li><i class="fa fa-user"></i> {{ projet.utilisateur.username }}</li>
-            <li><i class="fa fa-calendar"></i> {{ projet.date.date|date('d/m/Y') }}</li>
-            <li><i class="fa fa-flag"></i> {{ projet.etat|pstate }}</li>
-            <li><i class="fa fa-rocket"></i> {{ projet.progression }}%
-            <li><i class="fa fa-comments"></i> {{ projet.commentaires.count }}</li>
-            <li><i class="fa fa-comments-o"></i> {{ projet.notes.count }}</li>
+            <li><i class="fa fa-user" aria-hidden="true"></i> {{ projet.utilisateur.username }}</li>
+            <li><i class="fa fa-calendar" aria-hidden="true"></i> {{ projet.date.date|date('d/m/Y') }}</li>
+            <li><i class="fa fa-flag" aria-hidden="true"></i> {{ projet.etat|pstate }}</li>
+            <li><i class="fa fa-rocket" aria-hidden="true"></i> {{ projet.progression }}%
+            <li><i class="fa fa-comments" aria-hidden="true"></i> {{ projet.commentaires.count }}</li>
+            <li><i class="fa fa-comments-o" aria-hidden="true"></i> {{ projet.notes.count }}</li>
         </ul>
 
         <article>
@@ -46,14 +46,14 @@
             <h4>Notes</h4>
             {% for note in projet.notes %}
                 <h5>
-                    <i class="fa fa-user"></i> {{ note.utilisateur.username }}&emsp;
-                    <i class="fa fa-calendar"></i> {{ note.date.date|date('d/m/Y') }}&emsp;
+                    <i class="fa fa-user" aria-hidden="true"></i> {{ note.utilisateur.username }}&emsp;
+                    <i class="fa fa-calendar" aria-hidden="true"></i> {{ note.date.date|date('d/m/Y') }}&emsp;
                     {% if is_granted('ROLE_CORE') %}
                         <a href="{{ path('banana_station_core_admin_note_edit', { 'id': note.id }) }}">
-                            <i class="fa fa-edit"></i>
+                            <i class="fa fa-edit" aria-hidden="true"></i>
                         </a>
                         <a href="{{ path('banana_station_core_admin_note_delete', { 'id': note.id }) }}">
-                            <i class="fa fa-remove"></i>
+                            <i class="fa fa-remove" aria-hidden="true"></i>
                         </a>
                     {% endif %}
                 </h5>
@@ -73,16 +73,16 @@
             <h4>Commentaires</h4>
             {% for commentaire in projet.commentaires %}
                 <h5>
-                    <i class="fa fa-user"></i> {{ commentaire.utilisateur.username }}&emsp;
-                    <i class="fa fa-calendar"></i> {{ commentaire.date.date|date('d/m/Y G:i') }}&emsp;
+                    <i class="fa fa-user" aria-hidden="true"></i> {{ commentaire.utilisateur.username }}&emsp;
+                    <i class="fa fa-calendar" aria-hidden="true"></i> {{ commentaire.date.date|date('d/m/Y G:i') }}&emsp;
                     {% if is_granted('ROLE_USER') and app.user.username == commentaire.utilisateur.username %}
                         <a href="{{ path('banana_station_core_project_edit_commentaire', { 'id': projet.id, 'idcom': commentaire.id }) }}">
-                            <i class="fa fa-edit"></i>
+                            <i class="fa fa-edit" aria-hidden="true"></i>
                         </a>
                     {% endif %}
                     {% if is_granted('ROLE_USER') and app.user.username == commentaire.utilisateur.username or is_granted('ROLE_CORE') %}
                         <a href="{{ path('banana_station_core_project_delete_commentaire', { 'id': projet.id, 'idcom': commentaire.id }) }}">
-                            <i class="fa fa-remove"></i>
+                            <i class="fa fa-remove" aria-hidden="true"></i>
                         </a>
                     {% endif %}
                 </h5>

@@ -35,7 +35,7 @@ $hasMinorProblems = (bool) count($minorProblems);
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="robots" content="noindex,nofollow" />
         <title>Symfony Configuration Checker</title>
         <style>

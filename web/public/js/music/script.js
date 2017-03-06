@@ -57,7 +57,7 @@ function previous() {
     } else {
         current--;
     }
-    loadPlayer();
+    player.loadVideoById({videoId: musics[current].youtubeid});
 }
 
 function next() {
@@ -66,7 +66,7 @@ function next() {
     } else {
         current++;
     }
-    loadPlayer();
+    player.loadVideoById({videoId: musics[current].youtubeid});
 }
 
 function cleanPlayer() {
@@ -83,7 +83,8 @@ function loadPlayer() {
         width: '560',
         videoId: musics[current].youtubeid,
         playerVars: {
-            iv_load_policy: 3
+            'autoplay': 1,
+            'iv_load_policy': 3
         },
         events: {
             'onReady': function (event) {

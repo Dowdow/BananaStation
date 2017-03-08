@@ -57,6 +57,7 @@ function previous() {
     } else {
         current--;
     }
+    $musictitle.innerHTML = musics[current].title;
     player.loadVideoById({videoId: musics[current].youtubeid});
 }
 
@@ -66,6 +67,7 @@ function next() {
     } else {
         current++;
     }
+    $musictitle.innerHTML = musics[current].title;
     player.loadVideoById({videoId: musics[current].youtubeid});
 }
 

@@ -31,7 +31,7 @@ footer {
 }
 
 #totals h4 {
-    width: 16.66%;
+    width: 25%;
     border: 10px solid rgba(0, 0, 0, 0.2);
     box-sizing: border-box;
     overflow: hidden;
@@ -55,7 +55,7 @@ footer {
 }
 
 #nav ul {
-    width: 40%;
+    width: 60%;
     list-style: none;
     padding-left: 0;
     display: flex;
@@ -91,14 +91,6 @@ footer {
 
 }
 
-@media screen and (min-width: 480px) and (max-width: 768px) {
-
-    #totals h4 {
-        width: 50%;
-    }
-
-}
-
 @media screen and (max-width: 768px) {
 
     #nav {
@@ -119,10 +111,10 @@ footer {
 
 }
 
-@media screen and (min-width: 768px) and (max-width: 1024px) {
+@media screen and (min-width: 480px) and (max-width: 1024px) {
 
     #totals h4 {
-        width: 33.33%;
+        width: 50%;
     }
 
 }

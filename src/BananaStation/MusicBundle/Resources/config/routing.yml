@@ -10,10 +10,6 @@ banana_station_music_music_trap:
     path:  /music/trap
     defaults: { _controller: BananaStationMusicBundle:Music:trap }
 
-banana_station_music_music_movies:
-    path:  /music/movies
-    defaults: { _controller: BananaStationMusicBundle:Music:movies }
-
 banana_station_music_music_electro:
     path:  /music/electro-house
     defaults: { _controller: BananaStationMusicBundle:Music:electro }
@@ -21,10 +17,6 @@ banana_station_music_music_electro:
 banana_station_music_music_dubstep:
     path:  /music/dubstep-drum-and-bass
     defaults: { _controller: BananaStationMusicBundle:Music:dubstep }
-
-banana_station_music_music_rock:
-    path:  /music/rock
-    defaults: { _controller: BananaStationMusicBundle:Music:rock }
 
 banana_station_music_search:
     path:  /music/search
@@ -34,7 +26,7 @@ banana_station_music_page:
     path:  /music/page/{style}/{page}
     defaults: { _controller: BananaStationMusicBundle:Music:page }
     requirements:
-        style: g|t|m|e|d|r|s
+        style: g|t|e|d|s
         page: \d+
 
 banana_station_music_admin:

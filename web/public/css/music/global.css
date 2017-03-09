@@ -11,12 +11,8 @@ html, body {
     background: #ff4136;
 }
 
-.orange {
-    background: #ff851b;
-}
-
 .yellow {
-    background: #ffdc00;
+    background: #FFBE09;
 }
 
 .blue {
@@ -25,10 +21,6 @@ html, body {
 
 .green {
     background: #2ecc40;
-}
-
-.grey {
-    background: #aaaaaa;
 }
 
 .cyan {

@@ -14,7 +14,7 @@ header section {
 header section a {
     min-height: 150px;
     max-height: 150px;
-    width: 16.66%;
+    width: 25%;
     border: 10px solid rgba(0, 0, 0, 0.2);
     box-sizing: border-box;
     overflow: hidden;
@@ -67,18 +67,10 @@ header section a h2 {
 
 }
 
-@media screen and (min-width: 480px) and (max-width: 768px) {
+@media screen and (min-width: 480px) and (max-width: 1024px) {
 
     header section a {
         width: 50%;
-    }
-
-}
-
-@media screen and (min-width: 768px) and (max-width: 1024px) {
-
-    header section a {
-        width: 33.33%;
     }
 
 }

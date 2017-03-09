@@ -21,10 +21,8 @@ class MusicType extends AbstractType {
                 'choices' => [
                     'Games' => 'G',
                     'Trap' => 'T',
-                    'Movie' => 'M',
                     'Electro & House' => 'E',
                     'Dubstep & Drum and bass' => 'D',
-                    'Rock' => 'R'
                 ]
             ]);
     }

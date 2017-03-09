@@ -16,8 +16,8 @@ section {
     flex-direction: row;
     justify-content: space-around;
     z-index: 3;
-    padding: 50px 10%;
     background: rgba(0, 0, 0, 0.5);
+    padding: 50px 15%;
 }
 
 section a {
@@ -112,14 +112,14 @@ section a:hover .hidden {
 
 }
 
-@media screen and (min-width: 768px) and (max-width: 1400px) {
+@media screen and (min-width: 480px) and (max-width: 1400px) {
 
     section::after {
         content: '';
         width: 100%;
     }
 
-    section a:nth-child(n+4) {
+    section a:nth-child(n+3) {
         order: 1;
     }
 
@@ -138,15 +138,6 @@ section a:hover .hidden {
 
 }
 
-@media screen and (min-width: 1024px) and (max-width: 1400px) {
-
-    section {
-        padding-left: 15%;
-        padding-right: 15%;
-    }
-
-}
-
 @media screen and (max-width: 1400px) {
 
     section {
@@ -156,15 +147,6 @@ section a:hover .hidden {
 
     section a {
         margin-top: 25px;
-    }
-
-}
-
-@media screen and (min-width: 1400px) and (max-width: 1800px) {
-
-    section {
-        padding-left: 0;
-        padding-right: 0;
     }
 
 }

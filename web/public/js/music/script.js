@@ -196,17 +196,11 @@ function getColor(style) {
         case 'T':
             style = 'orange';
             break;
-        case 'M':
-            style = 'yellow';
-            break;
         case 'E':
             style = 'blue';
             break;
         case 'D':
             style = 'green';
-            break;
-        case 'R':
-            style = 'grey';
             break;
         case 'S':
             style = 'cyan';

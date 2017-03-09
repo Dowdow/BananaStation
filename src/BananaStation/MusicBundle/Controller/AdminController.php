@@ -92,14 +92,10 @@ class AdminController extends Controller {
                 return $this->redirect($this->generateUrl('banana_station_music_music_games'));
             case 'T':
                 return $this->redirect($this->generateUrl('banana_station_music_music_trap'));
-            case 'M':
-                return $this->redirect($this->generateUrl('banana_station_music_music_movies'));
             case 'E':
                 return $this->redirect($this->generateUrl('banana_station_music_music_electro'));
             case 'D':
                 return $this->redirect($this->generateUrl('banana_station_music_music_dubstep'));
-            case 'R':
-                return $this->redirect($this->generateUrl('banana_station_music_music_rock'));
         }
         return $this->redirect($this->generateUrl('banana_station_music_racine'));
     }

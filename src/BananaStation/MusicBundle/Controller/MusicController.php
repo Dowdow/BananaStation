@@ -32,13 +32,6 @@ class MusicController extends Controller {
     /**
      * @return Response
      */
-    public function moviesAction() {
-        return $this->process('M');
-    }
-
-    /**
-     * @return Response
-     */
     public function electroAction() {
         return $this->process('E');
     }
@@ -48,13 +41,6 @@ class MusicController extends Controller {
      */
     public function dubstepAction() {
         return $this->process('D');
-    }
-
-    /**
-     * @return Response
-     */
-    public function rockAction() {
-        return $this->process('R');
     }
 
     /**

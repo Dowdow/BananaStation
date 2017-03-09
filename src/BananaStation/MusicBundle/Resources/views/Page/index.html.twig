@@ -25,22 +25,13 @@
             <p>Listen to games music</p>
         </div>
     </a>
-    <a class="orange" href="{{ path('banana_station_music_music_trap') }}">
+    <a class="yellow" href="{{ path('banana_station_music_music_trap') }}">
         <div>
             <img src="{{ asset('public/img/music/dollar.svg') }}" alt="Dollar"/>
             <h2>Trap</h2>
         </div>
         <div class="hidden">
             <p>Listen to trap music</p>
-        </div>
-    </a>
-    <a class="yellow" href="{{ path('banana_station_music_music_movies') }}">
-        <div>
-            <img src="{{ asset('public/img/music/movie.svg') }}" alt="Cinema ticket"/>
-            <h2>Movies</h2>
-        </div>
-        <div class="hidden">
-            <p>Listen to movie music</p>
         </div>
     </a>
     <a class="blue" href="{{ path('banana_station_music_music_electro') }}">
@@ -61,15 +52,6 @@
             <p>Listen to DnB music</p>
         </div>
     </a>
-    <a class="grey" href="{{ path('banana_station_music_music_rock') }}">
-        <div>
-            <img src="{{ asset('public/img/music/guitar.svg') }}" alt="Guitar"/>
-            <h2>Rock</h2>
-        </div>
-        <div class="hidden">
-            <p>Listen to rock music</p>
-        </div>
-    </a>
 </section>
 
 <div class="video">
@@ -82,7 +64,7 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        var colors = ['#ff4136', '#ff851b', '#ffdc00', '#0074d9', '#2ecc40', '#aaaaaa'];
+        var colors = ['#ff4136', '#FFBE09', '#0074d9', '#2ecc40'];
         var video = document.getElementById('video');
         var meta = document.querySelector('meta[name=theme-color]');
         var x, y, resolution, body, html;
@@ -117,18 +99,14 @@
         window.addEventListener('scroll', function () {
             bindValues();
             var percent = (html.scrollTop || body.scrollTop) / ((html.scrollHeight || body.scrollHeight) - html.clientHeight) * 100;
-            if (percent < 16.66) {
+            if (percent < 25) {
                 meta.setAttribute('content', colors[0]);
-            } else if (percent >= 16.66 && percent < 33.33) {
+            } else if (percent >= 25 && percent < 50) {
                 meta.setAttribute('content', colors[1]);
-            } else if (percent >= 33.33 && percent < 50) {
+            } else if (percent >= 50 && percent < 75) {
                 meta.setAttribute('content', colors[2]);
-            } else if (percent >= 50 && percent < 66.66) {
-                meta.setAttribute('content', colors[3]);
-            } else if (percent >= 66.66 && percent < 83.33) {
-                meta.setAttribute('content', colors[4]);
             } else {
-                meta.setAttribute('content', colors[5]);
+                meta.setAttribute('content', colors[3]);
             }
         });
 

@@ -105,7 +105,7 @@
 }
 
 #music span {
-    width: 33.33%;
+    width: 50%;
     box-sizing: border-box;
     border: 10px solid rgba(0, 0, 0, 0.2);
     overflow: hidden;
@@ -130,39 +130,21 @@
 }
 
 #music span:nth-child(4) {
-    background: #ffdc00;
+    background: #0074d9;
 }
 
 #music span:nth-child(4) img {
     width: 50px;
-    padding-top: 40px;
-}
-
-#music span:nth-child(5) {
-    background: #0074d9;
-}
-
-#music span:nth-child(5) img {
-    width: 50px;
     padding-top: 25px;
 }
 
-#music span:nth-child(6) {
+#music span:nth-child(5) {
     background: #2ecc40;
 }
 
-#music span:nth-child(6) img {
+#music span:nth-child(5) img {
     width: 60px;
     padding-top: 20px;
-}
-
-#music span:nth-child(7) {
-    background: #aaaaaa;
-}
-
-#music span:nth-child(7) img {
-    width: 25px;
-    padding-top: 15px;
 }
 
 #music img {
@@ -336,6 +318,11 @@
 }
 
 @media screen and (max-width: 768px) {
+
+    #sites div {
+        padding-bottom: 20px;
+    }
+
     #about ul {
         flex-direction: column;
         margin-left: auto;

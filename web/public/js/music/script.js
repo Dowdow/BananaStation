@@ -194,7 +194,7 @@ function getColor(style) {
             style = 'red';
             break;
         case 'T':
-            style = 'orange';
+            style = 'yellow';
             break;
         case 'E':
             style = 'blue';

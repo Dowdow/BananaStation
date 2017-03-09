@@ -18,19 +18,13 @@ class MusicColor extends \Twig_Extension {
                 $style = '#ff4136';
                 break;
             case 'T':
-                $style = '#ff851b';
-                break;
-            case 'M':
-                $style = '#ffdc00';
+                $style = '#ffbe09';
                 break;
             case 'E':
                 $style = '#0074d9';
                 break;
             case 'D':
                 $style = '#2ecc40';
-                break;
-            case 'R':
-                $style = '#aaaaaa';
                 break;
             case 'S':
                 $style = '#39cccc';
@@ -44,9 +38,6 @@ class MusicColor extends \Twig_Extension {
                 $style = 'red';
                 break;
             case 'T':
-                $style = 'orange';
-                break;
-            case 'M':
                 $style = 'yellow';
                 break;
             case 'E':
@@ -54,9 +45,6 @@ class MusicColor extends \Twig_Extension {
                 break;
             case 'D':
                 $style = 'green';
-                break;
-            case 'R':
-                $style = 'grey';
                 break;
             case 'S':
                 $style = 'cyan';
@@ -72,17 +60,11 @@ class MusicColor extends \Twig_Extension {
             case 'T':
                 $style = 'Trap';
                 break;
-            case 'M':
-                $style = 'Movies';
-                break;
             case 'E':
                 $style = 'Electro & House';
                 break;
             case 'D':
                 $style = 'Dubstep & DnB';
-                break;
-            case 'R':
-                $style = 'Rock';
                 break;
             case 'S':
                 $style = 'Search';

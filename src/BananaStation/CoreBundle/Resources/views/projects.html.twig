@@ -9,30 +9,27 @@
     <section>
         {% if projets|length > 0 %}
             <h2>Projects</h2>
-            <p>L'intégralité de nos projets.</p>
+            <p>L'intégralité de mes projets.</p>
 
             <div id="projects">
-                <div>
-                    {% for projet in projets %}
-                        {% if loop.index0 % 3 == 0 %}
-                            {% include "BananaStationCoreBundle::projects-item.html.twig" %}
+                {% for projet in projets %}
+                    <a href="{{ path('banana_station_core_project', { slug : projet.slug }) }}">
+                        {% if projet.image|length %}
+                            <img src="{{ asset('public/img/core/projet/' ~ projet.id ~ '.' ~ projet.image) }}"
+                                 alt="{{ projet.nom|raw }}"/>
                         {% endif %}
-                    {% endfor %}
-                </div>
-                <div>
-                    {% for projet in projets %}
-                        {% if loop.index0 % 3 == 1 %}
-                            {% include "BananaStationCoreBundle::projects-item.html.twig" %}
-                        {% endif %}
-                    {% endfor %}
-                </div>
-                <div>
-                    {% for projet in projets %}
-                        {% if loop.index0 % 3 == 2 %}
-                            {% include "BananaStationCoreBundle::projects-item.html.twig" %}
-                        {% endif %}
-                    {% endfor %}
-                </div>
+
+                        <h3>{{ projet.nom|raw }}</h3>
+                        <h4><i class="fa fa-user" aria-hidden="true"></i> {{ projet.utilisateur.username }}</h4>
+                        <h4><i class="fa fa-clock-o" aria-hidden="true"></i> {{ projet.date.date|date('d/m/Y') }}</h4>
+                        <h4><i class="fa fa-flag" aria-hidden="true"></i> {{ projet.etat|pstate }}</h4>
+                        <h4>
+                            <i class="fa fa-line-chart" aria-hidden="true"></i> {{ projet.progression }}%&emsp;
+                            <i class="fa fa-comments" aria-hidden="true"></i> {{ projet.commentaires.count }}&emsp;
+                            <i class="fa fa-comments-o" aria-hidden="true"></i> {{ projet.notes.count }}&emsp;
+                        </h4>
+                    </a>
+                {% endfor %}
             </div>
         {% else %}
             <h3>Aucun Projet à afficher.</h3>

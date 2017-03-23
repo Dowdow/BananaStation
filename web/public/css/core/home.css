@@ -296,6 +296,53 @@
     color: rgba(255, 255, 255, 0.8);
 }
 
+#app {
+    width: 100%;
+    background: #F5F5F5;
+    color: #30435b;
+    font-family: 'Source Sans Pro', sans-serif;
+    padding-bottom: 35px;
+}
+
+#app h2 {
+    margin: 0;
+    text-align: center;
+    font-size: 50px;
+    font-weight: 400;
+    padding: 40px 10px 0;
+}
+
+#app p {
+    font-size: 30px;
+    margin: 0;
+    font-weight: lighter;
+    text-align: left;
+    padding: 30px 100px 40px;
+}
+
+#app div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 50%;
+    margin: 0 auto;
+}
+
+#app div > img {
+    display: block;
+    max-height: 450px;
+}
+
+#app div a {
+    align-self: center;
+}
+
+#app div a img {
+    display: block;
+    margin: 0 auto;
+    width: 300px;
+}
+
 @media screen and (max-width: 480px) {
 
     #sites a {
@@ -329,6 +376,17 @@
         margin-right: auto;
         width: 75%;
     }
+
+    #app div {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    #app div > img {
+        align-self: center;
+        max-height: 400px;
+        margin-bottom: 30px;
+    }
 }
 
 @media screen and (max-width: 1024px) {
@@ -347,6 +405,14 @@
     }
 
     #about p {
+        padding: 30px 20px 40px;
+    }
+
+    #app div {
+        width: 70%;
+    }
+
+    #app p {
         padding: 30px 20px 40px;
     }
 

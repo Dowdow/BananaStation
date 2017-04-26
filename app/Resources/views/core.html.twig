@@ -11,6 +11,7 @@
     {% block stylesheets %}
         <link rel="stylesheet" type="text/css" href="{{ asset('public/css/font-awesome.min.css') }}"/>
         <link rel="stylesheet" type="text/css" href="{{ asset('public/css/ie.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/lazyload.min.css') }}"/>
         <link rel="stylesheet" type="text/css" href="{{ asset('public/css/core/header.css') }}"/>
         <link rel="stylesheet" type="text/css" href="{{ asset('public/css/core/global.css') }}"/>
         <link rel="stylesheet" type="text/css" href="{{ asset('public/css/core/footer.css') }}"/>
@@ -93,6 +94,7 @@
     <p>&copy; Banana Station. All rights reserved.</p>
 </footer>
 
+<script src="{{ asset('public/js/lazyload.min.js') }}"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         var menustate = false;

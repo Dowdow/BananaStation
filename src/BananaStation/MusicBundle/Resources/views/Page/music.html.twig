@@ -6,7 +6,9 @@
 
 {% block stylesheets %}
     {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/lazyload.min.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('public/css/music/grid.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/nprogress.min.css') }}"/>
 {% endblock %}
 
 {% block title %}
@@ -35,7 +37,9 @@
         {% for music in musics %}
             <div id="{{ music.youtubeid }}" class="{{ music.style|mcolorclass }}" onclick="openPlayer(event)"
                  data="{{ loop.index0 }}">
-                <img src="https://img.youtube.com/vi/{{ music.youtubeid }}/0.jpg" alt="{{ music.title }}"/>
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                     data-src="https://img.youtube.com/vi/{{ music.youtubeid }}/0.jpg"
+                     alt="{{ music.title }}" class="lazy-load"/>
                 <h3>{{ music.title }}</h3>
                 {% if is_granted('ROLE_MUSIC') %}
                     <a href="{{ path('banana_station_music_admin_edit', { id : music.id }) }}">Edit</a>
@@ -60,7 +64,8 @@
 
 {% block javascripts %}
     <script src="https://www.youtube.com/iframe_api"></script>
-    <script src="{{ asset('public/js/nprogress.js') }}"></script>
+    <script id="lazyload" src="{{ asset('public/js/lazyload.min.js') }}"></script>
+    <script src="{{ asset('public/js/nprogress.min.js') }}"></script>
     <script src="{{ asset('public/js/music/script.js') }}"></script>
     <script>
         var admin = {% if is_granted('ROLE_MUSIC') %}true{% else %}false{% endif %};

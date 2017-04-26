@@ -37,10 +37,10 @@ $more.onclick = function (event) {
 };
 
 function openPlayer(event) {
-    if (event.target.tagName == 'IMG' || event.target.tagName == 'H3') {
+    if (event.target.tagName === 'IMG' || event.target.tagName === 'H3') {
         event.preventDefault();
         current = parseInt(event.target.parentNode.getAttribute('data'));
-    } else if (event.target.tagName == 'A') {
+    } else if (event.target.tagName === 'A') {
         return;
     } else {
         event.preventDefault();
@@ -52,7 +52,7 @@ function openPlayer(event) {
 }
 
 function previous() {
-    if (current == 0) {
+    if (current === 0) {
         current = musics.length - 1;
     } else {
         current--;
@@ -99,7 +99,7 @@ function loadPlayer() {
 }
 
 function onPlayerStateChange(event) {
-    if (event.data == YT.PlayerState.ENDED) {
+    if (event.data === YT.PlayerState.ENDED) {
         next();
     }
 }
@@ -147,7 +147,7 @@ xhr.onreadystatechange = function () {
             NProgress.set(0.75);
             break;
         case 4:
-            if (xhr.status == 200 || xhr.status == 0) {
+            if (xhr.status === 200 || xhr.status === 0) {
                 NProgress.done();
                 addMusics(JSON.parse(xhr.responseText));
             }

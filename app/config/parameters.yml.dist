@@ -12,14 +12,14 @@ parameters:
     mailer_port:            ~
     mailer_user:            ~
     mailer_password:        ~
-    mailer_from:            ~
+    mailer_from:            no-reply@banana-station.local
 
-    host_main:              ~
-    host_core:              ~
-    host_music:             ~
-    host_notifier:          ~
-    host_poke:              ~
-    host_tron:              ~
+    host_main:              .banana-station.local
+    host_core:              www.banana-station.local
+    host_music:             music.banana-station.local
+    host_notifier:          notifier.banana-station.local
+    host_poke:              poke.banana-station.local
+    host_tron:              tron.banana-station.local
 
     node_poke:              ~
     node_tron:              ~

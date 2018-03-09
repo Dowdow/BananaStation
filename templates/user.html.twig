@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width">
+    <meta name="theme-color" content="#01ff70">
+    {% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/ie.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/user/header.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/user/content.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/user/footer.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/user/form.min.css') }}"/>
+    {% endblock %}
+    <link href="//fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+    <title>{% block title %}Banana User{% endblock %}</title>
+</head>
+<body>
+{% include "ie.html.twig" %}
+
+<header>
+    <h1>Banana Station User Center</h1>
+</header>
+
+{% if alert is defined and alert %}
+    <div class="{{ alert.type }}">{{ alert.message }}</div>
+{% endif %}
+
+{% block body %}
+{% endblock %}
+
+<footer>
+    <ul>
+        <li><a href="{{ path('core_racine') }}">Banana Station</a></li>
+        <li><a href="{{ path('music_racine') }}">Banana Music</a></li>
+    </ul>
+</footer>
+
+{% block javascripts %}
+{% endblock %}
+</body>
+</html>

@@ -1,3 +1,0 @@
-banana_station_notifier_racine:
-    path:     /
-    defaults: { _controller: BananaStationNotifierBundle:Notifier:index }

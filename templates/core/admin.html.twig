@@ -1,0 +1,36 @@
+{% extends "core.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/core/admin.css') }}"/>
+{% endblock %}
+
+{% block body %}
+    <section id="admin">
+        <h2>Administration</h2>
+        <p>Bienvenue dans le panneau d'administration de Banana Station.</p>
+
+        <p><a class="button fit" href="{{ path('core_admin_project_add') }}">Ajouter un projet</a></p>
+
+        <h3>Statistiques</h3>
+
+        <table>
+            <tr>
+                <td>Nombre de membres inscrits :</td>
+                <td>{{ getNumberUser() }}</td>
+            </tr>
+            <tr>
+                <td>Nombre total de plusmes :</td>
+                <td>{{ getNumberPlusme() }}</td>
+            </tr>
+            <tr>
+                <td>Nombre total de moinsmes :</td>
+                <td>{{ getNumberMoinsme() }}</td>
+            </tr>
+            <tr>
+                <td>Nombre total de commentaires :</td>
+                <td>{{ getNumberComment() }}</td>
+            </tr>
+        </table>
+    </section>
+{% endblock %}

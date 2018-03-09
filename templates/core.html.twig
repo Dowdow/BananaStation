@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="theme-color"
+          content="{% if app.request.attributes.get('_route') == 'core_racine' %}#171642{% else %}#149fe0{% endif %}">
+    <link rel="manifest" href="{{ asset('manifest.json') }}"/>
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300" rel="stylesheet" type="text/css">
+    {% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.min.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/ie.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/lazyload.min.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/core/header.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/core/global.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/core/footer.css') }}"/>
+    {% endblock %}
+    <title>{% block title %}Banana Station{% endblock %}</title>
+</head>
+<body>
+{% include "ie.html.twig" %}
+
+<header {% if app.request.attributes.get('_route') == 'core_racine' %} class="home" {% endif %}>
+    <section>
+        <h1>
+            <a href="{{ path('core_racine') }}">Banana Station</a>
+        </h1>
+    </section>
+    <section>
+        <ul id="menu">
+            <li><a href="{{ path('core_racine') }}">Home</a></li>
+            <li><a href="{{ path('core_projects') }}">Projects</a></li>
+            <li><a href="{{ path('core_about') }}">About</a></li>
+            {% if is_granted('ROLE_USER') %}
+                <li><a href="{{ path('user_account') }}">{{ app.user.username }}</a></li>
+                {% if is_granted('ROLE_CORE') %}
+                    <li><a href="{{ path('core_admin') }}">Admin</a></li>
+                {% endif %}
+                <li><a href="{{ path('logout') }}">Deconnexion</a></li>
+            {% else %}
+                <li><a href="{{ path('user_register') }}">Inscription</a></li>
+                <li><a href="{{ path('login') }}">Connexion</a></li>
+            {% endif %}
+        </ul>
+    </section>
+    <div id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</header>
+
+{% block body %}
+{% endblock %}
+
+<footer>
+    <div>
+        <h3>Navigation</h3>
+        <ul>
+            <li><a href="{{ path('core_racine') }}">Home</a></li>
+            <li><a href="{{ path('core_projects') }}">Projects</a></li>
+            <li><a href="{{ path('core_about') }}">About</a></li>
+        </ul>
+    </div>
+    <div>
+        <h3>Projects</h3>
+        <ul>
+            {% for project in getFooterContentProjects() %}
+                <li><a href="{{ path('core_project',{ 'slug': project.slug }) }}">{{ project.nom }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div>
+        <h3>Most Plusmed</h3>
+        <ul>
+            {% for project in getTopPlusme() %}
+                <li><a href="{{ path('core_project',{ 'slug': project.slug }) }}">{{ project.nom }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div>
+        <h3>Most commented</h3>
+        <ul>
+            {% for project in getTopComment() %}
+                <li><a href="{{ path('core_project',{ 'slug': project.slug }) }}">{{ project.nom }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <p>&copy; Banana Station. All rights reserved.</p>
+</footer>
+
+<script src="{{ asset('js/lazyload.min.js') }}"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var menustate = false;
+        document.getElementById('hamburger').onclick = function () {
+            if (menustate) {
+                document.getElementById('hamburger').className = '';
+                document.getElementById('menu').style.display = 'none';
+                menustate = false;
+            } else {
+                document.getElementById('hamburger').className = 'open';
+                document.getElementById('menu').style.display = 'flex';
+                menustate = true;
+            }
+        };
+
+        window.onresize = function () {
+            if (window.innerWidth > 480) {
+                document.getElementById('menu').style.display = 'flex';
+            } else {
+                document.getElementById('hamburger').className = '';
+                document.getElementById('menu').style.display = 'none';
+            }
+        };
+    });
+</script>
+
+{% block javascript %}
+{% endblock %}
+</body>
+</html>

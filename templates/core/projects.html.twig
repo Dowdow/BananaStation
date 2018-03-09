@@ -1,0 +1,39 @@
+{% extends "core.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/core/projects.css') }}"/>
+{% endblock %}
+
+{% block body %}
+    <section>
+        {% if projets|length > 0 %}
+            <h2>Projects</h2>
+            <p>L'intégralité de mes projets.</p>
+
+            <div id="projects">
+                {% for projet in projets %}
+                    <a href="{{ path('core_project', { slug : projet.slug }) }}">
+                        {% if projet.image|length %}
+                            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                                 data-src="{{ asset('img/core/projet/' ~ projet.id ~ '.' ~ projet.image) }}"
+                                 alt="{{ projet.nom|raw }}" class="lazy-load"/>
+                        {% endif %}
+
+                        <h3>{{ projet.nom|raw }}</h3>
+                        <h4><i class="fa fa-user" aria-hidden="true"></i> {{ projet.utilisateur.username }}</h4>
+                        <h4><i class="fa fa-clock-o" aria-hidden="true"></i> {{ projet.date.date|date('d/m/Y') }}</h4>
+                        <h4><i class="fa fa-flag" aria-hidden="true"></i> {{ projet.etat|pstate }}</h4>
+                        <h4>
+                            <i class="fa fa-line-chart" aria-hidden="true"></i> {{ projet.progression }}%&emsp;
+                            <i class="fa fa-comments" aria-hidden="true"></i> {{ projet.commentaires.count }}&emsp;
+                            <i class="fa fa-comments-o" aria-hidden="true"></i> {{ projet.notes.count }}&emsp;
+                        </h4>
+                    </a>
+                {% endfor %}
+            </div>
+        {% else %}
+            <h3>Aucun Projet à afficher.</h3>
+        {% endif %}
+    </section>
+{% endblock %}

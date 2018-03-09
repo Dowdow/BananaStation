@@ -1,0 +1,17 @@
+{% extends "core.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/core/form.css') }}"/>
+{% endblock %}
+
+{% block body %}
+    <section>
+        <h2>Suppression de commentaire</h2>
+
+        <form method="post">
+            <p>Êtes vous sûr de vouloir supprimer le commentaire "{{ commentaire.contenu|slice(0, 30) }} ..." ?</p>
+            <input type="submit" value="Supprimer"/>
+        </form>
+    </section>
+{% endblock %}

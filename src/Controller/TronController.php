@@ -1,0 +1,28 @@
+<?php
+
+namespace App\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+
+/**
+ * Class TronController
+ * @package App\Controller
+ *
+ * @Route(schemes={"%protocol%"}, host="%host_tron%")
+ */
+class TronController extends Controller
+{
+    /**
+     * @return Response
+     *
+     * @Route("/", name="tron_racine")
+     */
+    public function indexAction(): Response
+    {
+        return $this->render('tron/index.html.twig',
+            ['server' => $this->container->getParameter('node_tron')]
+        );
+    }
+}

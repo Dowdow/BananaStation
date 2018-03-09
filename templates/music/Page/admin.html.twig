@@ -1,0 +1,14 @@
+{% extends "music.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/music/admin.css') }}"/>
+{% endblock %}
+
+{% block body %}
+    <section>
+        <h1>Bienvenue à toi grand admin {{ app.user.username }} !</h1>
+        <p><a href="{{ path('music_admin_add') }}">Ajouter une music</a></p>
+        <p><a href="{{ path('logout') }}">Deconnexion</a></p>
+    </section>
+{% endblock %}

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
     <meta name="theme-color"
-          content="{% if app.request.attributes.get('_route') == 'core_racine' %}#171642{% else %}#149fe0{% endif %}">
+          content="{% if app.request.attributes.get('_route') == 'core_index' %}#171642{% else %}#149fe0{% endif %}">
     <link rel="manifest" href="{{ asset('manifest.json') }}"/>
     <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300" rel="stylesheet" type="text/css">
     {% block stylesheets %}
@@ -21,15 +21,15 @@
 <body>
 {% include "ie.html.twig" %}
 
-<header {% if app.request.attributes.get('_route') == 'core_racine' %} class="home" {% endif %}>
+<header {% if app.request.attributes.get('_route') == 'core_index' %} class="home" {% endif %}>
     <section>
         <h1>
-            <a href="{{ path('core_racine') }}">Banana Station</a>
+            <a href="{{ path('core_index') }}">Banana Station</a>
         </h1>
     </section>
     <section>
         <ul id="menu">
-            <li><a href="{{ path('core_racine') }}">Home</a></li>
+            <li><a href="{{ path('core_index') }}">Home</a></li>
             <li><a href="{{ path('core_projects') }}">Projects</a></li>
             <li><a href="{{ path('core_about') }}">About</a></li>
             {% if is_granted('ROLE_USER') %}
@@ -59,7 +59,7 @@
     <div>
         <h3>Navigation</h3>
         <ul>
-            <li><a href="{{ path('core_racine') }}">Home</a></li>
+            <li><a href="{{ path('core_index') }}">Home</a></li>
             <li><a href="{{ path('core_projects') }}">Projects</a></li>
             <li><a href="{{ path('core_about') }}">About</a></li>
         </ul>

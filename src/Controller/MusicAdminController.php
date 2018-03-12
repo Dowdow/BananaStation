@@ -5,7 +5,9 @@ namespace App\Controller;
 use App\Entity\Music;
 use App\Form\MusicType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -18,22 +20,25 @@ use Symfony\Component\Routing\Annotation\Route;
 class MusicAdminController extends Controller
 {
     /**
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      *
      * @Route("/admin", name="music_admin")
      */
-    public function adminAction()
+    public function admin(): Response
     {
         return $this->render('music/Page/admin.html.twig');
     }
 
     /**
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     *
+     * @return RedirectResponse|Response
+     *
+     * @throws \Symfony\Component\Form\Exception\LogicException
      *
      * @Route("/admin/add", name="music_admin_add")
      */
-    public function addAction(Request $request)
+    public function add(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $music = new Music();
@@ -52,11 +57,15 @@ class MusicAdminController extends Controller
     /**
      * @param Request $request
      * @param $id
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     *
+     * @return RedirectResponse|Response
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @throws \Symfony\Component\Form\Exception\LogicException
      *
      * @Route("/admin/edit/{id}", name="music_admin_edit", requirements={"id"="\d+"})
      */
-    public function editAction(Request $request, $id)
+    public function edit(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
         $music = $em->getRepository(Music::class)->findOneById($id);
@@ -78,11 +87,15 @@ class MusicAdminController extends Controller
     /**
      * @param Request $request
      * @param $id
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     *
+     * @return RedirectResponse|Response
+     *
+     * @throws \LogicException
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      *
      * @Route("/admin/delete/{id}", name="music_admin_delete", requirements={"id"="\d+"})
      */
-    public function deleteAction(Request $request, $id)
+    public function delete(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
         $music = $em->getRepository(Music::class)->findOneById($id);
@@ -103,9 +116,9 @@ class MusicAdminController extends Controller
 
     /**
      * @param $style
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return RedirectResponse
      */
-    private function redirectByStyle($style)
+    private function redirectByStyle($style): RedirectResponse
     {
         switch ($style) {
             case 'G':
@@ -117,6 +130,6 @@ class MusicAdminController extends Controller
             case 'D':
                 return $this->redirect($this->generateUrl('music_music_dubstep'));
         }
-        return $this->redirect($this->generateUrl('music_racine'));
+        return $this->redirect($this->generateUrl('music_index'));
     }
 } 

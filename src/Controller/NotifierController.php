@@ -17,9 +17,9 @@ class NotifierController extends Controller
     /**
      * @return Response
      *
-     * @Route("/", name="notifier_racine")
+     * @Route("/", name="notifier_index")
      */
-    public function indexAction(): Response
+    public function index(): Response
     {
         return $this->render('notifier/index.html.twig');
     }

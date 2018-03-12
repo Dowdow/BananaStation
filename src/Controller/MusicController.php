@@ -20,9 +20,9 @@ class MusicController extends Controller
     /**
      * @return Response
      *
-     * @Route("/", name="music_racine")
+     * @Route("/", name="music_index")
      */
-    public function homeAction(): Response
+    public function index(): Response
     {
         return $this->render('music/Page/index.html.twig');
     }
@@ -30,9 +30,11 @@ class MusicController extends Controller
     /**
      * @return Response
      *
+     * @throws \LogicException
+     *
      * @Route("/music/games", name="music_music_games")
      */
-    public function gamesAction()
+    public function games(): Response
     {
         return $this->process('G');
     }
@@ -40,9 +42,11 @@ class MusicController extends Controller
     /**
      * @return Response
      *
+     * @throws \LogicException
+     *
      * @Route("/music/trap", name="music_music_trap")
      */
-    public function trapAction()
+    public function trap(): Response
     {
         return $this->process('T');
     }
@@ -50,9 +54,11 @@ class MusicController extends Controller
     /**
      * @return Response
      *
+     * @throws \LogicException
+     *
      * @Route("/music/electro-house", name="music_music_electro")
      */
-    public function electroAction()
+    public function electro(): Response
     {
         return $this->process('E');
     }
@@ -60,20 +66,23 @@ class MusicController extends Controller
     /**
      * @return Response
      *
+     * @throws \LogicException
+     *
      * @Route("/music/dubstep-drum-and-bass", name="music_music_dubstep")
      */
-    public function dubstepAction()
+    public function dubstep(): Response
     {
         return $this->process('D');
     }
 
     /**
      * @param $style
+     *
      * @return Response
      *
-     * @Route("/", name="core_racine")
+     * @throws \LogicException
      */
-    private function process($style)
+    private function process($style): Response
     {
         $em = $this->getDoctrine()->getManager();
         $musics = $em->getRepository(Music::class)->findByStyleOrder($style, 0);
@@ -85,11 +94,14 @@ class MusicController extends Controller
      * @param $page
      *
      * @return Response
+     *
+     * @throws \LogicException
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      * @throws \InvalidArgumentException
      *
      * @Route("/music/page/{style}/{page}", name="music_page", requirements={"style"="g|t|e|d|s", "page"="\d+"})
      */
-    public function pageAction($style, $page)
+    public function page($style, $page): Response
     {
         $em = $this->getDoctrine()->getManager();
         $begin = ($page - 1) * 20;
@@ -106,19 +118,22 @@ class MusicController extends Controller
 
     /**
      * @param Request $request
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     *
+     * @throws \LogicException
      *
      * @Route("/music/search", name="music_search")
      */
-    public function searchAction(Request $request)
+    public function search(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         if (!$request->request->get('search')) {
             if (!$request->headers->get('referer')) {
-                return $this->redirect($this->generateUrl('music_racine'));
+                return $this->redirect($this->generateUrl('music_index'));
             }
             if (substr($request->headers->get('referer'), -\strlen('/music/search')) === '/music/search') {
-                return $this->redirect($this->generateUrl('music_racine'));
+                return $this->redirect($this->generateUrl('music_index'));
             }
             return $this->redirect($request->headers->get('referer'));
         }

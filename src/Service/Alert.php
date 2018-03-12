@@ -5,11 +5,10 @@ namespace App\Service;
 /**
  * Classe de message d'alerte
  */
-class Alert {
-
-    // Constantes
-    const TYPE_GOOD = 'alert good';
-    const TYPE_BAD = 'alert bad';
+class Alert
+{
+    public const TYPE_GOOD = 'alert good';
+    public const TYPE_BAD = 'alert bad';
 
     /**
      * Type de l'alerte
@@ -19,7 +18,7 @@ class Alert {
 
     /**
      * Message de l'alerte
-     * @var string 
+     * @var string
      */
     private $message;
 
@@ -28,24 +27,41 @@ class Alert {
      * @param string $type
      * @param string $message
      */
-    public function build($type, $message) {
+    public function build($type, $message): void
+    {
         $this->setType($type);
         $this->setMessage($message);
     }
-    
-    public function getType() {
+
+    /**
+     * @return string|null
+     */
+    public function getType(): ?string
+    {
         return $this->type;
     }
 
-    public function setType($type) {
+    /**
+     * @param string $type
+     */
+    public function setType($type): void
+    {
         $this->type = $type;
     }
 
-    public function getMessage() {
+    /**
+     * @return string|null
+     */
+    public function getMessage(): ?string
+    {
         return $this->message;
     }
 
-    public function setMessage($message) {
+    /**
+     * @param string $message
+     */
+    public function setMessage($message): void
+    {
         $this->message = $message;
     }
 

@@ -17,9 +17,11 @@ class PokeController extends Controller
     /**
      * @return Response
      *
-     * @Route("/", name="poke_racine")
+     * @throws \Symfony\Component\DependencyInjection\Exception\InvalidArgumentException
+     *
+     * @Route("/", name="poke_index")
      */
-    public function indexAction(): Response
+    public function index(): Response
     {
         return $this->render('poke/index.html.twig',
             ['server' => $this->container->getParameter('node_poke')]

@@ -1,7 +1,9 @@
-
 ###> symfony/framework-bundle ###
 .env
 /public/bundles/
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
+/.idea/
+/src/Ressources/poke/node_modules/
+/src/Ressources/tron/node_modules/

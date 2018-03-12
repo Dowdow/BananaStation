@@ -23,15 +23,18 @@ class UserController extends Controller
 {
     /**
      * @param Request $request
+     *
      * @return Response
+     *
+     * @throws \Symfony\Component\Form\Exception\LogicException
      *
      * @Route("/register", name="user_register")
      */
-    public function registerAction(Request $request): Response
+    public function register(Request $request): Response
     {
         $em = $this->getDoctrine()->getManager();
         $userRepo = $em->getRepository(Utilisateur::class);
-        $alert = $this->get('user.alert');
+        $alert = new Alert();
 
         // Création du formulaire d'utilisateur
         $user = new Utilisateur();
@@ -73,12 +76,15 @@ class UserController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      *
+     * @throws \Symfony\Component\Form\Exception\LogicException
+     * @throws \OutOfBoundsException
+     *
      * @Route("/forgetpassword", name="user_forgetpassword")
      */
-    public function forgetPasswordAction(Request $request)
+    public function forgetPassword(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $alert = $this->get('user.alert');
+        $alert = new Alert();
 
         // Création du formulaire
         $form = $this->createForm(RecoverType::class);
@@ -112,12 +118,16 @@ class UserController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      *
-     * @Route("/forgetpassword/{token}", name="tron_racine", requirements={"token"="\w+"})
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @throws \Symfony\Component\Form\Exception\LogicException
+     * @throws \OutOfBoundsException
+     *
+     * @Route("/forgetpassword/{token}", name="user_forgetpassword_token", requirements={"token"="\w+"})
      */
-    public function forgetPasswordTokenAction(Request $request, $token)
+    public function forgetPasswordToken(Request $request, $token)
     {
         $em = $this->getDoctrine()->getManager();
-        $alert = $this->get('user.alert');
+        $alert = new Alert();
         $user = $em->getRepository(Utilisateur::class)->findOneByToken($token);
 
         if ($token === '0' || $user === null) {
@@ -154,10 +164,10 @@ class UserController extends Controller
      *
      * @Route("/login", name="login")
      */
-    public function loginAction(): Response
+    public function login(): Response
     {
         $authenticationUtils = $this->get('security.authentication_utils');
-        $alert = $this->get('user.alert');
+        $alert = new Alert();
 
         $lastUsername = $authenticationUtils->getLastUsername();
 
@@ -177,18 +187,21 @@ class UserController extends Controller
      *
      * @Route("/cgu", name="user_cgu")
      */
-    public function cguAction(): Response
+    public function cgu(): Response
     {
         return $this->render('user/cgu.html.twig');
     }
 
     /**
      * @param $type
+     *
      * @return Response
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      *
      * @Route("/success/{type}", name="user_success")
      */
-    public function successAction($type): Response
+    public function success($type): Response
     {
         switch ($type) {
             case 'register':

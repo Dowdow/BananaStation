@@ -19,11 +19,15 @@ class UserAccountController extends Controller
 {
     /**
      * @param Request $request
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     *
+     * @throws \Symfony\Component\Form\Exception\LogicException
+     * @throws \OutOfBoundsException
      *
      * @Route("/account", name="user_account")
      */
-    public function accountAction(Request $request)
+    public function account(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
@@ -77,9 +81,12 @@ class UserAccountController extends Controller
                     $em->flush();
 
                     $this->get('security.token_storage')->setToken(null);
-                    $request->getSession()->invalidate();
+                    $session = $request->getSession();
+                    if ($session) {
+                        $session->invalidate();
+                    }
 
-                    return $this->redirect($this->generateUrl('core_racine'));
+                    return $this->redirect($this->generateUrl('core_index'));
                 }
                 $alert->build(Alert::TYPE_BAD, 'Vous devez renseigner le mot clé \'EFFACER\' pour supprimer votre compte.');
             } else {

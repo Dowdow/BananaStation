@@ -11,6 +11,7 @@ use App\Form\NoteType;
 use App\Service\Alert;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Routing\Annotation\Route;
@@ -26,16 +27,20 @@ class CoreProjectController extends Controller
     /**
      * @param Request $request
      * @param $slug
-     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @return Response
+     *
+     * @throws \Symfony\Component\Form\Exception\LogicException
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      *
      * @Route("/project/{slug}", name="core_project")
      */
-    public function projectAction(Request $request, $slug)
+    public function project(Request $request, $slug): Response
     {
         $em = $this->getDoctrine()->getManager();
         $project = $em->getRepository(Projet::class)->findOneBySlug($slug);
         $alert = $this->get('user.alert');
-        if ($project == null) {
+        if ($project === null) {
             throw new NotFoundHttpException();
         }
 
@@ -73,7 +78,7 @@ class CoreProjectController extends Controller
             // Gestion du commentaire
             $formcom->handleRequest($request);
             if ($formcom->isSubmitted() && $formcom->isValid()) {
-                $commentaire->setprojet($project);
+                $commentaire->setProjet($project);
                 $commentaire->setUtilisateur($this->getUser());
                 $em->persist($commentaire);
                 $em->flush();
@@ -121,12 +126,13 @@ class CoreProjectController extends Controller
     }
 
     /**
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
+     * @throws \LogicException
+     * @throws \UnexpectedValueException
      *
      * @Route("/projects", name="core_projects")
      */
-    public
-    function projectsAction()
+    public function projects(): Response
     {
         $em = $this->getDoctrine()->getManager();
         $projects = $em->getRepository(Projet::class)->findBy([], ['id' => 'DESC']);
@@ -137,12 +143,16 @@ class CoreProjectController extends Controller
      * @param Request $request
      * @param $id
      * @param $idcom
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
+     * @throws \Symfony\Component\Form\Exception\LogicException
      *
      * @Route("/project/{id}/commentaire/edit/{idcom}", name="core_project_edit_commentaire", requirements={"id"="\d+", "idcom"="\d+"})
      */
-    public
-    function editCommentaireAction(Request $request, $id, $idcom)
+    public function editCommentaire(Request $request, $id, $idcom)
     {
         if ($this->get('security.authorization_checker')->isGranted('ROLE_USER') === false) {
             throw new AccessDeniedException();
@@ -171,12 +181,16 @@ class CoreProjectController extends Controller
      * @param Request $request
      * @param $id
      * @param $idcom
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     *
+     * @throws \LogicException
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
      *
      * @Route("/project/{id}/commentaire/delete/{idcom}", name="core_project_delete_commentaire", requirements={"id"="\d+", "idcom"="\d+"})
      */
-    public
-    function deleteCommentaireAction(Request $request, $id, $idcom)
+    public function deleteCommentaire(Request $request, $id, $idcom)
     {
         if (!$this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
             throw new AccessDeniedException();
@@ -188,12 +202,12 @@ class CoreProjectController extends Controller
         if ($projet == null || $commentaire == null) {
             throw new NotFoundHttpException();
         }
-        if ($user->getId() != $commentaire->getUtilisateur()->getId() &&
-            !$this->get('security.authorization_checker')->isGranted('ROLE_CORE')
+        if (!$this->get('security.authorization_checker')->isGranted('ROLE_CORE')
+            && $user->getId() !== $commentaire->getUtilisateur()->getId()
         ) {
             throw new AccessDeniedException();
         }
-        if ($request->getMethod() == 'POST') {
+        if ($request->getMethod() === 'POST') {
             $slug = $commentaire->getProjet()->getSlug();
             $em->remove($commentaire);
             $em->flush();

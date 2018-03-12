@@ -25,7 +25,7 @@ class CoreAdminController extends Controller
      *
      * @Route("/admin", name="core_admin")
      */
-    public function adminAction(): Response
+    public function admin(): Response
     {
         return $this->render('core/admin.html.twig');
     }
@@ -35,9 +35,11 @@ class CoreAdminController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      *
+     * @throws \Symfony\Component\Form\Exception\LogicException
+     *
      * @Route("/admin/project/add", name="core_admin_project_add")
      */
-    public function projectAddAction(Request $request)
+    public function projectAdd(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
@@ -63,9 +65,12 @@ class CoreAdminController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      *
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @throws \Symfony\Component\Form\Exception\LogicException
+     *
      * @Route("/admin/project/edit/{id}", name="core_admin_project_edit", requirements={"id"="\d+"})
      */
-    public function projectEditAction(Request $request, $id)
+    public function projectEdit(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
         $project = $em->getRepository(Projet::class)->findOneById($id);
@@ -91,9 +96,12 @@ class CoreAdminController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      *
+     * @throws \LogicException
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     *
      * @Route("/admin/project/delete/{id}", name="core_admin_project_delete", requirements={"id"="\d+"})
      */
-    public function projectDeleteAction(Request $request, $id)
+    public function projectDelete(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
         $project = $em->getRepository(Projet::class)->findOneById($id);
@@ -116,9 +124,12 @@ class CoreAdminController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      *
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @throws \Symfony\Component\Form\Exception\LogicException
+     *
      * @Route("/admin/note/edit/{id}", name="core_admin_note_edit", requirements={"id"="\d+"})
      */
-    public function noteEditAction(Request $request, $id)
+    public function noteEdit(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
         $note = $em->getRepository(Note::class)->findOneById($id);
@@ -142,9 +153,12 @@ class CoreAdminController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      *
+     * @throws \LogicException
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     *
      * @Route("/admin/note/delete/{id}", name="core_admin_note_delete", requirements={"id"="\d+"})
      */
-    public function noteDeleteAction(Request $request, $id)
+    public function noteDelete(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
         $note = $em->getRepository(Note::class)->findOneById($id);

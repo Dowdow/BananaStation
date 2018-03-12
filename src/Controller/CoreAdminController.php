@@ -6,6 +6,7 @@ use App\Entity\Note;
 use App\Entity\Projet;
 use App\Form\NoteType;
 use App\Form\ProjetType;
+use App\Service\Slugger;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -48,7 +49,7 @@ class CoreAdminController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $project->setSlug($this->get('core.slugger')->slugify($project->getNom()));
+            $project->setSlug((new Slugger())->slugify($project->getNom()));
             $project->setUtilisateur($user);
             $em->persist($project);
             $em->flush();
@@ -82,7 +83,7 @@ class CoreAdminController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $project->setSlug($this->get('core.slugger')->slugify($project->getNom()));
+            $project->setSlug((new Slugger())->slugify($project->getNom()));
             $em->flush();
             return $this->redirect($this->generateUrl('core_project', ['slug' => $project->getSlug()]));
         }
@@ -141,7 +142,7 @@ class CoreAdminController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
-            return $this->redirect($this->generateUrl('core_project', ['id' => $note->getProjet()->getId()]));
+            return $this->redirect($this->generateUrl('core_project', ['slug' => $note->getProjet()->getSlug()]));
         }
 
         return $this->render('core/formnote.html.twig', ['form' => $form->createView()]);
@@ -167,10 +168,10 @@ class CoreAdminController extends Controller
         }
 
         if ($request->getMethod() === 'POST') {
-            $projetid = $note->getProjet()->getId();
+            $slug = $note->getProjet()->getSlug();
             $em->remove($note);
             $em->flush();
-            return $this->redirect($this->generateUrl('core_project', ['id' => $projetid]));
+            return $this->redirect($this->generateUrl('core_project', ['slug' => $slug]));
         }
 
         return $this->render('core/deletenote.html.twig', ['note' => $note]);

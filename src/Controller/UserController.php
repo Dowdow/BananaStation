@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Service\Mailer;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Utilisateur;
@@ -12,6 +13,7 @@ use App\Service\Alert;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * Class UserController
@@ -23,18 +25,17 @@ class UserController extends Controller
 {
     /**
      * @param Request $request
-     *
+     * @param UserPasswordEncoderInterface $encoder
+     * @param Alert $alert
+     * @param Mailer $mailer
      * @return Response
-     *
-     * @throws \Symfony\Component\Form\Exception\LogicException
      *
      * @Route("/register", name="user_register")
      */
-    public function register(Request $request): Response
+    public function register(Request $request, UserPasswordEncoderInterface $encoder, Alert $alert, Mailer $mailer): Response
     {
         $em = $this->getDoctrine()->getManager();
         $userRepo = $em->getRepository(Utilisateur::class);
-        $alert = new Alert();
 
         // Création du formulaire d'utilisateur
         $user = new Utilisateur();
@@ -48,14 +49,11 @@ class UserController extends Controller
                         $user->setSalt(md5(time()));
 
                         // Création du mot de passe
-                        $factory = $this->get('security.encoder_factory');
-                        $encoder = $factory->getEncoder($user);
-                        $password = $encoder->encodePassword($user->getPassword(), $user->getSalt());
+                        $password = $encoder->encodePassword($user, $user->getPassword());
                         $user->setPassword($password);
                         $em->persist($user);
                         $em->flush();
 
-                        $mailer = $this->get('user.mailer');
                         $mailer->sendInscription($user);
 
                         return $this->redirect($this->generateUrl('user_success', ['type' => 'register']));
@@ -73,18 +71,15 @@ class UserController extends Controller
 
     /**
      * @param Request $request
-     *
+     * @param Alert $alert
+     * @param Mailer $mailer
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
-     *
-     * @throws \Symfony\Component\Form\Exception\LogicException
-     * @throws \OutOfBoundsException
      *
      * @Route("/forgetpassword", name="user_forgetpassword")
      */
-    public function forgetPassword(Request $request)
+    public function forgetPassword(Request $request, Alert $alert, Mailer $mailer)
     {
         $em = $this->getDoctrine()->getManager();
-        $alert = new Alert();
 
         // Création du formulaire
         $form = $this->createForm(RecoverType::class);
@@ -96,7 +91,6 @@ class UserController extends Controller
                 $user->setToken(md5(time()));
                 $em->flush();
 
-                $mailer = $this->get('user.mailer');
                 $mailer->sendRecoverPassword($user);
 
                 return $this->redirect($this->generateUrl('user_success', ['type' => 'recover']));
@@ -114,20 +108,17 @@ class UserController extends Controller
 
     /**
      * @param Request $request
+     * @param UserPasswordEncoderInterface $encoder
+     * @param Alert $alert
      * @param $token
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      *
-     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
-     * @throws \Symfony\Component\Form\Exception\LogicException
-     * @throws \OutOfBoundsException
-     *
      * @Route("/forgetpassword/{token}", name="user_forgetpassword_token", requirements={"token"="\w+"})
      */
-    public function forgetPasswordToken(Request $request, $token)
+    public function forgetPasswordToken(Request $request, UserPasswordEncoderInterface $encoder, Alert $alert, $token)
     {
         $em = $this->getDoctrine()->getManager();
-        $alert = new Alert();
         $user = $em->getRepository(Utilisateur::class)->findOneByToken($token);
 
         if ($token === '0' || $user === null) {
@@ -143,9 +134,7 @@ class UserController extends Controller
             $user->setSalt(md5(time()));
 
             // Création du mot de passe
-            $factory = $this->get('security.encoder_factory');
-            $encoder = $factory->getEncoder($user);
-            $password = $encoder->encodePassword($form->get('password')->getData(), $user->getSalt());
+            $password = $encoder->encodePassword($user, $form->get('password')->getData());
             $user->setPassword($password);
             $em->flush();
 
@@ -160,17 +149,15 @@ class UserController extends Controller
     }
 
     /**
+     * @param Alert $alert
      * @return Response
      *
      * @Route("/login", name="login")
      */
-    public function login(): Response
+    public function login(Alert $alert): Response
     {
         $authenticationUtils = $this->get('security.authentication_utils');
-        $alert = new Alert();
-
         $lastUsername = $authenticationUtils->getLastUsername();
-
         $error = $authenticationUtils->getLastAuthenticationError();
         if ($error) {
             $alert->build(Alert::TYPE_BAD, 'Combinaison identifiant / mot de passe incorrecte.');

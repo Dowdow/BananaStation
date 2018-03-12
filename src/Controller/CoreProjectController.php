@@ -26,20 +26,17 @@ class CoreProjectController extends Controller
 {
     /**
      * @param Request $request
+     * @param Alert $alert
      * @param $slug
      *
      * @return Response
      *
-     * @throws \Symfony\Component\Form\Exception\LogicException
-     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
-     *
      * @Route("/project/{slug}", name="core_project")
      */
-    public function project(Request $request, $slug): Response
+    public function project(Request $request, Alert $alert, $slug): Response
     {
         $em = $this->getDoctrine()->getManager();
         $project = $em->getRepository(Projet::class)->findOneBySlug($slug);
-        $alert = $this->get('user.alert');
         if ($project === null) {
             throw new NotFoundHttpException();
         }

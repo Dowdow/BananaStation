@@ -1,6 +1,6 @@
 security:
     encoders:
-        BananaStation\UserBundle\Entity\Utilisateur: sha512
+        App\Entity\Utilisateur: sha512
 
     role_hierarchy:
         ROLE_ADMIN:       [ROLE_CORE, ROLE_MUSIC]
@@ -9,7 +9,7 @@ security:
 
     providers:
         main:
-            entity: { class: BananaStation\UserBundle\Entity\Utilisateur, property: username }
+            entity: { class: App\Entity\Utilisateur, property: username }
 
     firewalls:
         banana:

@@ -8,6 +8,7 @@ use App\Form\ChangePasswordType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * Class UserAccountController
@@ -19,35 +20,27 @@ class UserAccountController extends Controller
 {
     /**
      * @param Request $request
-     *
+     * @param UserPasswordEncoderInterface $encoder
+     * @param Alert $alert
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
-     *
-     * @throws \Symfony\Component\Form\Exception\LogicException
-     * @throws \OutOfBoundsException
      *
      * @Route("/account", name="user_account")
      */
-    public function account(Request $request)
+    public function account(Request $request, UserPasswordEncoderInterface $encoder, Alert $alert)
     {
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
-        $alert = $this->get('user.alert');
 
         $formPass = $this->createForm(ChangePasswordType::class);
         $formEmail = $this->createForm(ChangeEmailType::class);
         if ($request->request->get('password')) {
             $formPass->handleRequest($request);
             if ($formPass->isSubmitted() && $formPass->isValid()) {
-
-                $factory = $this->get('security.encoder_factory');
-                $encoder = $factory->getEncoder($user);
-                $password = $encoder->encodePassword($formPass->get('apassword')->getData(), $user->getSalt());
+                $password = $encoder->encodePassword($user, $formPass->get('apassword')->getData());
 
                 if ($user->getPassword() === $password) {
                     $user->setSalt(md5(time()));
-                    $factory = $this->get('security.encoder_factory');
-                    $encoder = $factory->getEncoder($user);
-                    $password = $encoder->encodePassword($formPass->get('npassword')->getData(), $user->getSalt());
+                    $password = $encoder->encodePassword($user, $formPass->get('npassword')->getData());
                     $user->setPassword($password);
                     $em->flush();
                     return $this->redirect($this->generateUrl('user_success', ['type' => 'password']));

@@ -2,9 +2,14 @@
 
 namespace App\Service;
 
-class Slugger {
-
-    public function slugify($text) {
+class Slugger
+{
+    /**
+     * @param $text
+     * @return null|string|string[]
+     */
+    public function slugify($text): string
+    {
         // replace non letter or digits by -
         $text = preg_replace('~[^\pL\d]+~u', '-', $text);
         // transliterate

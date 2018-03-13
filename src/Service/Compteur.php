@@ -4,51 +4,85 @@ namespace App\Service;
 
 use App\Entity\Music;
 use Doctrine\ORM\EntityManagerInterface;
+use Twig_SimpleFunction;
 
-class Compteur extends \Twig_Extension {
-
+class Compteur extends \Twig_Extension
+{
     protected $em;
 
-    public function __construct(EntityManagerInterface $em) {
+    /**
+     * Compteur constructor.
+     * @param EntityManagerInterface $em
+     */
+    public function __construct(EntityManagerInterface $em)
+    {
         $this->em = $em;
     }
 
-    public function getTotalMusic() {
+    /**
+     * @return mixed
+     */
+    public function getTotalMusic()
+    {
         $musicRepo = $this->em->getRepository(Music::class);
         return $musicRepo->getTotalMusic();
     }
 
-    public function getTotalGames() {
+    /**
+     * @return mixed
+     */
+    public function getTotalGames()
+    {
         $musicRepo = $this->em->getRepository(Music::class);
         return $musicRepo->getTotalStyle('G');
     }
 
-    public function getTotalTrap() {
+    /**
+     * @return mixed
+     */
+    public function getTotalTrap()
+    {
         $musicRepo = $this->em->getRepository(Music::class);
         return $musicRepo->getTotalStyle('T');
     }
 
-    public function getTotalElectro() {
+    /**
+     * @return mixed
+     */
+    public function getTotalElectro()
+    {
         $musicRepo = $this->em->getRepository(Music::class);
         return $musicRepo->getTotalStyle('E');
     }
 
-    public function getTotalDubstep() {
+    /**
+     * @return mixed
+     */
+    public function getTotalDubstep()
+    {
         $musicRepo = $this->em->getRepository(Music::class);
         return $musicRepo->getTotalStyle('D');
     }
 
-    public function getFunctions() {
+    /**
+     * @return array|\Twig_Function[]
+     */
+    public function getFunctions(): array
+    {
         return [
-            'getTotalMusic' => new \Twig_SimpleFunction('getTotalMusic', [$this, 'getTotalMusic']),
-            'getTotalGames' => new \Twig_SimpleFunction('getTotalGames', [$this, 'getTotalGames']),
-            'getTotalTrap' => new \Twig_SimpleFunction('getTotalTrap', [$this, 'getTotalTrap']),
-            'getTotalElectro' => new \Twig_SimpleFunction('getTotalElectro', [$this, 'getTotalElectro']),
-            'getTotalDubstep' => new \Twig_SimpleFunction('getTotalDubstep', [$this, 'getTotalDubstep'])
+            'getTotalMusic' => new Twig_SimpleFunction('getTotalMusic', [$this, 'getTotalMusic']),
+            'getTotalGames' => new Twig_SimpleFunction('getTotalGames', [$this, 'getTotalGames']),
+            'getTotalTrap' => new Twig_SimpleFunction('getTotalTrap', [$this, 'getTotalTrap']),
+            'getTotalElectro' => new Twig_SimpleFunction('getTotalElectro', [$this, 'getTotalElectro']),
+            'getTotalDubstep' => new Twig_SimpleFunction('getTotalDubstep', [$this, 'getTotalDubstep'])
         ];
     }
 
-    public function getName() {
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
         return 'Compteur';
     }
 } 

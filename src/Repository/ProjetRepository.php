@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity\Repository;
+namespace App\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\NoResultException;
@@ -13,27 +13,40 @@ use Doctrine\ORM\NoResultException;
  */
 class ProjetRepository extends EntityRepository
 {
-    public function findLast(){
+    /**
+     * @return mixed|null
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findLast()
+    {
         $query = $this->_em->createQuery('SELECT p FROM App\Entity\Projet p ORDER BY p.id DESC')
             ->setMaxResults(1);
-        try{
+        try {
             return $query->getSingleResult();
-        }catch (NoResultException $e){
-            return null;
-        }
-    }
-    
-    public function findLastThree(){
-        $query = $this->_em->createQuery('SELECT p FROM App\Entity\Projet p ORDER BY p.id DESC')
-            ->setMaxResults(3);
-        try{
-            return $query->getResult();
-        }catch (NoResultException $e){
+        } catch (NoResultException $e) {
             return null;
         }
     }
 
-    public function findTopPlusme() {
+    /**
+     * @return mixed|null
+     */
+    public function findLastThree()
+    {
+        $query = $this->_em->createQuery('SELECT p FROM App\Entity\Projet p ORDER BY p.id DESC')
+            ->setMaxResults(3);
+        try {
+            return $query->getResult();
+        } catch (NoResultException $e) {
+            return null;
+        }
+    }
+
+    /**
+     * @return mixed|null
+     */
+    public function findTopPlusme()
+    {
         $query = $this->_em->createQuery('SELECT p, COUNT(p.id) AS HIDDEN h FROM App\Entity\Projet p, App\Entity\Avis a WHERE p = a.projet AND a.pouce = :pouce GROUP BY p.id ORDER BY h DESC, p.id DESC')
             ->setParameter('pouce', 'P')
             ->setMaxResults(3);
@@ -43,7 +56,12 @@ class ProjetRepository extends EntityRepository
             return null;
         }
     }
-    public function findTopComment() {
+
+    /**
+     * @return mixed|null
+     */
+    public function findTopComment()
+    {
         $query = $this->_em->createQuery('SELECT p, COUNT(p.id) AS HIDDEN h FROM App\Entity\Projet p, App\Entity\Commentaire c WHERE p = c.projet GROUP BY p.id ORDER BY h DESC, p.id DESC')
             ->setMaxResults(3);
         try {

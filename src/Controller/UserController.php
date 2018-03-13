@@ -31,6 +31,8 @@ class UserController extends Controller
      * @return Response
      *
      * @Route("/register", name="user_register")
+     * @throws \Symfony\Component\Form\Exception\LogicException
+     * @throws \RuntimeException
      */
     public function register(Request $request, UserPasswordEncoderInterface $encoder, Alert $alert, Mailer $mailer): Response
     {
@@ -76,6 +78,9 @@ class UserController extends Controller
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      *
      * @Route("/forgetpassword", name="user_forgetpassword")
+     * @throws \Symfony\Component\Form\Exception\LogicException
+     * @throws \OutOfBoundsException
+     * @throws \RuntimeException
      */
     public function forgetPassword(Request $request, Alert $alert, Mailer $mailer)
     {
@@ -115,6 +120,9 @@ class UserController extends Controller
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      *
      * @Route("/forgetpassword/{token}", name="user_forgetpassword_token", requirements={"token"="\w+"})
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @throws \Symfony\Component\Form\Exception\LogicException
+     * @throws \OutOfBoundsException
      */
     public function forgetPasswordToken(Request $request, UserPasswordEncoderInterface $encoder, Alert $alert, $token)
     {

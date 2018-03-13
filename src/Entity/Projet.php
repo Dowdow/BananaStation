@@ -2,20 +2,19 @@
 
 namespace App\Entity;
 
-use App\Entity\Utilisateur;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Projet
  *
  * @ORM\Table(name="banana_projet")
- * @ORM\Entity(repositoryClass="App\Entity\Repository\ProjetRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\ProjetRepository")
  */
-class Projet {
-
+class Projet
+{
     /**
      * @var integer
      *
@@ -107,9 +106,10 @@ class Projet {
     private $notes;
 
     /**
-     * Constructor
+     * Projet constructor.
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->date = new \DateTime();
         $this->etat = 'E';
         $this->progression = 0;
@@ -122,7 +122,8 @@ class Projet {
      *
      * @return integer
      */
-    public function getId() {
+    public function getId(): ?int
+    {
         return $this->id;
     }
 
@@ -132,7 +133,8 @@ class Projet {
      * @param string $nom
      * @return Projet
      */
-    public function setNom($nom) {
+    public function setNom($nom): Projet
+    {
         $this->nom = $nom;
 
         return $this;
@@ -143,7 +145,8 @@ class Projet {
      *
      * @return string
      */
-    public function getNom() {
+    public function getNom(): ?string
+    {
         return $this->nom;
     }
 
@@ -153,7 +156,8 @@ class Projet {
      * @param string $description
      * @return Projet
      */
-    public function setDescription($description) {
+    public function setDescription($description): Projet
+    {
         $this->description = $description;
 
         return $this;
@@ -164,7 +168,8 @@ class Projet {
      *
      * @return string
      */
-    public function getDescription() {
+    public function getDescription(): ?string
+    {
         return $this->description;
     }
 
@@ -174,7 +179,8 @@ class Projet {
      * @param \DateTime $date
      * @return Projet
      */
-    public function setDate($date) {
+    public function setDate($date): Projet
+    {
         $this->date = $date;
 
         return $this;
@@ -185,7 +191,8 @@ class Projet {
      *
      * @return \DateTime
      */
-    public function getDate() {
+    public function getDate(): \DateTime
+    {
         return $this->date;
     }
 
@@ -195,7 +202,8 @@ class Projet {
      * @param string $image
      * @return Projet
      */
-    public function setImage($image) {
+    public function setImage($image): Projet
+    {
         $this->image = $image;
 
         return $this;
@@ -206,7 +214,8 @@ class Projet {
      *
      * @return string
      */
-    public function getImage() {
+    public function getImage(): ?string
+    {
         return $this->image;
     }
 
@@ -216,7 +225,8 @@ class Projet {
      * @param string $etat
      * @return Projet
      */
-    public function setEtat($etat) {
+    public function setEtat($etat): Projet
+    {
         $this->etat = $etat;
 
         return $this;
@@ -227,7 +237,8 @@ class Projet {
      *
      * @return string
      */
-    public function getEtat() {
+    public function getEtat(): ?string
+    {
         return $this->etat;
     }
 
@@ -237,7 +248,8 @@ class Projet {
      * @param integer $progression
      * @return Projet
      */
-    public function setProgression($progression) {
+    public function setProgression($progression): Projet
+    {
         $this->progression = $progression;
 
         return $this;
@@ -248,7 +260,8 @@ class Projet {
      *
      * @return integer
      */
-    public function getProgression() {
+    public function getProgression(): ?int
+    {
         return $this->progression;
     }
 
@@ -258,7 +271,8 @@ class Projet {
      * @param string $slug
      * @return Projet
      */
-    public function setSlug($slug) {
+    public function setSlug($slug): Projet
+    {
         $this->slug = $slug;
 
         return $this;
@@ -269,7 +283,8 @@ class Projet {
      *
      * @return string
      */
-    public function getSlug() {
+    public function getSlug(): string
+    {
         return $this->slug;
     }
 
@@ -279,7 +294,8 @@ class Projet {
      * @param Utilisateur $utilisateur
      * @return Projet
      */
-    public function setUtilisateur(Utilisateur $utilisateur) {
+    public function setUtilisateur(Utilisateur $utilisateur): Projet
+    {
         $this->utilisateur = $utilisateur;
 
         return $this;
@@ -290,7 +306,8 @@ class Projet {
      *
      * @return Utilisateur
      */
-    public function getUtilisateur() {
+    public function getUtilisateur(): ?Utilisateur
+    {
         return $this->utilisateur;
     }
 
@@ -300,7 +317,8 @@ class Projet {
      * @param Avis $avis
      * @return Projet
      */
-    public function addAvis(Avis $avis) {
+    public function addAvis(Avis $avis): Projet
+    {
         $this->avis[] = $avis;
         $avis->setProjet($this);
         return $this;
@@ -311,16 +329,18 @@ class Projet {
      *
      * @param Avis $avis
      */
-    public function removeAvis(Avis $avis) {
+    public function removeAvis(Avis $avis): void
+    {
         $this->avis->removeElement($avis);
     }
 
     /**
      * Get avis
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection
      */
-    public function getAvis() {
+    public function getAvis(): ?Collection
+    {
         return $this->avis;
     }
 
@@ -330,7 +350,8 @@ class Projet {
      * @param Commentaire $commentaire
      * @return Projet
      */
-    public function addCommentaire(Commentaire $commentaire) {
+    public function addCommentaire(Commentaire $commentaire): Projet
+    {
         $this->commentaires[] = $commentaire;
         $commentaire->setProjet($this);
         return $this;
@@ -341,16 +362,18 @@ class Projet {
      *
      * @param Commentaire $commentaire
      */
-    public function removeCommentaire(Commentaire $commentaire) {
+    public function removeCommentaire(Commentaire $commentaire): void
+    {
         $this->commentaires->removeElement($commentaire);
     }
 
     /**
      * Get commentaires
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection
      */
-    public function getCommentaires() {
+    public function getCommentaires(): ?Collection
+    {
         return $this->commentaires;
     }
 
@@ -360,7 +383,8 @@ class Projet {
      * @param Note $notes
      * @return Projet
      */
-    public function addNote(Note $notes) {
+    public function addNote(Note $notes): Projet
+    {
         $this->notes[] = $notes;
         $notes->setProjet($this);
         return $this;
@@ -371,16 +395,18 @@ class Projet {
      *
      * @param Note $notes
      */
-    public function removeNote(Note $notes) {
+    public function removeNote(Note $notes): void
+    {
         $this->notes->removeElement($notes);
     }
 
     /**
      * Get notes
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection
      */
-    public function getNotes() {
+    public function getNotes(): ?Collection
+    {
         return $this->notes;
     }
 

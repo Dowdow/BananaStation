@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Music
  *
  * @ORM\Table(name="music_music")
- * @ORM\Entity(repositoryClass="App\Entity\Repository\MusicRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\MusicRepository")
  */
 class Music
 {
@@ -58,9 +58,10 @@ class Music
     private $date;
 
     /**
-     * Constructor
+     * Music constructor.
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->date = new \DateTime();
     }
 
@@ -69,7 +70,7 @@ class Music
      *
      * @return integer
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -80,7 +81,7 @@ class Music
      * @param string $title
      * @return Music
      */
-    public function setTitle($title)
+    public function setTitle($title): Music
     {
         $this->title = $title;
 
@@ -92,7 +93,7 @@ class Music
      *
      * @return string
      */
-    public function getTitle()
+    public function getTitle(): ?string
     {
         return $this->title;
     }
@@ -103,7 +104,7 @@ class Music
      * @param string $youtubeid
      * @return Music
      */
-    public function setYoutubeid($youtubeid)
+    public function setYoutubeid($youtubeid): Music
     {
         $this->youtubeid = $youtubeid;
 
@@ -115,7 +116,7 @@ class Music
      *
      * @return string
      */
-    public function getYoutubeid()
+    public function getYoutubeid(): ?string
     {
         return $this->youtubeid;
     }
@@ -126,7 +127,7 @@ class Music
      * @param string $style
      * @return Music
      */
-    public function setStyle($style)
+    public function setStyle($style): Music
     {
         $this->style = $style;
 
@@ -138,7 +139,7 @@ class Music
      *
      * @return string
      */
-    public function getStyle()
+    public function getStyle(): ?string
     {
         return $this->style;
     }
@@ -149,7 +150,7 @@ class Music
      * @param \DateTime $date
      * @return Music
      */
-    public function setDate($date)
+    public function setDate($date): Music
     {
         $this->date = $date;
 
@@ -161,7 +162,7 @@ class Music
      *
      * @return \DateTime
      */
-    public function getDate()
+    public function getDate(): \DateTime
     {
         return $this->date;
     }

@@ -5,9 +5,11 @@ namespace App\File;
 use App\Entity\Projet;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class ProjetImageUploaderListener {
+class ProjetImageUploaderListener
+{
 
     /**
      * @var UploadedFile
@@ -21,12 +23,13 @@ class ProjetImageUploaderListener {
     /**
      * @param LifecycleEventArgs $args
      */
-    public function prePersist(LifecycleEventArgs $args) {
+    public function prePersist(LifecycleEventArgs $args): void
+    {
         $entity = $args->getEntity();
         if (!$entity instanceof Projet) {
             return;
         }
-        if ($entity->getImage() == null) {
+        if ($entity->getImage() === null) {
             $entity->setImage('');
             return;
         }
@@ -36,9 +39,11 @@ class ProjetImageUploaderListener {
 
     /**
      * @param LifecycleEventArgs $args
+     * @throws FileException
      */
-    public function postPersist(LifecycleEventArgs $args) {
-        if ($this->file == null) {
+    public function postPersist(LifecycleEventArgs $args): void
+    {
+        if ($this->file === null) {
             return;
         }
         $entity = $args->getEntity();
@@ -48,21 +53,22 @@ class ProjetImageUploaderListener {
     /**
      * @param PreUpdateEventArgs $args
      */
-    public function preUpdate(PreUpdateEventArgs $args) {
+    public function preUpdate(PreUpdateEventArgs $args): void
+    {
         $entity = $args->getEntity();
         if (!$entity instanceof Projet) {
             return;
         }
         $oldImage = $args->getOldValue('image');
-        if ($entity->getImage() == null) {
-            if ($oldImage != '') {
+        if ($entity->getImage() === null) {
+            if ($oldImage !== '') {
                 $entity->setImage($oldImage);
                 return;
             }
             $entity->setImage('');
             return;
         }
-        if ($oldImage != '') {
+        if ($oldImage !== '') {
             $this->deleteFile($entity->getId(), $oldImage);
         }
         $this->file = $entity->getImage();
@@ -71,9 +77,11 @@ class ProjetImageUploaderListener {
 
     /**
      * @param LifecycleEventArgs $args
+     * @throws FileException
      */
-    public function postUpdate(LifecycleEventArgs $args) {
-        if ($this->file == null) {
+    public function postUpdate(LifecycleEventArgs $args): void
+    {
+        if ($this->file === null) {
             return;
         }
         $entity = $args->getEntity();
@@ -83,7 +91,8 @@ class ProjetImageUploaderListener {
     /**
      * @param LifecycleEventArgs $args
      */
-    public function preRemove(LifecycleEventArgs $args) {
+    public function preRemove(LifecycleEventArgs $args): void
+    {
         $entity = $args->getEntity();
         if (!$entity instanceof Projet) {
             return;
@@ -93,8 +102,10 @@ class ProjetImageUploaderListener {
 
     /**
      * @param $entity
+     * @throws FileException
      */
-    private function uploadFile($entity) {
+    private function uploadFile($entity): void
+    {
         if (!$entity instanceof Projet || !$this->file instanceof UploadedFile) {
             return;
         }
@@ -105,7 +116,8 @@ class ProjetImageUploaderListener {
      * @param $id
      * @param $ext
      */
-    private function deleteFile($id, $ext) {
+    private function deleteFile($id, $ext): void
+    {
         $file = $this->directory . DIRECTORY_SEPARATOR . $id . '.' . $ext;
         if (file_exists($file)) {
             unlink($file);

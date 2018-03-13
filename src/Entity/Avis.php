@@ -2,17 +2,16 @@
 
 namespace App\Entity;
 
-use App\Entity\Utilisateur;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Avis
  *
  * @ORM\Table(name="banana_avis")
- * @ORM\Entity(repositoryClass="App\Entity\Repository\AvisRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\AvisRepository")
  */
-class Avis {
-
+class Avis
+{
     /**
      * @var integer
      *
@@ -53,9 +52,10 @@ class Avis {
     private $projet;
 
     /**
-     * Constructor
+     * Avis constructor.
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->date = new \DateTime();
     }
 
@@ -64,7 +64,8 @@ class Avis {
      *
      * @return integer
      */
-    public function getId() {
+    public function getId(): ?int
+    {
         return $this->id;
     }
 
@@ -74,7 +75,8 @@ class Avis {
      * @param string $pouce
      * @return Avis
      */
-    public function setPouce($pouce) {
+    public function setPouce($pouce): Avis
+    {
         $this->pouce = $pouce;
 
         return $this;
@@ -85,7 +87,8 @@ class Avis {
      *
      * @return string
      */
-    public function getPouce() {
+    public function getPouce(): ?string
+    {
         return $this->pouce;
     }
 
@@ -95,7 +98,8 @@ class Avis {
      * @param \DateTime $date
      * @return Avis
      */
-    public function setDate($date) {
+    public function setDate($date): Avis
+    {
         $this->date = $date;
 
         return $this;
@@ -106,18 +110,20 @@ class Avis {
      *
      * @return \DateTime
      */
-    public function getDate() {
+    public function getDate(): \DateTime
+    {
         return $this->date;
     }
 
-  /**
-   * Set utilisateur
-   *
-   * @param \App\Entity\Utilisateur $utilisateur
-   *
-   * @return Avis
-   */
-    public function setUtilisateur(Utilisateur $utilisateur) {
+    /**
+     * Set utilisateur
+     *
+     * @param Utilisateur $utilisateur
+     *
+     * @return Avis
+     */
+    public function setUtilisateur(Utilisateur $utilisateur): Avis
+    {
         $this->utilisateur = $utilisateur;
 
         return $this;
@@ -126,9 +132,10 @@ class Avis {
     /**
      * Get utilisateur
      *
-     * @return \App\Entity\Utilisateur
+     * @return Utilisateur
      */
-    public function getUtilisateur() {
+    public function getUtilisateur(): ?Utilisateur
+    {
         return $this->utilisateur;
     }
 
@@ -138,7 +145,8 @@ class Avis {
      * @param Projet $projet
      * @return Avis
      */
-    public function setProjet(Projet $projet) {
+    public function setProjet(Projet $projet): Avis
+    {
         $this->projet = $projet;
 
         return $this;
@@ -149,7 +157,8 @@ class Avis {
      *
      * @return Projet
      */
-    public function getProjet() {
+    public function getProjet(): ?Projet
+    {
         return $this->projet;
     }
 

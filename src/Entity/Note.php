@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use App\Entity\Utilisateur;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -10,10 +9,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Note
  *
  * @ORM\Table(name="banana_note")
- * @ORM\Entity(repositoryClass="App\Entity\Repository\NoteRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\NoteRepository")
  */
-class Note {
-
+class Note
+{
     /**
      * @var integer
      *
@@ -58,16 +57,18 @@ class Note {
     /**
      * Constructor
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->date = new \DateTime();
     }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
-    public function getId() {
+    public function getId(): ?int
+    {
         return $this->id;
     }
 
@@ -77,7 +78,8 @@ class Note {
      * @param string $contenu
      * @return Note
      */
-    public function setContenu($contenu) {
+    public function setContenu($contenu): Note
+    {
         $this->contenu = $contenu;
 
         return $this;
@@ -86,9 +88,10 @@ class Note {
     /**
      * Get contenu
      *
-     * @return string 
+     * @return string
      */
-    public function getContenu() {
+    public function getContenu(): ?string
+    {
         return $this->contenu;
     }
 
@@ -98,7 +101,8 @@ class Note {
      * @param \DateTime $date
      * @return Note
      */
-    public function setDate($date) {
+    public function setDate($date): Note
+    {
         $this->date = $date;
 
         return $this;
@@ -107,9 +111,10 @@ class Note {
     /**
      * Get date
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
-    public function getDate() {
+    public function getDate(): \DateTime
+    {
         return $this->date;
     }
 
@@ -119,7 +124,8 @@ class Note {
      * @param Utilisateur $utilisateur
      * @return Note
      */
-    public function setUtilisateur(Utilisateur $utilisateur) {
+    public function setUtilisateur(Utilisateur $utilisateur): Note
+    {
         $this->utilisateur = $utilisateur;
 
         return $this;
@@ -130,7 +136,8 @@ class Note {
      *
      * @return Utilisateur
      */
-    public function getUtilisateur() {
+    public function getUtilisateur(): ?Utilisateur
+    {
         return $this->utilisateur;
     }
 
@@ -140,7 +147,8 @@ class Note {
      * @param Projet $projet
      * @return Note
      */
-    public function setProjet(Projet $projet) {
+    public function setProjet(Projet $projet): Note
+    {
         $this->projet = $projet;
 
         return $this;
@@ -151,7 +159,8 @@ class Note {
      *
      * @return Projet
      */
-    public function getProjet() {
+    public function getProjet(): ?Projet
+    {
         return $this->projet;
     }
 

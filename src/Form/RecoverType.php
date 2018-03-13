@@ -8,14 +8,21 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Validator\Constraints as Assert;
 use EWZ\Bundle\RecaptchaBundle\Validator\Constraints as Recaptcha;
+use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
+use Symfony\Component\Validator\Exception\InvalidOptionsException;
+use Symfony\Component\Validator\Exception\MissingOptionsException;
 
-class RecoverType extends AbstractType {
-
+class RecoverType extends AbstractType
+{
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
+     * @throws MissingOptionsException
+     * @throws InvalidOptionsException
+     * @throws ConstraintDefinitionException
      */
-    public function buildForm(FormBuilderInterface $builder, array $options) {
+    public function buildForm(FormBuilderInterface $builder, array $options): void
+    {
         $builder->add('email', EmailType::class, [
             'constraints' => [
                 new Assert\NotNull(),
@@ -28,7 +35,11 @@ class RecoverType extends AbstractType {
                 ]]);
     }
 
-    public function getBlockPrefix() {
+    /**
+     * @return null|string
+     */
+    public function getBlockPrefix(): ?string
+    {
         return 'user_utilisateur_forget';
     }
 

@@ -2,15 +2,26 @@
 
 namespace App\Service;
 
-class ProjectState extends \Twig_Extension {
+use Twig_SimpleFilter;
 
-    public function getFilters() {
+class ProjectState extends \Twig_Extension
+{
+    /**
+     * @return array|\Twig_Filter[]
+     */
+    public function getFilters(): array
+    {
         return [
-            new \Twig_SimpleFilter('pstate', [$this, 'stateFilter']),
+            new Twig_SimpleFilter('pstate', [$this, 'stateFilter']),
         ];
     }
 
-    public function stateFilter($state) {
+    /**
+     * @param $state
+     * @return string
+     */
+    public function stateFilter($state): string
+    {
         switch ($state) {
             case 'E':
                 $state = 'En cours';
@@ -30,7 +41,8 @@ class ProjectState extends \Twig_Extension {
      *
      * @return string The extension name
      */
-    public function getName() {
+    public function getName(): string
+    {
         return 'project_state';
     }
 }

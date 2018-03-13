@@ -31,6 +31,9 @@ class CoreProjectController extends Controller
      *
      * @return Response
      *
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @throws \Symfony\Component\Form\Exception\LogicException
+     *
      * @Route("/project/{slug}", name="core_project")
      */
     public function project(Request $request, Alert $alert, $slug): Response

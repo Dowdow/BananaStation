@@ -25,6 +25,8 @@ class UserAccountController extends Controller
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      *
      * @Route("/account", name="user_account")
+     * @throws \Symfony\Component\Form\Exception\LogicException
+     * @throws \OutOfBoundsException
      */
     public function account(Request $request, UserPasswordEncoderInterface $encoder, Alert $alert)
     {

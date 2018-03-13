@@ -5,30 +5,37 @@ namespace App\Service;
 use App\Entity\Utilisateur;
 use Symfony\Component\Templating\EngineInterface;
 
-class Mailer {
-
-    /**
-     * @var \Swift_Mailer
-     */
+class Mailer
+{
+    /** @var \Swift_Mailer  */
     protected $mailer;
 
-    /**
-     * @var \Symfony\Component\Templating\EngineInterface
-     */
+    /** @var EngineInterface  */
     protected $templating;
 
-    /**
-     * @var string
-     */
+    /** @var String  */
     protected $from;
 
-    public function __construct($from, \Swift_Mailer $mailer, EngineInterface $templating) {
+    /**
+     * Mailer constructor.
+     * @param \Swift_Mailer $mailer
+     * @param EngineInterface $templating
+     * @param string $from
+     */
+    public function __construct(\Swift_Mailer $mailer, EngineInterface $templating, String $from = 'no-reply@banana-station.fr')
+    {
         $this->from = $from;
         $this->mailer = $mailer;
         $this->templating = $templating;
     }
 
-    public function sendInscription(Utilisateur $user) {
+    /**
+     * @param Utilisateur $user
+     * @return bool
+     * @throws \RuntimeException
+     */
+    public function sendInscription(Utilisateur $user): bool
+    {
         $subject = 'Bienvenue sur Banana Station !';
         $to = $user->getEmail();
         $body = $this->templating->render(
@@ -38,7 +45,13 @@ class Mailer {
         return $this->sendMessage($to, $subject, $body);
     }
 
-    public function sendRecoverPassword(Utilisateur $user) {
+    /**
+     * @param Utilisateur $user
+     * @return bool
+     * @throws \RuntimeException
+     */
+    public function sendRecoverPassword(Utilisateur $user): bool
+    {
         $subject = 'Votre mail de réinitialisation de mot de passe';
         $to = $user->getEmail();
         $body = $this->templating->render(
@@ -48,8 +61,15 @@ class Mailer {
         return $this->sendMessage($to, $subject, $body);
     }
 
-    protected function sendMessage($to, $subject, $body) {
-        $mail = \Swift_Message::newInstance();
+    /**
+     * @param string $to
+     * @param string $subject
+     * @param $body
+     * @return bool
+     */
+    protected function sendMessage($to, $subject, $body): bool
+    {
+        $mail = new \Swift_Message();
 
         $mail
             ->setFrom($this->from)
@@ -58,7 +78,7 @@ class Mailer {
             ->setBody($body);
 
         $sent = $this->mailer->send($mail);
-        return count($sent) === 0 ? false : true;
+        return $sent !== 0;
     }
 
 }

@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use App\Entity\Utilisateur;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -10,10 +9,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Commentaire
  *
  * @ORM\Table(name="banana_commentaire")
- * @ORM\Entity(repositoryClass="App\Entity\Repository\CommentaireRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\CommentaireRepository")
  */
-class Commentaire {
-
+class Commentaire
+{
     /**
      * @var integer
      *
@@ -56,9 +55,10 @@ class Commentaire {
     private $projet;
 
     /**
-     * Constructor
+     * Commentaire constructor.
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->date = new \DateTime();
     }
 
@@ -67,7 +67,8 @@ class Commentaire {
      *
      * @return integer
      */
-    public function getId() {
+    public function getId(): ?int
+    {
         return $this->id;
     }
 
@@ -77,7 +78,8 @@ class Commentaire {
      * @param string $contenu
      * @return Commentaire
      */
-    public function setContenu($contenu) {
+    public function setContenu($contenu): Commentaire
+    {
         $this->contenu = $contenu;
 
         return $this;
@@ -88,7 +90,8 @@ class Commentaire {
      *
      * @return string
      */
-    public function getContenu() {
+    public function getContenu(): ?string
+    {
         return $this->contenu;
     }
 
@@ -98,7 +101,8 @@ class Commentaire {
      * @param \DateTime $date
      * @return Commentaire
      */
-    public function setDate($date) {
+    public function setDate($date): Commentaire
+    {
         $this->date = $date;
 
         return $this;
@@ -109,7 +113,8 @@ class Commentaire {
      *
      * @return \DateTime
      */
-    public function getDate() {
+    public function getDate(): \DateTime
+    {
         return $this->date;
     }
 
@@ -119,7 +124,8 @@ class Commentaire {
      * @param Utilisateur $utilisateur
      * @return Commentaire
      */
-    public function setUtilisateur(Utilisateur $utilisateur) {
+    public function setUtilisateur(Utilisateur $utilisateur): Commentaire
+    {
         $this->utilisateur = $utilisateur;
 
         return $this;
@@ -130,7 +136,8 @@ class Commentaire {
      *
      * @return Utilisateur
      */
-    public function getUtilisateur() {
+    public function getUtilisateur(): ?Utilisateur
+    {
         return $this->utilisateur;
     }
 
@@ -140,7 +147,8 @@ class Commentaire {
      * @param Projet $projet
      * @return Commentaire
      */
-    public function setProjet(Projet $projet) {
+    public function setProjet(Projet $projet): Commentaire
+    {
         $this->projet = $projet;
 
         return $this;
@@ -151,7 +159,8 @@ class Commentaire {
      *
      * @return Projet
      */
-    public function getProjet() {
+    public function getProjet(): ?Projet
+    {
         return $this->projet;
     }
 

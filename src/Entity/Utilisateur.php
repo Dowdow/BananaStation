@@ -2,8 +2,8 @@
 
 namespace App\Entity;
 
-use App\Entity\Avis;
-use App\Entity\Commentaire;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use EWZ\Bundle\RecaptchaBundle\Validator\Constraints as Recaptcha;
@@ -14,10 +14,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * Utilisateur
  *
  * @ORM\Table(name="banana_utilisateur")
- * @ORM\Entity(repositoryClass="App\Entity\Repository\UtilisateurRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\UtilisateurRepository")
  */
-class Utilisateur implements UserInterface {
-
+class Utilisateur implements UserInterface
+{
     /**
      * @var integer
      *
@@ -98,19 +98,24 @@ class Utilisateur implements UserInterface {
     public $recaptcha;
 
     /**
+     * @var ArrayCollection
+     *
      * @ORM\OneToMany(targetEntity="App\Entity\Commentaire", mappedBy="utilisateur", cascade={"persist", "remove"})
      */
     private $commentaires;
 
     /**
+     * @var ArrayCollection
+     *
      * @ORM\OneToMany(targetEntity="App\Entity\Avis", mappedBy="utilisateur", cascade={"persist", "remove"})
      */
     private $avis;
 
     /**
-     * Constructeur
+     * Utilisateur constructor.
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->date = new \DateTime();
         $this->roles = 'U';
         $this->token = '0';
@@ -121,7 +126,8 @@ class Utilisateur implements UserInterface {
      *
      * @return integer
      */
-    public function getId() {
+    public function getId(): ?int
+    {
         return $this->id;
     }
 
@@ -131,7 +137,8 @@ class Utilisateur implements UserInterface {
      * @param string $username
      * @return Utilisateur
      */
-    public function setUsername($username) {
+    public function setUsername($username): Utilisateur
+    {
         $this->username = $username;
 
         return $this;
@@ -142,7 +149,8 @@ class Utilisateur implements UserInterface {
      *
      * @return string
      */
-    public function getUsername() {
+    public function getUsername(): ?string
+    {
         return $this->username;
     }
 
@@ -152,7 +160,8 @@ class Utilisateur implements UserInterface {
      * @param string $email
      * @return Utilisateur
      */
-    public function setEmail($email) {
+    public function setEmail($email): Utilisateur
+    {
         $this->email = $email;
 
         return $this;
@@ -163,7 +172,8 @@ class Utilisateur implements UserInterface {
      *
      * @return string
      */
-    public function getEmail() {
+    public function getEmail(): ?string
+    {
         return $this->email;
     }
 
@@ -173,7 +183,8 @@ class Utilisateur implements UserInterface {
      * @param string $password
      * @return Utilisateur
      */
-    public function setPassword($password) {
+    public function setPassword($password): Utilisateur
+    {
         $this->password = $password;
 
         return $this;
@@ -184,7 +195,8 @@ class Utilisateur implements UserInterface {
      *
      * @return string
      */
-    public function getPassword() {
+    public function getPassword(): ?string
+    {
         return $this->password;
     }
 
@@ -194,7 +206,8 @@ class Utilisateur implements UserInterface {
      * @param string $salt
      * @return Utilisateur
      */
-    public function setSalt($salt) {
+    public function setSalt($salt): Utilisateur
+    {
         $this->salt = $salt;
 
         return $this;
@@ -207,7 +220,8 @@ class Utilisateur implements UserInterface {
      *
      * @return string|null The salt
      */
-    public function getSalt() {
+    public function getSalt(): ?string
+    {
         return $this->salt;
     }
 
@@ -217,7 +231,8 @@ class Utilisateur implements UserInterface {
      * @param string $roles
      * @return Utilisateur
      */
-    public function setRoles($roles) {
+    public function setRoles($roles): Utilisateur
+    {
         $this->roles = $roles;
 
         return $this;
@@ -227,8 +242,8 @@ class Utilisateur implements UserInterface {
      * Returns the roles granted to the user.
      * @return Role[] The user roles
      */
-    public function getRoles() {
-        $role = '';
+    public function getRoles(): array
+    {
         switch ($this->roles) {
             case 'A':
                 $role = 'ROLE_ADMIN';
@@ -246,6 +261,7 @@ class Utilisateur implements UserInterface {
                 $role = 'ROLE_USER';
                 break;
             default :
+                $role = '';
                 break;
         }
         return [$role];
@@ -257,7 +273,8 @@ class Utilisateur implements UserInterface {
      * @param \DateTime $date
      * @return Utilisateur
      */
-    public function setDate($date) {
+    public function setDate($date): Utilisateur
+    {
         $this->date = $date;
 
         return $this;
@@ -268,7 +285,8 @@ class Utilisateur implements UserInterface {
      *
      * @return \DateTime
      */
-    public function getDate() {
+    public function getDate(): \DateTime
+    {
         return $this->date;
     }
 
@@ -278,7 +296,8 @@ class Utilisateur implements UserInterface {
      * @param string $token
      * @return Utilisateur
      */
-    public function setToken($token) {
+    public function setToken($token): Utilisateur
+    {
         $this->token = $token;
 
         return $this;
@@ -289,7 +308,8 @@ class Utilisateur implements UserInterface {
      *
      * @return string
      */
-    public function getToken() {
+    public function getToken(): ?string
+    {
         return $this->token;
     }
 
@@ -299,7 +319,8 @@ class Utilisateur implements UserInterface {
      * @param Commentaire $commentaires
      * @return Utilisateur
      */
-    public function addCommentaire(Commentaire $commentaires) {
+    public function addCommentaire(Commentaire $commentaires): Utilisateur
+    {
         $this->commentaires[] = $commentaires;
 
         return $this;
@@ -310,16 +331,18 @@ class Utilisateur implements UserInterface {
      *
      * @param Commentaire $commentaires
      */
-    public function removeCommentaire(Commentaire $commentaires) {
+    public function removeCommentaire(Commentaire $commentaires): void
+    {
         $this->commentaires->removeElement($commentaires);
     }
 
     /**
      * Get commentaires
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection
      */
-    public function getCommentaires() {
+    public function getCommentaires(): ?Collection
+    {
         return $this->commentaires;
     }
 
@@ -329,7 +352,8 @@ class Utilisateur implements UserInterface {
      * @param Avis $avis
      * @return Utilisateur
      */
-    public function addAvi(Avis $avis) {
+    public function addAvi(Avis $avis): Utilisateur
+    {
         $this->avis[] = $avis;
 
         return $this;
@@ -340,16 +364,18 @@ class Utilisateur implements UserInterface {
      *
      * @param Avis $avis
      */
-    public function removeAvi(Avis $avis) {
+    public function removeAvi(Avis $avis): void
+    {
         $this->avis->removeElement($avis);
     }
 
     /**
      * Get avis
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection
      */
-    public function getAvis() {
+    public function getAvis(): ?Collection
+    {
         return $this->avis;
     }
 
@@ -361,7 +387,8 @@ class Utilisateur implements UserInterface {
      * This is important if, at any given point, sensitive information like
      * the plain-text password is stored on this object.
      */
-    public function eraseCredentials() {
+    public function eraseCredentials(): void
+    {
 
     }
 }

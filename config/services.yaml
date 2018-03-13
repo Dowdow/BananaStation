@@ -53,7 +53,7 @@ services:
 
     user.mailer:
             class: '%user.mailer.class%'
-            arguments: ['%env(MAILER_FROM)%','@mailer','@templating']
+            arguments: ['@mailer','@templating','%env(MAILER_FROM)%']
 
     user.alert:
         class: '%user.alert.class%'

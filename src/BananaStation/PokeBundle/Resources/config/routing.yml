@@ -1,3 +1,0 @@
-banana_station_poke_racine:
-    path: /
-    defaults: { _controller: BananaStationPokeBundle:Poke:index }

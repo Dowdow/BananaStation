@@ -1,0 +1,26 @@
+{% extends "music.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/music/admin.css') }}"/>
+{% endblock %}
+
+{% block body %}
+    <section>
+        {% if form %}
+            <h1>Ajouter une music :</h1>
+            {{ form_start(form) }}
+            <label>Title</label>
+            {{ form_widget(form.title) }}
+            <label>YouTube Id</label>
+            {{ form_widget(form.youtubeid) }}
+            <label>Style</label>
+            {{ form_widget(form.style) }}
+            <input type="submit" value="Valider"/>
+            {{ form_end(form) }}
+        {% else %}
+            <h1>Supprimer une music :</h1>
+            <form method="post"><input type="submit" value="Valider"/></form>
+        {% endif %}
+    </section>
+{% endblock %}

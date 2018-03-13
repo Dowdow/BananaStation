@@ -1,0 +1,93 @@
+{% extends "core.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/core/home.css') }}"/>
+{% endblock %}
+
+{% block body %}
+
+    <section id="projects">
+        <p>Consultez ici la liste des tous les projets Banana Station</p>
+        <p><a href="{{ path('core_projects') }}">Projects</a></p>
+    </section>
+
+    <section id="sites">
+        <h2>Tous les sites Banana Station :</h2>
+        <div>
+            <a id="music" href="{{ path('music_index') }}">
+                <h3>Banana Music</h3>
+                <span>
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                     data-src="{{ asset('img/music/playstation.svg') }}"
+                     alt="Playstation controller" class="lazy-load"/>
+            </span>
+                <span>
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                     data-src="{{ asset('img/music/dollar.svg') }}"
+                     alt="Dollar" class="lazy-load"/>
+            </span>
+                <span>
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                     data-src="{{ asset('img/music/disk.svg') }}"
+                     alt="Vinyl record" class="lazy-load"/>
+            </span>
+                <span>
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                     data-src="{{ asset('img/music/syringe.svg') }}"
+                     alt="Syringue" class="lazy-load"/>
+            </span>
+            </a>
+            <a id="tron" href="{{ path('tron_index') }}">
+                <h3>Banana Tron</h3>
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                     data-src="{{ asset('img/core/tron.png') }}"
+                     alt="Banana Tron" class="lazy-load">
+            </a>
+            <a id="poke" href="{{ path('poke_index') }}">
+                <h3>Banana Poke</h3>
+                <span></span>
+                <span></span>
+                <span></span>
+            </a>
+            <a id="notifier" href="{{ path('notifier_index') }}">
+                <h3>RSS Notifier</h3>
+                <span></span>
+                <span></span>
+                <span></span>
+            </a>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>Banana Station vous dites ?</h2>
+        <p>Banana Station c'est un grand bac à sable regroupant plein de projets issus de mes études et de mes
+            expérimentations personnelles. Partisan de l'open source, tout le code source est hébergé sur Git Hub.
+            Mets-toi bien il y a plein de choses à découvrir ici ;)</p>
+        <ul>
+            <li><i class="fa fa-twitter" aria-hidden="true"></i>&emsp;<a href="https://www.twitter.com/DowdowGG">@DowdowGG</a>
+            </li>
+            <li><i class="fa fa-linkedin-square" aria-hidden="true"></i>&emsp;<a
+                        href="https://www.linkedin.com/in/léo-riera-36383189">Léo Riera</a></li>
+            <li><i class="fa fa-github" aria-hidden="true"></i>&emsp;<a href="https://github.com/Dowdow">Dowdow</a></li>
+        </ul>
+    </section>
+
+    <section id="app">
+        <h2>Hubble Player</h2>
+        <p>Hubble Player est la première application Android que je mets sur Play Store. Elle permet d'écouter de la
+            musique et de la gérer grâce au capteur de proximité.</p>
+        <div>
+            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                 data-src="{{ asset('img/core/hppreview.png') }}"
+                 alt="Hubble Player preview" class="lazy-load">
+            <a href='https://play.google.com/store/apps/details?id=fr.banana_station.hubble_player&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                     data-src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'
+                     alt='Get it on Google Play' class="lazy-load"/>
+            </a>
+        </div>
+    </section>
+
+{% endblock %}

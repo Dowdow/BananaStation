@@ -1,23 +1,9 @@
-/app/config/parameters.yml
-/build/
-/phpunit.xml
-/var/*
-!/var/cache
-/var/cache/*
-!var/cache/.gitkeep
-!/var/logs
-/var/logs/*
-!var/logs/.gitkeep
-!/var/sessions
-/var/sessions/*
-!var/sessions/.gitkeep
-!var/SymfonyRequirements.php
+###> symfony/framework-bundle ###
+.env
+/public/bundles/
+/var/
 /vendor/
-/web/bundles/
-
-/composer.phar
-/.idea/*
-/src/BananaStation/PokeBundle/Resources/server/node_modules
-/src/BananaStation/TronBundle/Resources/server/node_modules
-/web/public/video/*
-/web/public/img/core/projet/*
+###< symfony/framework-bundle ###
+/.idea/
+/src/Ressources/poke/node_modules/
+/src/Ressources/tron/node_modules/

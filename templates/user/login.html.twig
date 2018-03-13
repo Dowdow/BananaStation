@@ -1,0 +1,25 @@
+{% extends "user.html.twig" %}
+{% block body %}
+    <section>
+        <h2>Authentification</h2>
+        <form class="form-horizontal" action="{{ path('login_check') }}" method="post">
+            <div class="form-group">
+                <label for="username" class="control-label">Identifiant</label>
+                <input id="username" class="form-control" type="text" name="_username" value="{{ last_username }}"
+                       placeholder="Identifiant"/>
+            </div>
+            <div class="form-group">
+                <label for="password" class="control-label">Mot de passe</label>
+                <input id="password" class="form-control" type="password" name="_password" placeholder="Mot de passe"/>
+            </div>
+            <div class="form-group">
+                <a href="{{ path('user_forgetpassword') }}">Mot de passe oublié ?</a>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Connexion"/>
+            </div>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+        </form>
+        <a href="{{ path('user_register') }}">Vous n'êtes pas encore inscrit ?</a>
+    </section>
+{% endblock %}

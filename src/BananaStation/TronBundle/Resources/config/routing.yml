@@ -1,3 +1,0 @@
-banana_station_tron_racine:
-    path: /
-    defaults: { _controller: BananaStationTronBundle:Tron:index }

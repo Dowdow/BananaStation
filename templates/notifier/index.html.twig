@@ -1,0 +1,37 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="theme-color" content="#7ea4c3">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/notifier/global.min.css') }}">
+    <title>Banana Notifier</title>
+</head>
+<body>
+{% include "ie.html.twig" %}
+
+<header>
+    <h1>Banana Notifier</h1>
+</header>
+<section id="presentation">
+    <img src="{{ asset('img/notifier/notifier.png') }}" alt="RSS Notifier">
+    <h2>Add your favorites news websites RSS links and get notified when they post new content !</h2>
+</section>
+<section id="download">
+    <h2>Download here</h2>
+    <ul>
+        <li><a href="{{ asset('zip/notifier/notifier-win64.zip') }}">Windows x64</a></li>
+        <li><a href="{{ asset('zip/notifier/notifier-osx64.zip') }}">OSX x64</a></li>
+        <li><a href="{{ asset('zip/notifier/notifier-lin64.zip') }}">Linux x64</a></li>
+    </ul>
+</section>
+<footer>
+    <ul>
+        <li><i class="fa fa-home" aria-hidden="true"></i> <a href="{{ path('core_index') }}">Banana Station</a></li>
+        <li><i class="fa fa-github" aria-hidden="true"></i> <a href="https://github.com/Dowdow">Dowdow</a></li>
+        <li><i class="fa fa-twitter" aria-hidden="true"></i> <a href="https://www.twitter.com/DowdowGG">@DowdowGG</a></li>
+    </ul>
+</footer>
+</body>
+</html>

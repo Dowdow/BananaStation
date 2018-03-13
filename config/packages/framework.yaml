@@ -1,0 +1,19 @@
+framework:
+    secret: '%env(APP_SECRET)%'
+    default_locale: fr
+    csrf_protection: { enabled: true }
+
+    session:
+        handler_id: ~
+        cookie_domain: '%env(HOST_MAIN)%'
+
+    php_errors:
+        log: true
+
+    templating:
+        engines: ['twig']
+
+# EWZRecaptcha Configuration
+ewz_recaptcha:
+    public_key: '%env(EZ_RECAPTCHA_PUBLIC)%'
+    private_key: '%env(EZ_RECAPTCHA_PRIVATE)%'

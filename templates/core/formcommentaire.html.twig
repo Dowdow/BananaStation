@@ -1,0 +1,20 @@
+{% extends "core.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/core/form.css') }}"/>
+{% endblock %}
+
+{% block body %}
+    <section>
+        <h2>Edition de votre commentaire</h2>
+
+        {{ form_start(form) }}
+
+        {{ form_widget(form.contenu, { 'attr': { 'placeholder': 'Contenu de la note', 'rows': 4 } }) }}
+
+        <input type="submit" value="Editer"/>
+
+        {{ form_end(form) }}
+    </section>
+{% endblock %}

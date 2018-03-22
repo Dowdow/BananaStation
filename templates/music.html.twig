@@ -2,6 +2,15 @@
 
 <html lang="fr">
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-116205632-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-116205632-2');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
     {% block metas %}{% endblock %}
@@ -18,7 +27,6 @@
 </head>
 <body>
 {% include "ie.html.twig" %}
-
 <header>
     <section>
         <a href="{{ path('music_music_games') }}" class="red">
@@ -39,22 +47,18 @@
         </a>
     </section>
 </header>
-
 {% block body %}
 {% endblock %}
-
 <footer>
     <section id="total">
         <h4>Musics total : {{ getTotalMusic() }}</h4>
     </section>
-
     <section id="totals">
         <h4 class="red">Games total : {{ getTotalGames() }}</h4>
         <h4 class="yellow">Trap total : {{ getTotalTrap() }}</h4>
         <h4 class="blue">E & H total : {{ getTotalElectro() }}</h4>
         <h4 class="green">D & DnB total : {{ getTotalDubstep() }}</h4>
     </section>
-
     <section id="nav">
         <ul>
             <li><a href="{{ path('music_music_games') }}">Games</a></li>
@@ -71,7 +75,6 @@
         </ul>
     </section>
 </footer>
-
 {% block javascripts %}
 {% endblock %}
 </body>

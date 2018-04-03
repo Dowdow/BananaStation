@@ -5,5 +5,8 @@
 /vendor/
 ###< symfony/framework-bundle ###
 /.idea/
+/public/img/core/news/
+/public/img/core/projet/
+/public/video/music/
 /src/Ressources/poke/node_modules/
 /src/Ressources/tron/node_modules/
